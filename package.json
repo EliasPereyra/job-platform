@@ -1,5 +1,9 @@
 {
   "private": true,
+  "author": {
+    "name": "EliasPereyra",
+    "url": "https://github.com/EliasPereyra"
+  },
   "scripts": {
     "dev": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js && next dev",
     "build": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js && next build",
