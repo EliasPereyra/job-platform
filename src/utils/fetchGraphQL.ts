@@ -3,14 +3,15 @@ import { draftMode, cookies } from "next/headers";
 export async function fetchGraphQL<T = any>(
   query: string,
   variables?: { [key: string]: any },
-  headers?: { [key: string]: string },
+  headers?: { [key: string]: string }
 ): Promise<T> {
-  const { isEnabled: preview } = draftMode();
+  const { isEnabled: preview } = await draftMode();
 
   try {
     let authHeader = "";
     if (preview) {
-      const auth = cookies().get("wp_jwt")?.value;
+      const auth = (await cookies()).get("wp_jwt")?.value;
+
       if (auth) {
         authHeader = `Bearer ${auth}`;
       }
@@ -38,7 +39,7 @@ export async function fetchGraphQL<T = any>(
         next: {
           tags: ["wordpress"],
         },
-      },
+      }
     );
 
     if (!response.ok) {
