@@ -1,12 +1,13 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "author": {
     "name": "EliasPereyra",
     "url": "https://github.com/EliasPereyra"
   },
   "scripts": {
-    "dev": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js && next dev",
+    "dev": "NODE_ENV=development graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js && next dev",
+    "prod": "NODE_ENV=production graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js && next dev",
     "build": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js && next build",
     "start": "next start",
     "lint": "next lint",
