@@ -11,7 +11,6 @@ import PageTemplate from "@/components/Templates/Page/PageTemplate";
 import { nextSlugToWpSlug } from "@/utils/nextSlugToWpSlug";
 import PostTemplate from "@/components/Templates/Post/PostTemplate";
 import { SeoQuery } from "@/queries/general/SeoQuery";
-
 type Props = {
   params: { slug: string };
 };
@@ -33,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return notFound();
   }
 
-  const metadata = setSeoData({ seo: contentNode.seo });
+  const metadata = setSeoData({ seo: contentNode?.seo });
 
   return {
     ...metadata,
