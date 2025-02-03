@@ -13,10 +13,10 @@ const notFoundPageWordPressId = 501;
 export async function generateMetadata(): Promise<Metadata> {
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(SeoQuery),
-    { slug: notFoundPageWordPressId, idType: "DATABASE_ID" },
+    { slug: notFoundPageWordPressId, idType: "DATABASE_ID" }
   );
 
-  const metadata = setSeoData({ seo: contentNode.seo });
+  const metadata = setSeoData({ seo: contentNode?.seo });
 
   return {
     ...metadata,
@@ -31,5 +31,5 @@ export default async function NotFound() {
     id: notFoundPageWordPressId,
   });
 
-  return <div dangerouslySetInnerHTML={{ __html: page.content || " " }} />;
+  return <div dangerouslySetInnerHTML={{ __html: page?.content || " " }} />;
 }
