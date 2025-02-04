@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 
 import styles from "./home.module.css";
+import Navigation from "@/components/Globals/Navigation/Navigation";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -10,18 +11,28 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <section className={styles.container}>
-      <h1 className={styles.title}>
-        Ofertas de trabajo{" "}
-        <span className={styles.highlight}>sin experiencia</span>
-      </h1>
-      <a className={styles.button} href="/todos-los-trabajos">
-        Ver trabajos
-      </a>
+    <div className={styles.home}>
+      <Navigation />
 
-      <div className={styles.lastJobs}>
-        <p>Últimas vacantes publicadas</p>
-      </div>
-    </section>
+      <section className={styles.container}>
+        <div className={styles.element} />
+        <h1 className={styles.title}>
+          Ofertas de trabajo{" "}
+          <span className={styles.highlight}>sin experiencia</span>
+        </h1>
+        <p className={styles.description}>
+          Disponibles desde distintas provincias y localidades, comienza tu
+          próxima trayectoria laboral
+        </p>
+        <a className={styles.button} href="/todos-los-trabajos">
+          Ver trabajos
+        </a>
+
+        <div className={styles.lastJobs}>
+          <p>Últimas vacantes publicadas</p>
+        </div>
+        <div className={styles.argentina} />
+      </section>
+    </div>
   );
 }
