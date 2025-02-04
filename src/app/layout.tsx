@@ -2,6 +2,7 @@ import { draftMode } from "next/headers";
 import { Inter } from "next/font/google";
 
 import "@/app/globals.css";
+import styles from "./layout.module.css";
 
 import Navigation from "@/components/Globals/Navigation/Navigation";
 import { PreviewNotice } from "@/components/Globals/PreviewNotice/PreviewNotice";
@@ -19,8 +20,10 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {isEnabled && <PreviewNotice />}
-        <Navigation />
-        {children}
+        <div className={styles.layout}>
+          <Navigation />
+          {children}
+        </div>
       </body>
     </html>
   );
