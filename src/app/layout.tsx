@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import styles from "./layout.module.css";
 
-import Navigation from "@/components/Globals/Navigation/Navigation";
 import { PreviewNotice } from "@/components/Globals/PreviewNotice/PreviewNotice";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,10 +19,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {isEnabled && <PreviewNotice />}
-        <div className={styles.layout}>
-          <Navigation />
-          {children}
-        </div>
+        <div className={styles.layout}>{children}</div>
       </body>
     </html>
   );
