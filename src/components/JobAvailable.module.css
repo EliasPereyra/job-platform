@@ -1,0 +1,29 @@
+.available {
+  border-radius: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--pink-red);
+  background-color: var(--light-pink-red);
+}
+
+.notAvailable {
+  border-radius: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #3d3939;
+  background-color: #ccc;
+}
+
+.pinkText {
+  color: var(--pink-red);
+  font-size: 0.5rem;
+}
+
+.grayText {
+  color: #3d3939;
+  font-size: 0.5rem;
+}
