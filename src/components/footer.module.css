@@ -1,0 +1,52 @@
+.footer {
+  padding: 2em 6em;
+  background-color: #151617;
+  margin-top: 10rem;
+  display: flex;
+  gap: 4rem;
+
+  .firstCol {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .footerDescription {
+      font-size: 0.9rem;
+      color: #ccc;
+      width: 30ch;
+    }
+
+    .socialMedia {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .developedBy {
+      color: #ccc;
+      font-size: 0.7rem;
+
+      .link {
+        color: #ccc;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .secondCol {
+    .pages {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .pagesTitle {
+        color: #ccc;
+        font-size: 1.3rem;
+      }
+
+      .socialMedia {
+        font-size: 0.9rem;
+        color: #ccc;
+      }
+    }
+  }
+}
