@@ -2,6 +2,7 @@ import { Metadata } from "next";
 
 import styles from "./home.module.css";
 import Navigation from "@/components/Globals/Navigation/Navigation";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -28,11 +29,112 @@ export default function Home() {
           Ver trabajos
         </a>
 
-        <div className={styles.lastJobs}>
-          <p>Últimas vacantes publicadas</p>
-        </div>
         <div className={styles.argentina} />
       </section>
+
+      <section className={styles.companies}>
+        <h2 className={styles.companiesTitle}>Confían en nosotros</h2>
+        <div className={styles.companiesContainer}>
+          <div className={styles.circle} />
+          <div className={styles.circle} />
+          <div className={styles.circle} />
+          <div className={styles.circle} />
+          <div className={styles.circle} />
+          <div className={styles.circle} />
+          <div className={styles.circle} />
+          <div className={styles.circle} />
+          <div className={styles.circle} />
+          <div className={styles.circle} />
+          <div className={styles.circle} />
+          <div className={styles.circle} />
+          <div className={styles.circle} />
+        </div>
+      </section>
+
+      <section className={styles.firstJob}>
+        <h2 className={styles.firstJobTitle}>
+          Conseguí tu{" "}
+          <span className={styles.firstJobTitleHighlight}>primer empleo</span>
+        </h2>
+        <div className={styles.firstJobContent}>
+          <div className={styles.firstColumn}>
+            <div className={styles.leftRectangleRounded} />
+            <p className={styles.columnText}>
+              Creemos que todos tienen derecho a trabajar, y para eso es
+              fundamental pasar por un primer empleo que nos permita empezar a
+              tener experiencia.
+            </p>
+            <p className={styles.columnText}>
+              Por eso, en 2016, fundamos Revista Empleo con la misión de sólo
+              publicar ofertas de trabajo que no requieren experiencia previa.
+            </p>
+          </div>
+          <div className={styles.secondColumn}>
+            <p className={styles.columnText}>
+              Miles de empresas, organismos públicos y emprendedores/as nos
+              acompañan en este camino y nos eligen para publicar sus búsquedas
+              de personal. ¡Y estamos felices de ver cómo se suman cada día más
+              compañías a este proyecto!
+            </p>
+            <p className={styles.columnText}>
+              Pero lo que más alegría nos da es que vos, que estás buscando
+              trabajo, lo consigas pronto.
+            </p>
+            <div className={styles.rightRectangleRounded} />
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.secondJob}>
+        <h2 className={styles.secondJobTitle}>
+          Revista Empleo arma tu CV y mucho más
+        </h2>
+        <div className={styles.secondJobContent}>
+          <p className={styles.secondJobDescription}>
+            Armamos tu CV y simulamos entrevistas de trabajo para que estés
+            preparado. Solicitá este servicio a nuestros profesionales de RR.HH.
+          </p>
+          <a href="#">Más sobre nuestros servicios</a>
+        </div>
+      </section>
+
+      <footer className={styles.footer}>
+        <Image
+          src="/assets/imgs/logo.svg"
+          alt="logo"
+          width={100}
+          height={100}
+        />
+        <p className={styles.footerDescription}>
+          Bolsa de empleo de ofertas de trabajo sin experiencia
+        </p>
+        <div className={styles.socialMedia}>
+          <a>
+            <Image
+              src="/assets/icons/whatsapp.svg"
+              alt="facebook"
+              width={20}
+              height={20}
+            />
+          </a>
+          <a>
+            <Image
+              src="/assets/icons/facebook.svg"
+              alt="facebook"
+              width={20}
+              height={20}
+            />
+          </a>
+          <a>
+            <Image
+              src="/assets/icons/instagram.svg"
+              alt="facebook"
+              width={20}
+              height={20}
+            />
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }

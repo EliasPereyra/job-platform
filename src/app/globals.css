@@ -5,6 +5,8 @@
   --blue: #2e45bbbe;
   --purple: #3c2ebb;
   --light-green: #53e07dbd;
+  --pink-red: #f6405d;
+  --light-pink-red: #f8e3e7;
 
   --red-c-50: "#FFEBEE",
   --red-c-100: "#FFD7DD",
@@ -19,7 +21,7 @@
   --red-c-950: "#1E0005"
   
   --green-gradient: linear-gradient(to right, var(var(--light-green)), #68e7c5);
-  --light-green-gradient: linear-gradient(to bottom, #dcffe650, #cafafa4f);
+  --light-green-gradient: linear-gradient(to bottom, #e7ffeef3, #f0fdfdec);
 }
 
 * {
@@ -53,7 +55,6 @@ h3 {
 }
 
 p {
-  width: 70ch;
 }
 
 a {
@@ -62,7 +63,6 @@ a {
 }
 
 li {
-  list-style-type: none;
 }
 
 img {
