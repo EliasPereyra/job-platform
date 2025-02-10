@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import styles from "./home.module.css";
 import Navigation from "@/components/Globals/Navigation/Navigation";
 import Image from "next/image";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -86,55 +87,31 @@ export default function Home() {
       </section>
 
       <section className={styles.secondJob}>
-        <h2 className={styles.secondJobTitle}>
-          Revista Empleo arma tu CV y mucho más
-        </h2>
-        <div className={styles.secondJobContent}>
-          <p className={styles.secondJobDescription}>
-            Armamos tu CV y simulamos entrevistas de trabajo para que estés
-            preparado. Solicitá este servicio a nuestros profesionales de RR.HH.
-          </p>
-          <a href="#">Más sobre nuestros servicios</a>
+        <div>
+          <Image
+            src="/assets/imgs/computer.png"
+            alt="Image of the computer"
+            width={320}
+            height={200}
+          />
+        </div>
+        <div className={styles.secondCol}>
+          <h2 className={styles.secondJobTitle}>
+            Revista Empleo arma tu CV y mucho más
+          </h2>
+          <div className={styles.secondJobContent}>
+            <p className={styles.secondJobDescription}>
+              Armamos tu CV y simulamos entrevistas de trabajo para que estés
+              preparado. Solicitá este servicio a nuestros profesionales de
+              RR.HH.
+            </p>
+            <a className={styles.secondJobButton} href="#">
+              Más sobre nuestros servicios
+            </a>
+          </div>
         </div>
       </section>
-
-      <footer className={styles.footer}>
-        <Image
-          src="/assets/imgs/logo.svg"
-          alt="logo"
-          width={100}
-          height={100}
-        />
-        <p className={styles.footerDescription}>
-          Bolsa de empleo de ofertas de trabajo sin experiencia
-        </p>
-        <div className={styles.socialMedia}>
-          <a>
-            <Image
-              src="/assets/icons/whatsapp.svg"
-              alt="facebook"
-              width={20}
-              height={20}
-            />
-          </a>
-          <a>
-            <Image
-              src="/assets/icons/facebook.svg"
-              alt="facebook"
-              width={20}
-              height={20}
-            />
-          </a>
-          <a>
-            <Image
-              src="/assets/icons/instagram.svg"
-              alt="facebook"
-              width={20}
-              height={20}
-            />
-          </a>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
