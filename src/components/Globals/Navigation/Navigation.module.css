@@ -1,5 +1,29 @@
 .navigation {
-  padding: 20px;
+  --_animationStartsAfter: 50vh;
+  --_animationDistance: 120px;
+  font-size: 0.8rem;
+  padding: 1em 6em;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 20px;
+  background: transparent;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  margin-inline: auto;
+  margin-block: 0rem;
+  width: 100%;
+  animation: stickyNav linear forwards;
+  backdrop-filter: blur(10px);
+
+  .menu {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+
+    .menuItem {
+      color: var(--black);
+    }
+  }
 }
