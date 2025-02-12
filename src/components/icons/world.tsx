@@ -1,7 +1,9 @@
 export default function WorldIcon({
+  size,
   color,
   arialabel,
 }: {
+  size?: number;
   color?: string;
   arialabel?: string;
 }) {
@@ -11,10 +13,10 @@ export default function WorldIcon({
       viewBox="0 0 24 24"
       fill="none"
       stroke={color}
-      strokelinecap="round"
-      strokelinejoin="round"
-      width={24}
-      height={24}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      width={size || 24}
+      height={size || 24}
       strokeWidth={2}
       aria-label={arialabel}
     >

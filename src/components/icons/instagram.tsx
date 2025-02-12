@@ -1,9 +1,11 @@
 export function InstagramIcon({
   color,
   arialabel,
+  size,
 }: {
   color?: string;
   arialabel?: string;
+  size?: number;
 }) {
   return (
     <svg
@@ -11,10 +13,10 @@ export function InstagramIcon({
       viewBox="0 0 24 24"
       fill="none"
       stroke={color}
-      strokelinecap="round"
-      strokelinejoin="round"
-      width={24}
-      height={24}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      width={size || 24}
+      height={size || 24}
       strokeWidth={2}
       aria-label={arialabel}
     >
