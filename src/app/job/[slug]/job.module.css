@@ -1,0 +1,124 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 6em;
+  background: radial-gradient(at 27% 37%, rgb(58, 181, 253) 0px, transparent 0%),
+    radial-gradient(at 97% 21%, rgb(174, 128, 235) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, rgb(100, 58, 253) 0px, transparent 90%),
+    radial-gradient(at 10% 29%, rgb(90, 101, 252) 0px, transparent 50%),
+    radial-gradient(at 97% 96%, rgb(229, 123, 233) 0px, transparent 50%),
+    radial-gradient(at 33% 50%, hsl(244, 88%, 67%) 0px, transparent 80%),
+    radial-gradient(at 79% 53%, rgb(145, 138, 212) 0px, transparent 50%);
+}
+
+.company {
+  .companyLogo {
+    border-radius: 50%;
+  }
+}
+
+.available {
+  width: fit-content;
+}
+
+.title {
+  color: #fff;
+  font-size: 2.3rem;
+}
+
+.date {
+  margin-top: -0.5rem;
+  color: #f5f4f4;
+}
+
+.info {
+  display: flex;
+  gap: 1em;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5rem 1rem;
+  border: 1px solid #f1b9ff;
+  border-radius: 9rem;
+  background-color: #dbade76e;
+}
+
+.locationText {
+  color: #fdf4ff;
+}
+
+.modality {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5rem 1rem;
+  border: 1px solid #f0ffb9;
+  border-radius: 9rem;
+  background-color: #e3e7ad73;
+}
+
+.modalityText {
+  color: #fefff4;
+}
+
+.salary {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5rem 1rem;
+  border: 1px solid #b9ffc5;
+  border-radius: 9rem;
+  background-color: #ade7b26e;
+}
+
+.salaryText {
+  color: #c7ffc7;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5rem 1rem;
+  border: 1px solid #b9d1ff;
+  border-radius: 9rem;
+  background-color: #adbbe770;
+}
+
+.timeText {
+  color: #caecff;
+}
+
+.share {
+  display: flex;
+  gap: 1em;
+  fill: #f0f0f0;
+}
+.shareTitle {
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.content {
+  padding: 2em 6em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.description {
+  width: 75ch;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  list-style: disc;
+  list-style-position: inside;
+}
