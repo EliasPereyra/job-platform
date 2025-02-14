@@ -106,9 +106,10 @@
     .circle {
       width: 5em;
       height: 5em;
-      border-radius: 50%;
-      background-color: #ccc;
-      filter: opacity(0.4);
+
+      .logo {
+        border-radius: 50%;
+      }
     }
   }
 }

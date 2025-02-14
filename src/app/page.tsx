@@ -1,9 +1,15 @@
 import { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+import { companies } from "@/queries/general/CompanyQuery";
+import { print } from "graphql/language/printer";
+import { RootQueryToCompanyConnection } from "@/gql/graphql";
+
+import Navigation from "@/components/Globals/Navigation/Navigation";
+import Footer from "@/components/footer";
+import { fetchGraphQL } from "@/utils/fetchGraphQL";
 
 import styles from "./home.module.css";
-import Navigation from "@/components/Globals/Navigation/Navigation";
-import Image from "next/image";
-import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -11,7 +17,11 @@ export const metadata: Metadata = {
     "Trabajos exclusivos que no requieren experiencia laboral previa. Mira la lista de trabajos publicados y postula en aquellos en que destacas.",
 };
 
-export default function Home() {
+export default async function Home() {
+  const { companies: companiesLogo } = await fetchGraphQL<{
+    companies: RootQueryToCompanyConnection;
+  }>(print(companies));
+
   return (
     <div className={styles.home}>
       <Navigation />
@@ -36,19 +46,19 @@ export default function Home() {
       <section className={styles.companies}>
         <h2 className={styles.companiesTitle}>Confían en nosotros</h2>
         <div className={styles.companiesContainer}>
-          <div className={styles.circle} />
-          <div className={styles.circle} />
-          <div className={styles.circle} />
-          <div className={styles.circle} />
-          <div className={styles.circle} />
-          <div className={styles.circle} />
-          <div className={styles.circle} />
-          <div className={styles.circle} />
-          <div className={styles.circle} />
-          <div className={styles.circle} />
-          <div className={styles.circle} />
-          <div className={styles.circle} />
-          <div className={styles.circle} />
+          {companiesLogo.nodes.map((company: any) => (
+            <div key={company.id} className={styles.circle}>
+              <Link href="#">
+                <Image
+                  className={styles.logo}
+                  src={company.companies.logo?.node.sourceUrl || ""}
+                  alt={company.companies.logo?.node.altText || ""}
+                  width={100}
+                  height={100}
+                />
+              </Link>
+            </div>
+          ))}
         </div>
       </section>
 
