@@ -42,13 +42,14 @@
   align-items: center;
   gap: 0.5em;
   padding: 0.5rem 1rem;
-  border: 1px solid #f1b9ff;
+  border: 1px solid var(--light-purple);
   border-radius: 9rem;
   background-color: #dbade76e;
 }
 
 .locationText {
   color: #fdf4ff;
+  font-size: 0.8rem;
 }
 
 .modality {
@@ -56,13 +57,14 @@
   align-items: center;
   gap: 0.5em;
   padding: 0.5rem 1rem;
-  border: 1px solid #f0ffb9;
+  border: 1px solid var(--light-green-yellow);
   border-radius: 9rem;
   background-color: #e3e7ad73;
 }
 
 .modalityText {
   color: #fefff4;
+  font-size: 0.8rem;
 }
 
 .salary {
@@ -70,13 +72,14 @@
   align-items: center;
   gap: 0.5em;
   padding: 0.5rem 1rem;
-  border: 1px solid #b9ffc5;
+  border: 1px solid var(--light-green);
   border-radius: 9rem;
   background-color: #ade7b26e;
 }
 
 .salaryText {
   color: #c7ffc7;
+  font-size: 0.8rem;
 }
 
 .time {
@@ -84,13 +87,14 @@
   align-items: center;
   gap: 0.5em;
   padding: 0.5rem 1rem;
-  border: 1px solid #b9d1ff;
+  border: 1px solid var(--light-blue);
   border-radius: 9rem;
   background-color: #adbbe770;
 }
 
 .timeText {
   color: #caecff;
+  font-size: 0.8rem;
 }
 
 .share {

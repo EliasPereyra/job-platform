@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Metadata } from "next";
 import Link from "next/link";
 import { Company, type Job } from "@/gql/graphql";
@@ -16,9 +17,9 @@ import { LeftArrow } from "@/components/icons/left-arrow";
 import { setSeoData } from "@/utils/seoData";
 import { formatDate } from "@/utils/formatDate";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
+import { company } from "@/queries/general/CompanyQuery";
 
 import styles from "./job.module.css";
-import Image from "next/image";
 
 const job = gql`
   query JobQuery($id: ID!) {
@@ -70,25 +71,6 @@ const job = gql`
         title
         twitterDescription
         twitterTitle
-      }
-    }
-  }
-`;
-
-const company = gql`
-  query CompanyQuery($id: ID!) {
-    company(id: $id, idType: URI) {
-      title
-      content
-      companies {
-        logo {
-          node {
-            id
-            altText
-            sourceUrl
-          }
-        }
-        contact
       }
     }
   }
