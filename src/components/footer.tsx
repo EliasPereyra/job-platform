@@ -50,7 +50,7 @@ export default async function Footer() {
           </Link>
         </div>
         <small className={styles.developedBy}>
-          Desarrollado por{" "}
+          Diseñado & Desarrollado por{" "}
           <Link className={styles.link} href="https://github.com/EliasPereyra">
             Elias Pereyra
           </Link>
