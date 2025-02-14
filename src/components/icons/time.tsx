@@ -11,8 +11,8 @@ export function TimeIcon({
       viewBox="0 0 24 24"
       fill="none"
       stroke={color}
-      strokelinecap="round"
-      strokelinejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       width={24}
       height={24}
       strokeWidth={2}
