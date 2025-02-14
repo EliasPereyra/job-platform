@@ -3,7 +3,7 @@
 > [!NOTE]
 > Proyecto en construcción
 
-![Pagina principal de la plataforma de trabajo](./public/assets/imgs/home.png)
+![Pagina principal de la plataforma de trabajo](https://github.com/EliasPereyra/job-platform/tree/main/public/assets/imgs/home.png)
 
 Una plataforma para conseguir trabajo que abarca distintos tipos de rubros en distintas partes de Argentina. Sin necesidad de registrarte, solamente envía tu CV a la empresa que te interesa.
 
