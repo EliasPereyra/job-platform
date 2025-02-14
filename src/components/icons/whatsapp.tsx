@@ -1,11 +1,11 @@
 export function WhatsappIcon({
   color,
-  arilabel,
+  arialabel,
   size,
 }: {
   size?: number;
   color?: string;
-  arilabel?: string;
+  arialabel?: string;
 }) {
   return (
     <svg
@@ -18,7 +18,7 @@ export function WhatsappIcon({
       width={size || 24}
       height={size || 24}
       strokeWidth={2}
-      aria-label={arilabel}
+      aria-label={arialabel}
     >
       {" "}
       <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path>{" "}
