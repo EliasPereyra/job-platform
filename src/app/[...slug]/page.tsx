@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { print } from "graphql/language/printer";
-
-import { setSeoData } from "@/utils/seoData";
-
-import { fetchGraphQL } from "@/utils/fetchGraphQL";
-import { ContentInfoQuery } from "@/queries/general/ContentInfoQuery";
 import { ContentNode } from "@/gql/graphql";
-import PageTemplate from "@/components/Templates/Page/PageTemplate";
+
+import JobsTemplate from "@/components/Templates/Page/JobsTemplate";
+import AboutTemplate from "@/components/Templates/Page/AboutTemplate";
+import ContactTemplate from "@/components/Templates/Page/ContactTemplate";
 import { nextSlugToWpSlug } from "@/utils/nextSlugToWpSlug";
-import PostTemplate from "@/components/Templates/Post/PostTemplate";
+import { fetchGraphQL } from "@/utils/fetchGraphQL";
+import { setSeoData } from "@/utils/seoData";
+import { ContentInfoQuery } from "@/queries/general/ContentInfoQuery";
 import { SeoQuery } from "@/queries/general/SeoQuery";
 type Props = {
   params: { slug: string };
@@ -60,11 +60,13 @@ export default async function Page({ params }: Props) {
 
   if (!contentNode) return notFound();
 
-  switch (contentNode.contentTypeName) {
-    case "page":
-      return <PageTemplate node={contentNode} />;
-    case "post":
-      return <PostTemplate node={contentNode} />;
+  switch (wpSlug) {
+    case "todos-los-trabajos":
+      return <JobsTemplate />;
+    case "sobre-nosotros":
+      return <AboutTemplate node={contentNode} />;
+    case "contacto":
+      return <ContactTemplate node={contentNode} />;
     default:
       return <p>{contentNode.contentTypeName} not implemented</p>;
   }
