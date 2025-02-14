@@ -4,9 +4,13 @@
   --black: #191919;
   --blue: #2e45bbbe;
   --purple: #3c2ebb;
-  --light-green: #53e07dbd;
+  --green: #53e07dbd;
   --pink-red: #f6405d;
   --light-pink-red: #f8e3e7;
+  --light-purple: #f1b9ff;
+  --light-green-yellow: #f0ffb9;
+  --light-green: #b9ffc5;
+  --light-blue: #b9d1ff;
 
   --red-c-50: "#FFEBEE",
   --red-c-100: "#FFD7DD",
@@ -20,7 +24,7 @@
   --red-c-900: "#3D010B",
   --red-c-950: "#1E0005"
   
-  --green-gradient: linear-gradient(to right, var(var(--light-green)), #68e7c5);
+  --green-gradient: linear-gradient(to right, var(var(--green)), #68e7c5);
   --light-green-gradient: linear-gradient(to bottom, #e7ffeef3, #f0fdfdec);
 }
 
@@ -41,7 +45,7 @@ body {
 
 h1 {
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 800;
 }
 
 h2 {
