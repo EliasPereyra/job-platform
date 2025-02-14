@@ -3,6 +3,9 @@ import Image from "next/image";
 
 import styles from "./footer.module.css";
 import Link from "next/link";
+import { WhatsappIcon } from "./icons/whatsapp";
+import { FacebookIcon } from "./icons/facebook";
+import { InstagramIcon } from "./icons/instagram";
 
 export default async function Footer() {
   const { mediaItems } = await getData();
@@ -25,27 +28,24 @@ export default async function Footer() {
         </p>
         <div className={styles.socialMedia}>
           <Link href="#">
-            <Image
-              src="/assets/icons/whatsapp.svg"
-              alt="facebook"
-              width={30}
-              height={30}
+            <WhatsappIcon
+              arialabel="Icono de whatsapp"
+              color="#eee"
+              size={30}
             />
           </Link>
           <Link href="#">
-            <Image
-              src="/assets/icons/facebook.svg"
-              alt="facebook"
-              width={30}
-              height={30}
+            <FacebookIcon
+              arialabel="Icono de facebook"
+              color="#eee"
+              size={30}
             />
           </Link>
           <Link href="#">
-            <Image
-              src="/assets/icons/instagram.svg"
-              alt="facebook"
-              width={30}
-              height={30}
+            <InstagramIcon
+              arialabel="Icono de instagram"
+              color="#eee"
+              size={30}
             />
           </Link>
         </div>
