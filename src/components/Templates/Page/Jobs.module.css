@@ -1,0 +1,15 @@
+.container {
+  padding: 10em 6em;
+  background: linear-gradient(to bottom, #b8ebc8, transparent);
+}
+
+.page {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+  gap: 2em;
+}
+
+.title {
+  margin-bottom: 1em;
+  color: var(--black);
+}
