@@ -1,22 +1,23 @@
-import { Page, ContentNode } from "@/gql/graphql";
-import { PageQuery } from "./PageQuery";
-import { fetchGraphQL } from "@/utils/fetchGraphQL";
-import { print } from "graphql/language/printer";
+import styles from "./PageTemplate.module.css";
 
-import styles from "./About.module.css";
-
-interface ContactoProps {
-  node: ContentNode;
-}
-
-export default async function ContactTemplate({ node }: ContactoProps) {
-  const { page } = await fetchGraphQL<{ page: Page }>(print(PageQuery), {
-    id: node.databaseId,
-  });
-
+export default function ContactTemplate() {
   return (
     <section className={styles.container}>
-      <div dangerouslySetInnerHTML={{ __html: page?.content || "" }} />
+      <h2 className={styles.title}>Contact</h2>
+      <p className={styles.description}>
+        ¿Tienes dudas, consultas o quieres publicar una oferta laboral en
+        Xperience? ¡Estamos aquí para ayudarte!
+      </p>
+      <p className={styles.description}>
+        Escribínos vía{" "}
+        <a className={styles.link} href="mailto:contacto@xperience.com">
+          email
+        </a>{" "}
+        o háblanos a nuestro{" "}
+        <a className={styles.link} href="https://wa.me/549115555-5555">
+          Whasapp
+        </a>
+      </p>
     </section>
   );
 }
