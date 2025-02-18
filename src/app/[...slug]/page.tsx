@@ -64,7 +64,7 @@ export default async function Page({ params }: Props) {
     case "todos-los-trabajos":
       return <JobsTemplate />;
     case "sobre-nosotros":
-      return <AboutTemplate node={contentNode} />;
+      return <AboutTemplate />;
     case "contacto":
       return <ContactTemplate node={contentNode} />;
     default:

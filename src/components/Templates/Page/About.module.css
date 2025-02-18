@@ -1,3 +1,21 @@
 .container {
-  padding: 6em 8em 20em 6em;
+  height: 100vh;
+  padding: 8em 4em;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1em;
+  color: var(--black);
+  font-size: 2rem;
+}
+
+.description {
+  text-align: center;
+  font-size: 1.2rem;
+  width: 60ch;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 0 auto;
 }
