@@ -27,3 +27,18 @@
   color: #3d3939;
   font-size: 0.5rem;
 }
+
+.pinkCircle {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: var(--pink-red);
+  border-radius: 50%;
+  box-shadow: 0 0 0.9rem 0.1rem var(--light-pink-red);
+}
+
+.grayCircle {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #3d3939;
+  border-radius: 50%;
+}

@@ -1,4 +1,4 @@
-import styles from "./JobCard.module.css";
+import styles from "./job-available.module.css";
 
 export default function JobAvailable({ available }: { available: boolean }) {
   return (
