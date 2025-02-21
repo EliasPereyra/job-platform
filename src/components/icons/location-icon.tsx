@@ -1,4 +1,4 @@
-export function Location({
+export default function LocationIcon({
   color,
   size,
   arialabel,
