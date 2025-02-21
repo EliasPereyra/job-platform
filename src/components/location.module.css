@@ -1,0 +1,14 @@
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--light-purple);
+  border-radius: 9rem;
+  background-color: #dbade76e;
+}
+
+.locationText {
+  color: #fdf4ff;
+  font-size: 0.8rem;
+}
