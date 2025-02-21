@@ -1,0 +1,14 @@
+.time {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--light-blue);
+  border-radius: 9rem;
+  background-color: #adbbe770;
+}
+
+.timeText {
+  color: #caecff;
+  font-size: 0.8rem;
+}
