@@ -66,7 +66,7 @@ export default async function Page({ params }: Props) {
     case "sobre-nosotros":
       return <AboutTemplate />;
     case "contacto":
-      return <ContactTemplate node={contentNode} />;
+      return <ContactTemplate />;
     default:
       return <p>{contentNode.contentTypeName} not implemented</p>;
   }
