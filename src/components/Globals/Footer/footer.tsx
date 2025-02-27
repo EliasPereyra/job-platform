@@ -1,11 +1,12 @@
-import { getData } from "@/utils/fetchPrimaryMenu";
 import Image from "next/image";
+import Link from "next/link";
+
+import { getData } from "@/utils/fetchPrimaryMenu";
+import { WhatsappIcon } from "../../icons/whatsapp";
+import { FacebookIcon } from "../../icons/facebook";
+import { InstagramIcon } from "../../icons/instagram";
 
 import styles from "./footer.module.css";
-import Link from "next/link";
-import { WhatsappIcon } from "./icons/whatsapp";
-import { FacebookIcon } from "./icons/facebook";
-import { InstagramIcon } from "./icons/instagram";
 
 export default async function Footer() {
   const { mediaItems } = await getData();
