@@ -15,7 +15,8 @@
   margin-block: 0rem;
   width: 100%;
   animation: stickyNav linear forwards;
-  background-color: #a3ffc213;
+  background-color: #e3fcfb59;
+  border-bottom: 1px solid #d1f2ff;
   backdrop-filter: blur(10px);
 
   .menu {
