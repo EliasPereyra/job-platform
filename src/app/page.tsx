@@ -113,29 +113,68 @@ export default async function Home() {
         </ul>
       </section>
 
-      <section className={styles.secondJob}>
-        <div>
-          <Image
-            src="/assets/imgs/computer.png"
-            alt="Image of the computer"
-            width={320}
-            height={200}
-          />
-        </div>
-        <div className={styles.secondCol}>
-          <h2 className={styles.secondJobTitle}>
-            <span className={styles.secondJobTitleHighlight}>WorkStart</span>{" "}
-            arma tu CV y mucho más
-          </h2>
-          <div className={styles.secondJobContent}>
-            <p className={styles.secondJobDescription}>
-              Armamos tu CV y simulamos entrevistas de trabajo para que estés
-              preparado. Solicitá este servicio a nuestros profesionales de
-              RR.HH.
-            </p>
-            <a className={styles.secondJobButton} href="#">
-              Más sobre nuestros servicios
-            </a>
+      <section className={styles.howItWorks}>
+        <h2>Cómo Funciona</h2>
+        <div className={styles.howItWorksContainer}>
+          <div className={styles.howItWorksItemRight}>
+            <Image
+              className={styles.howItWorksImage}
+              src="/assets/imgs/jobs.jpg"
+              alt="Lista de trabajos de la plataforma"
+              width={1604}
+              height={854}
+            />
+            <div>
+              <h3 className={styles.howItWorksTitle}>
+                Explora las oportunidades laborales
+              </h3>
+              <p className={styles.howItWorksDescription}>
+                Revisa nuestra lista actualizada de ofertas de trabajo en
+                distintas industrias y categorías.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.howItWorksItemLeft}>
+            <Image
+              className={styles.howItWorksImage}
+              src="/assets/imgs/job.jpg"
+              alt="Texto que describe los detalles del puesto"
+              width={1604}
+              height={854}
+            />
+            <div>
+              <h3 className={styles.howItWorksTitle}>
+                Consulta todos los detalles del puesto
+              </h3>
+              <p className={styles.howItWorksDescription}>
+                Cada oferta incluye información clara sobre el cargo,
+                requisitos, beneficios y detalles del empleador. No necesitas
+                registrarte para ver toda la información relevante y tomar una
+                decisión informada.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.howItWorksItemRight}>
+            <Image
+              className={styles.howItWorksImage}
+              src="/assets/imgs/contact.jpg"
+              alt="Contacto directo con la empresa"
+              width={1604}
+              height={854}
+            />
+            <div>
+              <h3 className={styles.howItWorksTitle}>
+                Contacta directamente con la empresa
+              </h3>
+              <p className={styles.howItWorksDescription}>
+                Cuando encuentres un empleo que te interese, simplemente copia
+                el correo proporcionado en la oferta y envía tu postulación sin
+                intermediarios. Escribe directamente a la empresa y agiliza el
+                proceso de aplicación.
+              </p>
+            </div>
           </div>
         </div>
       </section>

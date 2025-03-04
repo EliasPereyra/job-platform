@@ -182,38 +182,52 @@
   }
 }
 
-.secondJob {
-  background-color: #d6ffe7;
+.howItWorks {
+  background: linear-gradient(160deg, #fcfcfc 20%, #fbfcff 80%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 4em;
   padding: 10em 0;
 
-  .secondCol {
-    width: 30em;
+  .howItWorksContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10em;
+    margin-top: 4em;
 
-    .secondJobContent {
+    .howItWorksImage {
+      aspect-ratio: 1/1;
+      border-radius: 1rem;
+      object-fit: cover;
+      width: 40em;
+      height: 25em;
+    }
+
+    .howItWorksItemRight {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-      margin-inline: auto;
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: 3em;
+      width: 70em;
+    }
 
-      .secondjobDescription {
-        color: #3d3939;
-      }
+    .howItWorksItemLeft {
+      display: flex;
+      align-items: center;
+      gap: 3em;
+      width: 70em;
+    }
 
-      .secondJobButton {
-        font-weight: bold;
-        color: #22cdf3;
+    .howItWorksTitle {
+      font-weight: 600;
+    }
 
-        &:hover {
-          text-decoration: underline;
-          text-underline-offset: 0.2em;
-        }
-      }
+    .howItWorksDescription {
+      width: 50ch;
     }
   }
 }
