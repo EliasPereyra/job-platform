@@ -178,6 +178,16 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <section className={styles.callToAction}>
+        <h2 className={styles.callToActionTitle}>
+          Empieza a buscar tu próximo trabajo{" "}
+          <span className={styles.highlight}>hoy mismo</span>
+        </h2>
+        <a className={styles.button} href="/todos-los-trabajos">
+          Ver Ofertas de Trabajos
+        </a>
+      </section>
       <Footer />
     </div>
   );

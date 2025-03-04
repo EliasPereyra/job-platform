@@ -2,6 +2,28 @@
   background: var(--light-green-gradient);
 }
 
+.button {
+  padding: 0.7em;
+  background: #3e81e0;
+  color: #fff;
+  border-radius: 2rem;
+  margin-inline: auto;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 2rem;
+  width: 15em;
+  z-index: 3;
+  font-weight: bold;
+}
+
+.highlight {
+  background-image: linear-gradient(to right, #3e81e0, #2f5fa3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .container {
   height: 100vh;
   background-image: url("/assets/imgs/square-bg.svg");
@@ -30,13 +52,6 @@
     z-index: 3;
   }
 
-  .highlight {
-    background-image: linear-gradient(to right, #3e81e0, #2f5fa3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
   .description {
     font-size: 1.2rem;
     color: #333;
@@ -46,21 +61,6 @@
     z-index: 3;
     position: relative;
     margin-top: 1rem;
-  }
-
-  .button {
-    padding: 0.7em;
-    background: #3e81e0;
-    color: #fff;
-    border-radius: 2rem;
-    margin-inline: auto;
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    margin-top: 2rem;
-    width: 15em;
-    z-index: 3;
-    font-weight: bold;
   }
 }
 
@@ -76,7 +76,7 @@
 }
 
 .companies {
-  background-color: #d6ffe7;
+  background-color: #d6f7ff;
   padding: 6em 0;
 
   .companiesTitle {
@@ -101,27 +101,6 @@
       }
     }
   }
-}
-.companiesContainer::before {
-  content: "";
-  position: absolute;
-  width: 500px;
-  height: 200px;
-  top: -50px;
-  left: 0;
-  z-index: 1;
-  filter: opacity(0.5) blur(5px);
-}
-.companiesContainer::after {
-  content: "";
-  position: absolute;
-  width: 500px;
-  height: 200px;
-  top: -50px;
-  right: 0;
-  z-index: 1;
-  filter: opacity(0.4) blur(5px);
-  background: linear-gradient(to right, #dbfcd1, transparent);
 }
 
 .benefitsContainer {
@@ -229,5 +208,20 @@
     .howItWorksDescription {
       width: 50ch;
     }
+  }
+}
+
+.callToAction {
+  background-color: #76aefc49;
+  padding: 8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+
+  .callToActionTitle {
+    width: 35ch;
+    text-align: center;
   }
 }
