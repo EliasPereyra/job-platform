@@ -124,34 +124,22 @@
   background: linear-gradient(to right, #dbfcd1, transparent);
 }
 
-.firstJobContainer {
-  padding: 8em 0;
-  position: relative;
+.benefitsContainer {
+  background: linear-gradient(to right, #fdfdfd, #f4f9ff1e, #f9f9f9);
+  padding: 8em;
   z-index: 10;
 
-  .firstJobTitle {
+  .benefitTitle {
     text-align: center;
-    font-size: 2.2rem;
-
-    .firstJobTitleHighlight {
-      background-image: linear-gradient(60deg, #53e07d, #5de9c4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: underline;
-    }
   }
 
-  .columnText {
-    color: #3a3838;
-    font-size: 1.1rem;
-  }
-
-  .firstJobContent {
+  .benefitItems {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 4rem;
-    margin-top: 4rem;
+    gap: 7rem;
+    margin-top: 6rem;
     color: #3d3939;
 
     .firstColumn {

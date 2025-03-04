@@ -5,6 +5,7 @@ import { print } from "graphql/language/printer";
 
 import Navigation from "@/components/Globals/Navigation/Navigation";
 import Footer from "@/components/Globals/Footer/footer";
+import { Benefit } from "@/components/benefit";
 import { companies } from "@/queries/general/CompanyQuery";
 import { RootQueryToCompanyConnection } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
@@ -16,6 +17,41 @@ export const metadata: Metadata = {
   description:
     "Trabajos exclusivos que no requieren experiencia laboral previa. Mira la lista de trabajos publicados y postula en aquellos en que destacas.",
 };
+
+const benefits = [
+  {
+    id: 1,
+    title: "Sin necesidad de registro",
+    description:
+      "Olvídate de crear cuentas, recordar contraseñas o llenar formularios innecesarios. En nuestra plataforma, puedes acceder a todas las ofertas de empleo de manera instantánea, sin barreras ni procesos complicados. Encuentra el trabajo ideal sin perder tiempo en registros.",
+    img: "/assets/imgs/no-register.svg",
+    reverse: false,
+  },
+  {
+    id: 2,
+    title: "Contacto directo",
+    description:
+      "No hay intermediarios ni formularios de postulación dentro de la plataforma. Cada oferta de empleo incluye el correo de la empresa para que puedas enviar tu CV directamente, sin demoras ni filtros adicionales. Esto te permite establecer comunicación inmediata con los reclutadores y aumentar tus posibilidades de respuesta.",
+    img: "/assets/imgs/contact.svg",
+    reverse: true,
+  },
+  {
+    id: 3,
+    title: "100% gratuito",
+    description:
+      "Buscar trabajo no debería costarte nada. Nuestra plataforma es completamente gratuita tanto para quienes buscan empleo como para las empresas que publican sus ofertas. No hay suscripciones, tarifas ocultas ni pagos por destacar tu perfil.",
+    img: "/assets/imgs/free.svg",
+    reverse: false,
+  },
+  {
+    id: 4,
+    title: "Transparencia total",
+    description:
+      "Toda la información relevante sobre el empleo está disponible de forma clara y detallada. Desde el salario (cuando la empresa lo proporciona) hasta los requisitos y beneficios del puesto, tendrás acceso a todos los detalles sin necesidad de registrarte ni completar formularios.",
+    img: "/assets/imgs/info.svg",
+    reverse: true,
+  },
+];
 
 export default async function Home() {
   const { companies: companiesLogo } = await fetchGraphQL<{
@@ -62,42 +98,19 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className={styles.firstJobContainer}>
-        <h2 className={styles.firstJobTitle}>
-          Conseguí tu{" "}
-          <span className={styles.firstJobTitleHighlight}>primer empleo</span>
-        </h2>
-        <div className={styles.firstJobContent}>
-          <div className={styles.firstColumn}>
-            <p className={styles.columnText}>
-              Encontrar el primer empleo puede ser un desafío, pero creemos que
-              todos merecen la oportunidad de dar ese primer paso en el mundo
-              laboral.
-            </p>
-            <p className={styles.columnText}>
-              Esta es una plataforma que facilita el acceso a empleos sin
-              experiencia previa, conectando a postulantes con empresas,
-              organismos públicos y emprendedores/as que buscan talento nuevo. A
-              través de nuestra plataforma, reunimos ofertas de trabajo
-              accesibles para quienes están comenzando y brindamos herramientas
-              para prepararte mejor en tu búsqueda laboral.
-            </p>
-            <p className={styles.columnText}>
-              Nuestro compromiso es derribar la barrera de la falta de
-              experiencia. Sabemos que empezar no siempre es fácil, por eso
-              ofrecemos un espacio donde las oportunidades son reales y pensadas
-              para quienes están dando sus primeros pasos en el mercado laboral.
-            </p>
-
-            <p className={styles.columnText}>
-              Más que una bolsa de trabajo, somos un punto de partida. Lo que
-              más nos motiva es saber que vos, que hoy estás buscando tu primera
-              oportunidad, puedas encontrarla y empezar a construir tu futuro
-              laboral.
-            </p>
-          </div>
-          <div className={styles.secondColumn}></div>
-        </div>
+      <section className={styles.benefitsContainer}>
+        <h2 className={styles.benefitTitle}>¿Por qué usar esta plataforma?</h2>
+        <ul className={styles.benefitItems}>
+          {benefits.map(({ id, title, description, img, reverse }) => (
+            <Benefit
+              key={id}
+              title={title}
+              description={description}
+              img={img}
+              reverse={reverse}
+            />
+          ))}
+        </ul>
       </section>
 
       <section className={styles.secondJob}>
