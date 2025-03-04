@@ -3,63 +3,65 @@
 }
 
 .container {
-  background: linear-gradient(to bottom, #53e07db9, #a0ffd700);
-  padding: 6em;
+  height: 100vh;
+  background-image: url("/assets/imgs/square-bg.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 12em 0;
+  position: relative;
+  z-index: 2;
 
-  .element {
-    background-image: url("/assets/imgs/bag.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    aspect-ratio: 1 / 1;
-    width: 50em;
-    height: 30em;
+  &::after {
+    z-index: -1;
+    content: "";
     position: absolute;
-    top: -2em;
-    left: 23em;
-    z-index: 2;
+    inset: 0;
+    opacity: 0.12;
+    background: linear-gradient(160deg, #d4fafc 20%, #a1d4e3af 80%);
   }
-}
 
-.title {
-  color: #fff;
-  margin-inline: auto;
-  text-align: center;
-  width: 15ch;
-  line-height: 1.2;
-  position: relative;
-  z-index: 3;
-}
+  .title {
+    color: var(--black-color);
+    margin-inline: auto;
+    text-align: center;
+    width: 15ch;
+    line-height: 1.2;
+    position: relative;
+    z-index: 3;
+  }
 
-.highlight {
-  background-image: linear-gradient(to right, var(--purple), var(--blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+  .highlight {
+    background-image: linear-gradient(to right, #3e81e0, #2f5fa3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-.description {
-  color: #fff;
-  text-align: center;
-  width: 40ch;
-  margin-inline: auto;
-  z-index: 3;
-  position: relative;
-  margin-top: 1rem;
-}
+  .description {
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+    width: 45ch;
+    margin-inline: auto;
+    z-index: 3;
+    position: relative;
+    margin-top: 1rem;
+  }
 
-.button {
-  padding: 0.7em;
-  background: linear-gradient(to right, var(--purple), var(--blue));
-  color: #fff;
-  border-radius: 1rem;
-  margin-inline: auto;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  margin-top: 2rem;
-  width: 15em;
-  z-index: 3;
-  position: relative;
+  .button {
+    padding: 0.7em;
+    background: #3e81e0;
+    color: #fff;
+    border-radius: 2rem;
+    margin-inline: auto;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 2rem;
+    width: 15em;
+    z-index: 3;
+    font-weight: bold;
+  }
 }
 
 .lastJobs {
@@ -73,22 +75,9 @@
   bottom: 8em;
 }
 
-.argentina {
-  background-image: url("/assets/imgs/ar.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 20em;
-  height: 20em;
-  position: absolute;
-  bottom: 4rem;
-  left: -2em;
-  z-index: 1;
-  transform: scale(5) translateX(-30px) translateY(80px);
-  filter: opacity(0.5);
-}
-
 .companies {
-  margin-top: 20rem;
+  background-color: #d6ffe7;
+  padding: 6em 0;
 
   .companiesTitle {
     margin-top: 2rem;
@@ -122,7 +111,6 @@
   left: 0;
   z-index: 1;
   filter: opacity(0.5) blur(5px);
-  background: linear-gradient(to right, #dbfcd1, transparent);
 }
 .companiesContainer::after {
   content: "";
@@ -136,9 +124,10 @@
   background: linear-gradient(to right, #dbfcd1, transparent);
 }
 
-.firstJob {
-  margin-top: 10rem;
+.firstJobContainer {
+  padding: 8em 0;
   position: relative;
+  z-index: 10;
 
   .firstJobTitle {
     text-align: center;
@@ -206,11 +195,12 @@
 }
 
 .secondJob {
-  margin-top: 14rem;
+  background-color: #d6ffe7;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4em;
+  padding: 10em 0;
 
   .secondCol {
     width: 30em;
