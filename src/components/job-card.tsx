@@ -5,7 +5,7 @@ import JobAvailable from "./job-available";
 import Location from "./location";
 import Modality from "./modality";
 import Money from "./money";
-import { formatDate } from "@/utils/formatDate";
+import { Date } from "./date";
 
 import styles from "./job-card.module.css";
 
@@ -46,7 +46,11 @@ export default function JobCard({
   jobCategories,
 }: JobCardProps) {
   return (
-    <li className={styles.jobCardContainer} key={slug}>
+    <li
+      aria-label="Tarjeta de trabajo"
+      className={styles.jobCardContainer}
+      key={slug}
+    >
       <Link href={`/job/${slug}`} className={styles.jobCard}>
         <div className={styles.cardBg}></div>
         <div className={styles.content}>
@@ -67,9 +71,7 @@ export default function JobCard({
             <JobAvailable available={available} />
           </div>
 
-          <small className={styles.publishDate}>
-            Publicado el {formatDate(publishDate)}
-          </small>
+          <Date color="#333" modified={publishDate} />
           <ul className={styles.jobCategories}>
             {jobCategories.map((category: any) => (
               <li key={category.jobCategories.name}>
