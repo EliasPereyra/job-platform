@@ -5,13 +5,12 @@
 .jobCard {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  border: 1px solid #88a097;
+  border: 1px solid #d1deec;
   border-radius: 0.3rem;
 }
 
 .cardBg {
-  background-color: #caeecd;
+  background: linear-gradient(160deg, #eef9ff8f, #f6fff580);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,11 +20,11 @@
 }
 
 .content {
-  padding: 1.32rem;
+  padding: 1.42rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  background-color: #f8f8f8;
+  background: linear-gradient(160deg, #eef9ff46, #f6fff534);
   border-bottom-right-radius: 1rem;
   border-bottom-left-radius: 1rem;
 }
