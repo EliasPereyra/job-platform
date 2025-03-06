@@ -6,7 +6,7 @@ export default function ContactTemplate() {
       <h2 className={styles.title}>Contact</h2>
       <p className={styles.description}>
         ¿Tienes dudas, consultas o quieres publicar una oferta laboral en
-        Xperience? ¡Estamos aquí para ayudarte!
+        Workstart? ¡Estamos aquí para ayudarte!
       </p>
       <p className={styles.description}>
         Escribínos vía{" "}

@@ -12,19 +12,19 @@ export default function AboutTemplate() {
           </strong>
         </p>
         <p>
-          Por eso, en 2016, creamos Xperience con la misión de ofrecer
-          exclusivamente oportunidades de empleo que no requieran experiencia
-          previa.
+          Por eso, creamos WorkStart con la misión de acercarte oportunidades de
+          empleo que no requieran experiencia previa.
         </p>
         <p>
-          A lo largo de los años, decenas de empresas, organismos públicos y
+          Desde entonces, decenas de empresas, organismos públicos y
           emprendedores han confiado en nosotros para conectar con nuevos
-          talentos. Nos llena de orgullo ver cómo cada vez más compañías se
-          suman a esta iniciativa.
+          talentos. Nos enorgullece ver cómo cada vez más compañías se suman a
+          esta iniciativa.
         </p>
         <p>
-          Pero lo que más nos motiva es saber que vos, que estás buscando tu
-          primera oportunidad, la encuentres pronto.
+          Pero lo que más nos impulsa es saber que vos, que estás dando tus
+          primeros pasos en el mundo laboral, puedas encontrar tu oportunidad lo
+          antes posible.
         </p>
       </div>
     </section>
