@@ -5,7 +5,6 @@ import { print } from "graphql/language/printer";
 
 import Navigation from "@/components/Globals/Navigation/Navigation";
 import Footer from "@/components/Globals/Footer/footer";
-import { Benefit } from "@/components/badges/benefit/benefit";
 import { companies } from "@/queries/general/CompanyQuery";
 import { RootQueryToCompanyConnection } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
