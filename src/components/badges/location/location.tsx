@@ -1,4 +1,4 @@
-import LocationIcon from "./icons/location-icon";
+import LocationIcon from "../../icons/location-icon";
 
 import styles from "./location.module.css";
 

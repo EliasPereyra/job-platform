@@ -1,5 +1,6 @@
-import { BuildingIcon } from "./icons/building";
-import WorldIcon from "./icons/world";
+import { Maybe } from "graphql/jsutils/Maybe";
+import { BuildingIcon } from "../../icons/building";
+import WorldIcon from "../../icons/world";
 
 import styles from "./modality.module.css";
 
@@ -8,11 +9,11 @@ export default function Modality({
   modality,
 }: {
   color?: string;
-  modality: string;
+  modality: string | Maybe<string>[];
 }) {
   return (
     <div className={styles.modality}>
-      {modality.includes("Remoto") ? (
+      {modality?.includes("Remoto") ? (
         <WorldIcon size={20} color={color} arialabel="Icono de mundo" />
       ) : (
         <BuildingIcon size={20} color={color} arialabel="Icono de edificio" />

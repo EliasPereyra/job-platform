@@ -1,4 +1,4 @@
-import { MoneyIcon } from "./icons/money";
+import { MoneyIcon } from "../../icons/money";
 
 import styles from "./money.module.css";
 

@@ -7,16 +7,12 @@ export function Benefit({
   title,
   description,
   reverse = false,
-  firstColor,
-  secondColor,
 }: {
   key: number;
   img: string;
   title: string;
   description: string;
   reverse: boolean;
-  firstColor: string;
-  secondColor: string;
 }) {
   return (
     <li key={key} className={reverse ? styles.listLeft : styles.listRight}>
