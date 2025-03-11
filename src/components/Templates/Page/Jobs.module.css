@@ -1,4 +1,27 @@
+.loaderWrapper {
+  height: 100vh;
+  padding-top: 10rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
 .container {
   background-color: #f6fffa;
   padding: 6em;
+
+  .pagination {
+    margin-top: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    .button {
+      border: none;
+      display: flex;
+      align-items: center;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
 }
