@@ -11,11 +11,14 @@ import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { setSeoData } from "@/utils/seoData";
 import { ContentInfoQuery } from "@/queries/general/ContentInfoQuery";
 import { SeoQuery } from "@/queries/general/SeoQuery";
-type Props = {
-  params: { slug: string };
+
+type PageProps = {
+  params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const wpSlug = nextSlugToWpSlug(slug);
   const isPreview = wpSlug.includes("preview");
@@ -46,7 +49,7 @@ export function generateStaticParams() {
   return [];
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page({ params }: PageProps) {
   const { slug } = await params;
   const wpSlug = nextSlugToWpSlug(slug);
   const isPreview = wpSlug.includes("preview");
