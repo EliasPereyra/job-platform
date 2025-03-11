@@ -38,7 +38,11 @@ export async function generateMetadata({
   return {
     ...metadata,
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/job/${slug}`,
+      canonical: `${
+        process.env.VERCEL_URL
+          ? `https://${process.env.VERCEL_URL}`
+          : "http://localhost:3000"
+      }/job/${slug}`,
     },
   } as Metadata;
 }

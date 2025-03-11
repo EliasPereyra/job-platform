@@ -8,7 +8,11 @@ export async function GET(request: Request) {
   (await draftMode()).disable();
 
   const response = NextResponse.redirect(
-    `${process.env.NEXT_PUBLIC_BASE_URL}${path}`
+    `${
+      process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://localhost:3000"
+    }${path}`
   );
   response.headers.set(
     "Set-Cookie",
