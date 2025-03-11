@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import JobAvailable from "./job-available";
-import Location from "./location";
-import Modality from "./modality";
-import Money from "./money";
-import { Date } from "./date";
+import JobAvailable from "./badges/job-available/job-available";
+import Location from "./badges/location/location";
+import Modality from "./badges/modality/modality";
+import Money from "./badges/money/money";
+import { Date } from "./badges/date/date";
 
 import styles from "./job-card.module.css";
 
@@ -26,8 +26,8 @@ interface JobCardProps {
   companyLogo: JobCompanyLogoDetails;
   location: string;
   modality: string;
-  jobTime: string;
-  salary: number;
+  workingDay: string;
+  salary: string;
   available: boolean;
   jobCategories: string[];
 }
@@ -40,7 +40,7 @@ export default function JobCard({
   publishDate,
   location,
   modality,
-  jobTime,
+  workingDay,
   salary,
   available,
   jobCategories,
