@@ -2,99 +2,31 @@ import Image from "next/image";
 import { Metadata } from "next";
 import Link from "next/link";
 import { type Job } from "@/gql/graphql";
-import gql from "graphql-tag";
 import { print } from "graphql/language/printer";
 
-import Location from "@/components/location";
-import Time from "@/components/time";
-import Money from "@/components/money";
-import Modality from "@/components/modality";
-import JobAvailable from "@/components/job-available";
+import Location from "@/components/badges/location/location";
+import Time from "@/components/badges/time/time";
+import Money from "@/components/badges/money/money";
+import Modality from "@/components/badges/modality/modality";
+import JobAvailable from "@/components/badges/job-available/job-available";
 import { WhatsappIcon } from "@/components/icons/whatsapp";
 import { FacebookIcon } from "@/components/icons/facebook";
 import { InstagramIcon } from "@/components/icons/instagram";
 import { LeftArrow } from "@/components/icons/left-arrow";
-import { Date } from "@/components/date";
+import { Date } from "@/components/badges/date/date";
 import { setSeoData } from "@/utils/seoData";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
+import { job } from "./job-query";
 
 import styles from "./job.module.css";
 
-const job = gql`
-  query JobQuery($id: ID!) {
-    job(id: $id, idType: URI) {
-      modified
-      title
-      content
-      jobs {
-        available
-        benefits
-        company {
-          node {
-            slug
-            companies {
-              contact
-              logo {
-                node {
-                  altText
-                  sourceUrl
-                  mediaDetails {
-                    width
-                    height
-                  }
-                }
-              }
-            }
-          }
-        }
-        jobCategories {
-          nodes {
-            jobCategories {
-              name
-            }
-          }
-        }
-        contact
-        manadatoryRequirements
-        jobtime
-        optionalRequirements
-        modality
-        location
-        salary
-        tasks
-      }
-      seo {
-        canonical
-        cornerstone
-        focuskw
-        fullHead
-        metaDesc
-        metaKeywords
-        metaRobotsNofollow
-        metaRobotsNoindex
-        opengraphAuthor
-        opengraphDescription
-        opengraphModifiedTime
-        opengraphPublishedTime
-        opengraphPublisher
-        opengraphSiteName
-        opengraphTitle
-        opengraphType
-        opengraphUrl
-        readingTime
-        title
-        twitterDescription
-        twitterTitle
-      }
-    }
-  }
-`;
-
-type Props = {
-  params: { slug: string };
+type PageProps = {
+  params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
 
   const { job: jobSeo } = await fetchGraphQL<{ job: Job }>(print(job), {
@@ -111,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } as Metadata;
 }
 
-export default async function JobPage({ params }: Props) {
+export default async function JobPage({ params }: PageProps) {
   const { slug } = await params;
   const { job: jobDetails } = await fetchGraphQL<{ job: Job }>(print(job), {
     id: `/job/${slug}`,
@@ -145,7 +77,7 @@ export default async function JobPage({ params }: Props) {
           <Location location={jobs?.location || ""} />
           <Modality modality={jobs?.modality || ""} />
           <Money salary={jobs?.salary || ""} />
-          <Time jobtime={jobs?.jobtime || ""} />
+          <Time workingDay={jobs?.workingDay || ""} />
         </div>
         <h4 className={styles.shareTitle}>Compartir</h4>
         <div className={styles.share}>
