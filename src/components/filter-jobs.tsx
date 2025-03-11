@@ -129,7 +129,7 @@ export default function FilterJobs({ jobs: queryAllJobs }: any) {
               publishDate={job.modified}
               location={job.jobs.location}
               modality={job.jobs.modality}
-              jobTime={job.jobs.jobtime}
+              workingDay={job.jobs.workingDay}
               salary={job.jobs.salary}
               available={job.jobs.available}
               jobCategories={job.jobs.jobCategories.nodes}
