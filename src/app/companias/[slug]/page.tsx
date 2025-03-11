@@ -6,7 +6,11 @@ import { print } from "graphql/language/printer";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import styles from "./Company.module.css";
 
-export default async function Company({ params }: any) {
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function Company({ params }: PageProps) {
   const { slug } = await params;
   const { company: companyDetails } = await fetchGraphQL<{ company: Company }>(
     print(company),
