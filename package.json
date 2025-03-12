@@ -1,9 +1,17 @@
 {
+  "name": "job-platform",
   "version": "0.6.4",
   "private": true,
   "author": {
     "name": "EliasPereyra",
     "url": "https://github.com/EliasPereyra"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EliasPereyra/job-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EliasPereyra/job-platform/issues"
   },
   "scripts": {
     "dev": "NODE_ENV=dev graphql-codegen --config codegen.ts && node ./add-ts-nocheck.mjs && next dev",
