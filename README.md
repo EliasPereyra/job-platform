@@ -3,7 +3,7 @@
 > [!NOTE]
 > Proyecto en construcción
 
-![Pagina principal de la plataforma de trabajo](https://github.com/EliasPereyra/job-platform/blob/main/public/assets/imgs/home.png)
+![Pagina principal de la plataforma de trabajo](https://github.com/EliasPereyra/job-platform/blob/main/public/assets/imgs/workstart.png)
 
 Una plataforma para conseguir trabajo que abarca distintos tipos de rubros en distintas partes de Argentina. Sin necesidad de registrarte, solamente envía tu CV a la empresa que te interesa.
 
@@ -85,8 +85,7 @@ Según nos dice la documentación de la plantilla de Next.js, tenemos que:
 | WP_USER                            | Ingresa un nombre de usuario de Wordpress                                                                  | username                 |
 | WP_PASSWORD                        | Ingresa una contraseña de Wordpress                                                                        | password                 |
 
-> [!WARNING]
-> `WP_USER` y `WP_PASSWORD` son críticos para hacer que las previews y la redirección funcionen
+> [!WARNING] > `WP_USER` y `WP_PASSWORD` son críticos para hacer que las previews y la redirección funcionen
 
 > [!NOTE]
 > Al ejecutar `pnpm dev` automáticamente generará los tipos de la instalación de Wordpress que definiste en tu variable de entorno: `NEXT_PUBLIC_WORDPRESS_API_URL`
