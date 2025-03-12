@@ -45,9 +45,9 @@ export default async function Home() {
 
       <section className={styles.companies}>
         <h2 className={styles.companiesTitle}>Confían en nosotros</h2>
-        <div className={styles.companiesContainer}>
+        <ul className={styles.companiesContainer}>
           {companiesLogo.nodes.map((company: any) => (
-            <div key={company.id} className={styles.circle}>
+            <li key={company.id} className={styles.circle}>
               <Link href="#">
                 <Image
                   className={styles.logo}
@@ -57,9 +57,9 @@ export default async function Home() {
                   height={100}
                 />
               </Link>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
       <section className={styles.benefitsContainer}>
