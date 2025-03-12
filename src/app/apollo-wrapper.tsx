@@ -9,7 +9,7 @@ import {
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: "http://job-platform.local/graphql",
+    uri: `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/graphql`,
     fetchOptions: {
       cache: "no-store",
     },
