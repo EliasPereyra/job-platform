@@ -85,7 +85,8 @@ Según nos dice la documentación de la plantilla de Next.js, tenemos que:
 | WP_USER                            | Ingresa un nombre de usuario de Wordpress                                                                  | username                 |
 | WP_PASSWORD                        | Ingresa una contraseña de Wordpress                                                                        | password                 |
 
-> [!WARNING] > `WP_USER` y `WP_PASSWORD` son críticos para hacer que las previews y la redirección funcionen
+> [!WARNING]
+> `WP_USER` y `WP_PASSWORD` son críticos para hacer que las previews y la redirección funcionen
 
 > [!NOTE]
 > Al ejecutar `pnpm dev` automáticamente generará los tipos de la instalación de Wordpress que definiste en tu variable de entorno: `NEXT_PUBLIC_WORDPRESS_API_URL`
