@@ -123,6 +123,7 @@
     color: #3d3939;
 
     .benefitItem {
+      list-style: none;
       width: 30em;
       border-radius: 1rem;
       padding: 2rem;
