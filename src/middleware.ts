@@ -38,7 +38,7 @@ export async function middleware(request: NextRequest) {
       redirect.action_data.url,
       process.env.VERCEL_URL
         ? `https://${process.env.VERCEL_URL}`
-        : "http://localhost:3000"
+        : `http://${process.env.NEXT_PUBLIC_BASE_URL}`
     ).toString();
 
     return NextResponse.redirect(newUrl, {
