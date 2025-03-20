@@ -1,11 +1,8 @@
 # Plataforma de Trabajo
 
-> [!NOTE]
-> Proyecto en construcción
-
 ![Pagina principal de la plataforma de trabajo](https://github.com/EliasPereyra/job-platform/blob/main/public/assets/imgs/workstart.png)
 
-Una plataforma para conseguir trabajo que abarca distintos tipos de rubros en distintas partes de Argentina. Sin necesidad de registrarte, solamente envía tu CV a la empresa que te interesa.
+Una plataforma para conseguir trabajo que abarca distintos tipos de rubros en distintas partes de Argentina. Sin necesidad de registrarte, solamente envía tu CV al correco de la empresa que te interesa.
 
 ## Herramientas utilizadas
 
@@ -37,7 +34,7 @@ Según nos dice la documentación de la plantilla de Next.js, tenemos que:
 2. Asegúrate que los Permlinks sean `Post name` en Settings > Permalinks
 3. Pon `Sample page` como `Static page` en Settings > Reading
 4. Crea una nueva página llamado `404 not found` para que coincida con el slug `404-not-found`
-5. Instala y activa los siguientes plugins:
+5. Instala y activa los siguientes plugins en _Settings > Plugins_:
    - WPGraphQL SEO
    - Classic Editor
    - Redirection
@@ -46,14 +43,14 @@ Según nos dice la documentación de la plantilla de Next.js, tenemos que:
    - Yoast SEO
    - Advanced Custom Fields
    - WPGraphQL for ACF
-6. Haz la instalación first-time de Redirección
+6. Haz la instalación first-time de _Redirection_, cuando lo instalas te mostrará un mensaje para hacer la instalación
 7. Configura Yoast SEO:
-   - Desactiva `XML Sitemaps` en Yoast SEO > Settings
+   - Desactiva `XML Sitemaps` en _Yoast SEO > Settings_
    - Si no cambiaste el `Site Address (URL)` antes de instalar Yoast, te pedirá que ejecutes optimizar los datos de SEO después de cambiar los permlinks
    - Genera un archivo robots.txt en Yoast SEO > Tools > File Editor
    - Modifica el robots.txt para que referencie el sitemap de `wp-sitemap.xml` a `sitemap.xml`
-8. Activa `Public Introspection` en GraphQL > Settings
-9. Agrega las siguientes constantes a `wp-config.php`:
+8. Activa `Public Introspection` en _GraphQL > Settings_
+9. Agrega las siguientes constantes a `wp-config.php`. Este archivo en Local WP lo puedes acceder en el botón que te dice de abrir la carpeta contenedora del proyecto, o desde VS Code directamente:
 
 ```php
   define('HEADLESS_SECRET', 'INSERT_RANDOM_SECRET_KEY');
@@ -76,14 +73,14 @@ Según nos dice la documentación de la plantilla de Next.js, tenemos que:
 2. Ejecuta `pnpm i` para instalar las dependencias
 3. Crea un archivo `.env` y agrega las siguientes variables:
 
-| Nombre                             | Valor                                                                                                      | Ejemplo                  |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------ |
-| NEXT_PUBLIC_BASE_URL               | Ingresa el URL de tu sitio web                                                                             | http://localhost:3000    |
-| NEXT_PUBLIC_WORDPRESS_API_URL      | Ingresa el URL de tu API de Wordpress. No hace falta que agregues `/graphql` ya que en el código lo agrega | http://wp-tusitioweb.com |
-| NEXT_PUBLIC_WORDPRESS_API_HOSTNAME | Ingresa el hostname de tu API de Wordpress sin el protocolo para tu instalación de Wordpress               | wp-tusitioweb.com        |
-| HEADLESS_SECRET                    | Ingresa la misma clave aleatoria que generaste para tu `wp-config.php`                                     | INSERT_RANDOM_SECRET_KEY |
-| WP_USER                            | Ingresa un nombre de usuario de Wordpress                                                                  | username                 |
-| WP_PASSWORD                        | Ingresa una contraseña de Wordpress                                                                        | password                 |
+| Nombre                               | Valor                                                                                                      | Ejemplo                  |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ------------------------ |
+| `NEXT_PUBLIC_BASE_URL`               | Ingresa el URL de tu sitio web                                                                             | http://localhost:3000    |
+| `NEXT_PUBLIC_WORDPRESS_API_URL`      | Ingresa el URL de tu API de Wordpress. No hace falta que agregues `/graphql` ya que en el código lo agrega | http://wp-tusitioweb.com |
+| `NEXT_PUBLIC_WORDPRESS_API_HOSTNAME` | Ingresa el hostname de tu API de Wordpress sin el protocolo para tu instalación de Wordpress               | wp-tusitioweb.com        |
+| `HEADLESS_SECRET`                    | Ingresa la misma clave aleatoria que generaste para tu `wp-config.php`                                     | INSERT_RANDOM_SECRET_KEY |
+| `WP_USER`                            | Ingresa un nombre de usuario de Wordpress                                                                  | username                 |
+| `WP_PASSWORD`                        | Ingresa una contraseña de Wordpress                                                                        | password                 |
 
 > [!WARNING] > `WP_USER` y `WP_PASSWORD` son críticos para hacer que las previews y la redirección funcionen
 
@@ -100,7 +97,7 @@ Estamos generando los tipos de TypeScript a partir del esquema provisto por Code
 
 ## SEO
 
-Estamos usando Yoast SEO para manejar el SEO en Wordpress, y luego todas las rutas solicitan el objeto de Yoast SEO, y parseandolo (es decir, transformarlo) a una función dinámica `generateMetadata()`.
+Estamos usando Yoast SEO para manejar el SEO en Wordpress, y luego todas las rutas solicitan el objeto de Yoast SEO, y 'parseándolo' (es decir, transformarlo) a una función dinámica `generateMetadata()`.
 
 ## Tema de Wordpress personalizado
 
@@ -371,7 +368,7 @@ add_action('rest_api_init', function () {
 
 ## Contacto
 
-Si tienes alguna duda o sugerencia, no dudes en contactarme
+Si tienes alguna duda o sugerencia, no dudes en contactarme:
 
 - 👤 [Elias Pereyra](https://github.com/EliasPereyra)
 - 📬 [Email](mailto:eliaspereyra_gomez@hotmail.com)
