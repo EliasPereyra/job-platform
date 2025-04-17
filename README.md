@@ -2,7 +2,7 @@
 
 ![Pagina principal de la plataforma de trabajo](https://github.com/EliasPereyra/job-platform/blob/main/public/assets/imgs/workstart.png)
 
-Una plataforma para conseguir trabajo que abarca distintos tipos de rubros en distintas partes de Argentina. Sin necesidad de registrarte, solamente envía tu CV al correco de la empresa que te interesa.
+Una plataforma de empleo sin o con poca experiencia que abarca distintos tipos de rubros en distintas partes de Argentina. No hay necesidad de registrarse, solamente envía tu CV al correo de la empresa que te interesa. El objetivo es reducir los pasos para poder comunicarse con una empresa/lugar de trabajo y tener un contacto más directo. 
 
 ## Herramientas utilizadas
 
