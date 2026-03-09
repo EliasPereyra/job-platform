@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   if (!process.env.WP_USER || !process.env.WP_APP_PASS) {
     return NextResponse.next();
   }

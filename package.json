@@ -18,19 +18,19 @@
     "prod": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.mjs && next build && next start",
     "build": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.mjs && next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "codegen": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js",
     "test": "vitest"
   },
   "dependencies": {
     "@apollo/client": "^3.13.3",
     "@apollo/experimental-nextjs-app-support": "^0.11.10",
-    "@next/env": "^15.1.6",
+    "@next/env": "16.1.6",
     "graphql": "^16.9.0",
     "graphql-tag": "^2.12.6",
-    "next": "latest",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "next": "16.1.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.0",
@@ -41,15 +41,21 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9",
-    "eslint-config-next": "latest",
+    "eslint-config-next": "16.1.6",
     "jsdom": "^26.0.0",
     "msw": "^2.7.3",
     "typescript": "^5",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.0.6"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.14",
+      "@types/react-dom": "19.2.3"
+    }
   }
 }
