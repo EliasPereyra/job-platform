@@ -2,7 +2,7 @@
 
 import gql from "graphql-tag";
 import { useState } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client/react";
 
 import FilterJobs from "@/components/filter-jobs";
 import { LeftArrowRounded } from "@/components/icons/left-arrow-rounded";
@@ -61,6 +61,18 @@ const jobsQuery = gql`
   }
 `;
 
+type JobsQueryData = {
+  jobs: {
+    pageInfo: {
+      hasNextPage: boolean;
+      endCursor: string | null;
+      hasPreviousPage: boolean;
+      startCursor: string | null;
+    };
+    nodes: unknown[];
+  };
+};
+
 type PaginationProps = {
   first: number | null;
   after: string | null;
@@ -75,7 +87,7 @@ export default function JobsTemplate() {
     last: null,
     before: null,
   });
-  const { data, loading, fetchMore, error } = useQuery(jobsQuery, {
+  const { data, loading, fetchMore, error } = useQuery<JobsQueryData>(jobsQuery, {
     variables: {
       first: pagination.first,
       after: pagination.after,
@@ -92,9 +104,10 @@ export default function JobsTemplate() {
       </div>
     );
   if (error) return <p>Hubo un error</p>;
+  if (!data) return null;
 
   const { hasNextPage, endCursor, hasPreviousPage, startCursor } =
-    data?.jobs.pageInfo;
+    data.jobs.pageInfo;
 
   return (
     <section className={styles.container}>
