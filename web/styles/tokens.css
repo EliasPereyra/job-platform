@@ -1,0 +1,33 @@
+/* Design tokens: colors and gradients shared across the app. */
+:root {
+  /* Brand */
+  --primary-color: #3e81e0;
+  --secondary-color: #6be265;
+  --black: #191919;
+  --blue: #2e45bbbe;
+  --purple: #3c2ebb;
+  --green: #53e07dbd;
+  --pink-red: #e23b57;
+  --light-pink-red: #f8e3e7;
+  --light-purple: #f1b9ff;
+  --light-green-yellow: #f0ffb9;
+  --light-green: #b9ffc5;
+  --light-blue: #b9d1ff;
+
+  /* Red scale */
+  --red-c-50: #FFEBEE;
+  --red-c-100: #FFD7DD;
+  --red-c-200: #FEAEBC;
+  --red-c-300: #FE869A;
+  --red-c-400: #FD5D78;
+  --red-c-500: #FD3454;
+  --red-c-600: #F2022A;
+  --red-c-700: #B60220;
+  --red-c-800: #790115;
+  --red-c-900: #3D010B;
+  --red-c-950: #1E0005;
+
+  /* Gradients */
+  --green-gradient: linear-gradient(to right, var(--green), #68e7c5);
+  --light-green-gradient: linear-gradient(to bottom, #e7ffeef3, #f0fdfdec);
+}
