@@ -1,0 +1,225 @@
+.home {
+  background: var(--light-green-gradient);
+}
+
+.button {
+  padding: 0.7em;
+  background: #3e81e0;
+  color: #fff;
+  border-radius: 2rem;
+  margin-inline: auto;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 2rem;
+  width: 15em;
+  z-index: 3;
+  font-weight: bold;
+}
+
+.highlight {
+  background-image: linear-gradient(to right, #3e81e0, #2f5fa3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.container {
+  height: 100vh;
+  background-image: url("/assets/imgs/square-bg.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding: 12em 0;
+  position: relative;
+  z-index: 2;
+
+  &::after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.12;
+    background: linear-gradient(160deg, #d4fafc 20%, #a1d4e3af 80%);
+  }
+
+  .title {
+    color: var(--black);
+    margin-inline: auto;
+    text-align: center;
+    width: 15ch;
+    line-height: 1.2;
+    position: relative;
+    z-index: 3;
+  }
+
+  .description {
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+    width: 45ch;
+    margin-inline: auto;
+    z-index: 3;
+    position: relative;
+    margin-top: 1rem;
+  }
+}
+
+.lastJobs {
+  padding: 1em;
+  border: 1px solid var(--light-green);
+  border-radius: 0.7rem;
+  margin-top: 6rem;
+  margin-inline: auto;
+  position: absolute;
+  right: 0;
+  bottom: 8em;
+}
+
+.companies {
+  background-color: #d6f7ff;
+  padding: 6em 0;
+
+  .companiesTitle {
+    margin-top: 2rem;
+    text-align: center;
+    color: #1b1b1b;
+  }
+
+  .companiesContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 4rem;
+    list-style: none;
+
+    .circle {
+      width: 5em;
+      height: 5em;
+
+      .logo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.benefitsContainer {
+  background: linear-gradient(to right, #fdfdfd, #f4f9ff1e, #f9f9f9);
+  padding: 10em;
+  z-index: 10;
+
+  .benefitTitle {
+    text-align: center;
+  }
+
+  .benefitItems {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 7rem;
+    margin-top: 6rem;
+    color: #3d3939;
+
+    .benefitItem {
+      list-style: none;
+      width: 30em;
+      border-radius: 1rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      &:nth-child(1) {
+        background-color: #e9efffb2;
+        border: 1px solid #5c95e5;
+      }
+
+      &:nth-child(2) {
+        background-color: #eeefffb2;
+        border: 1px solid #7074b2;
+      }
+
+      &:nth-child(3) {
+        background-color: #faf3ffb2;
+        border: 1px solid #cf6de8;
+      }
+
+      &:nth-child(4) {
+        background-color: #f1fcffb2;
+        border: 1px solid #5ddce5;
+      }
+    }
+  }
+}
+
+.howItWorks {
+  background: linear-gradient(160deg, #fcfcfc 20%, #fbfcff 80%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4em;
+  padding: 10em 0;
+
+  .howItWorksContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10em;
+    margin-top: 4em;
+
+    .howItWorksImage {
+      aspect-ratio: 1/1;
+      border-radius: 1rem;
+      object-fit: cover;
+      width: 40em;
+      height: 25em;
+    }
+
+    .howItWorksItemRight {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: 3em;
+      width: 70em;
+    }
+
+    .howItWorksItemLeft {
+      display: flex;
+      align-items: center;
+      gap: 3em;
+      width: 70em;
+    }
+
+    .howItWorksTitle {
+      font-weight: 600;
+    }
+
+    .howItWorksDescription {
+      width: 50ch;
+    }
+  }
+}
+
+.callToAction {
+  background-color: #76aefc49;
+  padding: 8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+
+  .callToActionTitle {
+    width: 35ch;
+    text-align: center;
+  }
+}

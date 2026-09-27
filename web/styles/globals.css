@@ -1,0 +1,50 @@
+/* Global reset and base element styles. Tokens live in tokens.css. */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+}
+
+body {
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+:is(h1,h2,h3,h4,h5,h6) {
+  text-wrap: balance;
+}
+
+:is(p,li, a) {
+  text-wrap: pretty;
+}
+
+:is(h1,h2,h3,p,li) {
+  color: var(--black);
+}

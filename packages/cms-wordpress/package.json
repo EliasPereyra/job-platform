@@ -1,0 +1,37 @@
+{
+  "name": "@workstart/cms-wordpress",
+  "version": "0.0.0",
+  "private": true,
+  "description": "WordPress (WPGraphQL) data layer. Paused: not used by web/ while Sanity is the active CMS.",
+  "type": "module",
+  "exports": {
+    "./apollo": "./src/apollo/apollo-wrapper.tsx",
+    "./fetch-graphql": "./src/utils/fetch-graphql.ts",
+    "./fetch-primary-menu": "./src/utils/fetch-primary-menu.ts",
+    "./seo-data": "./src/utils/seo-data.ts",
+    "./next-slug-to-wp-slug": "./src/utils/next-slug-to-wp-slug.ts",
+    "./queries/*": "./src/queries/*.ts",
+    "./routes/*": "./src/routes/*.ts"
+  },
+  "scripts": {
+    "codegen": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.mjs"
+  },
+  "dependencies": {
+    "@apollo/client": "^4.3.1",
+    "@apollo/client-integration-nextjs": "^0.14.5",
+    "graphql": "^16.9.0",
+    "graphql-tag": "^2.12.6",
+    "rxjs": "^7.8.1"
+  },
+  "peerDependencies": {
+    "next": "^16.0.0",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "5.0.0",
+    "@graphql-codegen/client-preset": "4.3.3",
+    "@graphql-codegen/schema-ast": "^4.1.0",
+    "@next/env": "16.1.6",
+    "msw": "^2.7.3"
+  }
+}

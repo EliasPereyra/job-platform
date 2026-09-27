@@ -1,6 +1,6 @@
 {
-  "name": "job-platform",
-  "version": "0.6.6",
+  "name": "workstart",
+  "version": "0.7.0",
   "private": true,
   "author": {
     "name": "EliasPereyra",
@@ -10,53 +10,15 @@
     "type": "git",
     "url": "https://github.com/EliasPereyra/job-platform.git"
   },
-  "bugs": {
-    "url": "https://github.com/EliasPereyra/job-platform/issues"
-  },
   "scripts": {
-    "dev": "NODE_ENV=dev graphql-codegen --config codegen.ts && node ./add-ts-nocheck.mjs && next dev",
-    "prod": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.mjs && next build && next start",
-    "build": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.mjs && next build",
-    "start": "next start",
-    "lint": "eslint .",
-    "codegen": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js",
-    "test": "vitest"
+    "dev": "pnpm --parallel --filter @workstart/web --filter @workstart/studio dev",
+    "dev:web": "pnpm --filter @workstart/web dev",
+    "dev:studio": "pnpm --filter @workstart/studio dev",
+    "build": "pnpm --filter @workstart/web build",
+    "lint": "pnpm --filter @workstart/web lint",
+    "test": "pnpm --filter @workstart/web test",
+    "typegen": "pnpm --filter @workstart/studio typegen",
+    "seed": "pnpm --filter @workstart/studio seed"
   },
-  "dependencies": {
-    "@apollo/client": "^4.3.1",
-    "@apollo/client-integration-nextjs": "^0.14.5",
-    "@next/env": "16.1.6",
-    "graphql": "^16.9.0",
-    "graphql-tag": "^2.12.6",
-    "next": "16.1.6",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "rxjs": "^7.8.1"
-  },
-  "devDependencies": {
-    "@graphql-codegen/cli": "5.0.0",
-    "@graphql-codegen/client-preset": "4.3.3",
-    "@graphql-codegen/schema-ast": "^4.1.0",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^20",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "jsdom": "^26.0.0",
-    "msw": "^2.7.3",
-    "typescript": "^5",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.0.6"
-  },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "19.2.14",
-      "@types/react-dom": "19.2.3"
-    }
-  }
+  "packageManager": "pnpm@12.6.0"
 }
