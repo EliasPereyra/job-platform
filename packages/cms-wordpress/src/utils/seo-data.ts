@@ -1,4 +1,4 @@
-import { Page } from "@/gql/graphql";
+import { Page } from "../gql/graphql";
 
 export const setSeoData = ({ seo }: { seo: Page["seo"] }) => {
   if (!seo) return {};

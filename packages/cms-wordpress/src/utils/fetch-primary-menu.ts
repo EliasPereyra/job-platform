@@ -1,9 +1,9 @@
 import gql from "graphql-tag";
-import { fetchGraphQL } from "./fetchGraphQL";
+import { fetchGraphQL } from "./fetch-graphql";
 import {
   RootQueryToMediaItemConnection,
   RootQueryToMenuItemConnection,
-} from "@/gql/graphql";
+} from "../gql/graphql";
 import { print } from "graphql/language/printer";
 
 export async function getData() {

@@ -3,8 +3,8 @@ import gql from "graphql-tag";
 import { draftMode } from "next/headers";
 import { NextResponse } from "next/server";
 
-import { ContentNode, LoginPayload } from "@/gql/graphql";
-import { fetchGraphQL } from "@/utils/fetchGraphQL";
+import { ContentNode, LoginPayload } from "../gql/graphql";
+import { fetchGraphQL } from "../utils/fetch-graphql";
 
 export const dynamic = "force-dynamic";
 
