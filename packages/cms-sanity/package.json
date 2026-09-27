@@ -1,0 +1,23 @@
+{
+  "name": "@workstart/cms-sanity",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Sanity data layer for the web app: client, Live Content API, GROQ queries and TypeGen types.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./live": "./src/live.ts",
+    "./image": "./src/image.ts",
+    "./client": "./src/client.ts"
+  },
+  "dependencies": {
+    "@sanity/client": "^8.7.0",
+    "@sanity/image-url": "^2.1.1",
+    "next-sanity": "^13.3.4"
+  },
+  "peerDependencies": {
+    "next": "^16.0.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  }
+}
