@@ -89,7 +89,7 @@ Según nos dice la documentación de la plantilla de Next.js, tenemos que:
 
 ### Configuración de Apollo
 
-En este proyecto uso el repositorio [@apollo/experimental-nextjs-app-support](https://github.com/apollographql/apollo-client/tree/main/packages/apollo-experimental-nextjs-app-support) para conectar con la API de Wordpress de forma más sencilla. Es un wrapper de Apollo Client que permite hacer las peticiones directamente desde la API de Wordpress sin tener que hacer el `fetch` a la propia API.
+En este proyecto uso el repositorio [@apollo/client-integration-nextjs](https://github.com/apollographql/apollo-client-integrations/tree/main/packages/nextjs) para conectar con la API de Wordpress de forma más sencilla. Es un wrapper de Apollo Client que permite hacer las peticiones directamente desde la API de Wordpress sin tener que hacer el `fetch` a la propia API.
 
 ## Tipos de TypeScript y de GraphQL
 
