@@ -1,0 +1,119 @@
+/* Classes referenced by <ViewTransition> props. See shared/components/page-transition. */
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide {
+  from {
+    translate: var(--slide-offset);
+  }
+  to {
+    translate: 0;
+  }
+}
+
+@keyframes via-blur {
+  30% {
+    filter: blur(var(--blur-morph));
+  }
+}
+
+/* Lateral navigation (menu links): plain cross-fade */
+::view-transition-old(.fade-out) {
+  animation: var(--duration-exit) ease-in both fade reverse;
+}
+
+::view-transition-new(.fade-in) {
+  animation: var(--duration-enter) ease-out var(--duration-exit) both fade;
+}
+
+/* Hierarchical navigation and pagination: forward slides left, back slides right */
+::view-transition-old(.nav-forward) {
+  --slide-offset: calc(var(--slide-distance) * -1);
+  animation:
+    var(--duration-exit) ease-in both fade reverse,
+    var(--duration-move) var(--ease-in-out) both slide reverse;
+}
+
+::view-transition-new(.nav-forward) {
+  --slide-offset: var(--slide-distance);
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both fade,
+    var(--duration-move) var(--ease-in-out) both slide;
+}
+
+::view-transition-old(.nav-back) {
+  --slide-offset: var(--slide-distance);
+  animation:
+    var(--duration-exit) ease-in both fade reverse,
+    var(--duration-move) var(--ease-in-out) both slide reverse;
+}
+
+::view-transition-new(.nav-back) {
+  --slide-offset: calc(var(--slide-distance) * -1);
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both fade,
+    var(--duration-move) var(--ease-in-out) both slide;
+}
+
+/* Shared logos between card, job and company pages */
+::view-transition-group(.morph) {
+  animation-duration: var(--duration-move);
+  animation-timing-function: var(--ease-out);
+}
+
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+}
+
+/* Job title grows from card to page without scaling a raster snapshot */
+::view-transition-group(.text-morph) {
+  animation-duration: var(--duration-move);
+  animation-timing-function: var(--ease-out);
+}
+
+::view-transition-old(.text-morph) {
+  display: none;
+}
+
+::view-transition-new(.text-morph) {
+  animation: none;
+  object-fit: none;
+  object-position: left top;
+}
+
+/* Filtered job cards */
+::view-transition-new(.card-in) {
+  animation: var(--duration-enter) var(--ease-out) var(--duration-exit) both fade;
+}
+
+::view-transition-old(.card-out) {
+  animation: var(--duration-exit) ease-in both fade reverse;
+}
+
+/* Navigation bar stays put; it uses backdrop-filter, so skip the old snapshot */
+::view-transition-old(site-nav) {
+  display: none;
+}
+
+::view-transition-new(site-nav) {
+  animation: none;
+}
+
+::view-transition-group(site-nav) {
+  z-index: var(--layer-nav);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
