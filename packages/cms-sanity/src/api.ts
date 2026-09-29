@@ -3,6 +3,7 @@ import {
   COMPANIES_QUERY,
   COMPANY_QUERY,
   COMPANY_SLUGS_QUERY,
+  JOB_PROVINCES_QUERY,
   JOB_QUERY,
   JOB_SLUGS_QUERY,
   JOBS_COUNT_QUERY,
@@ -18,13 +19,32 @@ export async function getSiteSettings() {
   return data;
 }
 
-export async function getJobsPage({ page, pageSize }: { page: number; pageSize: number }) {
+export async function getJobsPage({
+  page,
+  pageSize,
+  province = null,
+}: {
+  page: number;
+  pageSize: number;
+  province?: string | null;
+}) {
   const start = (page - 1) * pageSize;
   const [{ data: jobs }, { data: total }] = await Promise.all([
-    sanityFetch({ query: JOBS_PAGE_QUERY, params: { start, end: start + pageSize } }),
-    sanityFetch({ query: JOBS_COUNT_QUERY }),
+    sanityFetch({ query: JOBS_PAGE_QUERY, params: { start, end: start + pageSize, province } }),
+    sanityFetch({ query: JOBS_COUNT_QUERY, params: { province } }),
   ]);
   return { jobs, total, totalPages: Math.max(1, Math.ceil(total / pageSize)) };
+}
+
+// Number of published jobs per province name. Never stega-encoded: the names
+// are used as keys.
+export async function getJobCountsByProvince() {
+  const { data } = await sanityFetch({ query: JOB_PROVINCES_QUERY, stega: false });
+  const counts: Record<string, number> = {};
+  for (const province of data) {
+    if (province) counts[province] = (counts[province] ?? 0) + 1;
+  }
+  return counts;
 }
 
 export async function getJob(slug: string, { stega }: { stega?: boolean } = {}) {

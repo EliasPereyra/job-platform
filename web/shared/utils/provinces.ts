@@ -27,3 +27,6 @@ const PROVINCE_NAMES = [
 ];
 
 export const provincias = PROVINCE_NAMES.map((name, index) => ({ id: index + 1, name }));
+
+export const isProvince = (value: string | undefined): value is string =>
+  value !== undefined && PROVINCE_NAMES.includes(value);

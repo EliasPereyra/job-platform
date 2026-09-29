@@ -26,13 +26,18 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
   }
 `);
 
+// $province is null for "all provinces".
 export const JOBS_PAGE_QUERY = defineQuery(`
-  *[_type == "job" && defined(slug.current)]
+  *[_type == "job" && defined(slug.current) && ($province == null || province == $province)]
     | order(publishedAt desc) [$start...$end]{ ${JOB_CARD_FIELDS} }
 `);
 
 export const JOBS_COUNT_QUERY = defineQuery(`
-  count(*[_type == "job" && defined(slug.current)])
+  count(*[_type == "job" && defined(slug.current) && ($province == null || province == $province)])
+`);
+
+export const JOB_PROVINCES_QUERY = defineQuery(`
+  *[_type == "job" && defined(slug.current)].province
 `);
 
 export const JOB_QUERY = defineQuery(`
