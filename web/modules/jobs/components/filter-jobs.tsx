@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useReducer, useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { startTransition, useReducer, useState, ViewTransition } from "react";
+import { Briefcase, ChevronDown, MapPoint, Search } from "reicon-react";
 
 import type { JobCardData } from "@/modules/cms";
-import { Search } from "@/shared/components/icons/search";
-import LocationIcon from "@/shared/components/icons/location-icon";
-import { WorkCase } from "@/shared/components/icons/workcase";
+import { jobsHref } from "@/modules/jobs/jobs-href";
 import { provincias } from "@/shared/utils/provinces";
 import JobCard from "./job-card";
 
@@ -13,13 +13,12 @@ import styles from "./filter-jobs.module.css";
 
 type FormState = { searchByTitle: string; location: string };
 
+const EMPTY_FORM: FormState = { searchByTitle: "", location: "" };
+
 const formReducer = (
   state: FormState,
-  event: { name: keyof FormState; value: string },
-): FormState => ({
-  ...state,
-  [event.name]: event.value,
-});
+  event: { name: keyof FormState; value: string } | "reset",
+): FormState => (event === "reset" ? EMPTY_FORM : { ...state, [event.name]: event.value });
 
 const matches = (job: JobCardData, { searchByTitle, location }: FormState) => {
   const title = searchByTitle.trim().toLowerCase();
@@ -28,16 +27,42 @@ const matches = (job: JobCardData, { searchByTitle, location }: FormState) => {
   return byTitle && byLocation;
 };
 
-export default function FilterJobs({ jobs, total }: { jobs: JobCardData[]; total: number }) {
-  const [filteredJobs, setFilteredJobs] = useState(jobs);
-  const [formData, setFormData] = useReducer(formReducer, {
-    searchByTitle: "",
-    location: "",
-  });
+// The province comes from the URL and is filtered by the CMS query, so it
+// covers every page; the title only filters the jobs on the current page.
+export default function FilterJobs({
+  jobs,
+  total,
+  page,
+  province = null,
+}: {
+  jobs: JobCardData[];
+  total: number;
+  page?: number;
+  province?: string | null;
+}) {
+  const router = useRouter();
+  const initialForm = { ...EMPTY_FORM, location: province ?? "" };
+  const [applied, setApplied] = useState<FormState>(initialForm);
+  const [formData, setFormData] = useReducer(formReducer, initialForm);
+  const filteredJobs = jobs.filter((job) => matches(job, applied));
+
+  // Inside a transition so the cards animate out/in via their <ViewTransition>.
+  const applyFilter = (next: FormState) =>
+    startTransition(() => {
+      setApplied(next);
+      if (next.location !== (province ?? "")) {
+        router.push(jobsHref({ province: next.location || null }), { scroll: false });
+      }
+    });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFilteredJobs(jobs.filter((job) => matches(job, formData)));
+    applyFilter(formData);
+  };
+
+  const handleReset = () => {
+    setFormData("reset");
+    applyFilter(EMPTY_FORM);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -48,65 +73,89 @@ export default function FilterJobs({ jobs, total }: { jobs: JobCardData[]; total
   };
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.subtitle}>
-        Cerca de <strong className={styles.jobsNumberHighlight}>{total}</strong>{" "}
-        empleos disponibles para que los veas
-      </h2>
-      <form onSubmit={handleSubmit} className={styles.searchContainer}>
-        <div className={styles.searchInput}>
-          <div className={styles.search}>
-            <WorkCase color="#88a097" />
-            <input
-              id="search"
-              className={styles.input}
-              type="text"
-              name="searchByTitle"
-              aria-label="Buscar trabajos"
-              placeholder="Por ej. Repositor"
-              value={formData.searchByTitle}
-              onChange={handleChange}
-            />
-          </div>
-          <p>|</p>
-          <div className={styles.location}>
-            <LocationIcon color="#88a097" />
-            <select
-              onChange={handleChange}
-              value={formData.location}
-              className={styles.select}
-              name="location"
-              aria-label="Provincia"
-              id="location"
-            >
-              <option className={styles.option} value="">
-                Todas las provincias
+    <div className={styles["job-search"]}>
+      <header className={styles["job-search__intro"]}>
+        <h1 className={styles["job-search__title"]}>Todas las ofertas</h1>
+        <p className={styles["job-search__lead"]}>
+          <strong className={styles["job-search__count"]}>{total}</strong>{" "}
+          {province
+            ? `${total === 1 ? "oferta publicada" : "ofertas publicadas"} en ${province}.`
+            : "ofertas publicadas por empresas de toda Argentina."}{" "}
+          Buscá por puesto o provincia.
+        </p>
+      </header>
+
+      <form onSubmit={handleSubmit} className={styles["job-search__form"]} role="search">
+        <label className={`${styles["job-search__field"]} ${styles["job-search__field--grow"]}`}>
+          <Briefcase className={styles["job-search__field-icon"]} size={20} aria-hidden />
+          <input
+            id="search"
+            className={styles["job-search__input"]}
+            type="text"
+            name="searchByTitle"
+            aria-label="Buscar trabajos"
+            placeholder="Puesto, por ej. repositor"
+            value={formData.searchByTitle}
+            onChange={handleChange}
+          />
+        </label>
+        <label className={styles["job-search__field"]}>
+          <MapPoint className={styles["job-search__field-icon"]} size={20} aria-hidden />
+          <select
+            onChange={handleChange}
+            value={formData.location}
+            className={styles["job-search__select"]}
+            name="location"
+            aria-label="Provincia"
+            id="location"
+          >
+            <option value="">Todas las provincias</option>
+            {provincias.map((provincia) => (
+              <option key={provincia.id} value={provincia.name}>
+                {provincia.name}
               </option>
-              {provincias.map((provincia) => (
-                <option className={styles.option} key={provincia.id} value={provincia.name}>
-                  {provincia.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <button type="submit" className={styles.button} aria-label="Buscar">
-          <Search color="#fff" />
+            ))}
+          </select>
+          <ChevronDown className={styles["job-search__chevron"]} size={16} aria-hidden />
+        </label>
+        <button type="submit" className={styles["job-search__submit"]} aria-label="Buscar">
+          <Search size={20} aria-hidden />
           Buscar
         </button>
       </form>
 
-      <h3 className={styles.title}>Últimos trabajos publicados</h3>
+      <h2 className={styles["job-search__results-title"]}>
+        {page && page > 1 ? `Página ${page}` : "Últimas ofertas publicadas"}
+      </h2>
       {filteredJobs.length > 0 ? (
-        <ul className={styles.page}>
-          {filteredJobs.map((job) => (
-            <JobCard key={job._id} job={job} />
-          ))}
-        </ul>
+        // FilterJobs remounts per page, so this named boundary pairs old and new
+        // results and slides them in the paging direction.
+        <ViewTransition
+          name="jobs-results"
+          share={{ "nav-forward": "nav-forward", "nav-back": "nav-back", default: "auto" }}
+          default="none"
+        >
+          <ul className={styles["job-search__results"]}>
+            {filteredJobs.map((job) => (
+              <ViewTransition key={job._id} enter="card-in" exit="card-out">
+                <JobCard job={job} />
+              </ViewTransition>
+            ))}
+          </ul>
+        </ViewTransition>
       ) : (
-        <p className={styles.noJobs}>
-          No hay trabajos relacionados con tu búsqueda. Intenta nuevamente con otros términos.
-        </p>
+        <ViewTransition enter="card-in" exit="card-out">
+          <div className={styles["job-search__empty"]}>
+            <p>
+              {province && jobs.length === 0
+                ? `Todavía no hay ofertas publicadas en ${province}. Probá con otra provincia.`
+                : "No hay trabajos relacionados con tu búsqueda en esta página. Probá con otro puesto u otra provincia."}
+            </p>
+            <button type="button" className={styles["job-search__reset"]} onClick={handleReset}>
+              Ver todas las ofertas
+            </button>
+          </div>
+        </ViewTransition>
       )}
     </div>
   );

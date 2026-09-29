@@ -1,14 +1,22 @@
-import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "reicon-react";
 
-import { LeftArrowRounded } from "@/shared/components/icons/left-arrow-rounded";
-import { RightArrowRounded } from "@/shared/components/icons/right-arrow-rounded";
+import { jobsHref } from "@/modules/jobs/jobs-href";
+import { TransitionLink } from "@/shared/components/transition-link/transition-link";
 
 import styles from "./pagination.module.css";
 
-const href = (page: number) => (page <= 1 ? "/todos-los-trabajos/" : `/todos-los-trabajos/?page=${page}`);
-
-export function Pagination({ page, totalPages }: { page: number; totalPages: number }) {
+export function Pagination({
+  page,
+  totalPages,
+  province,
+}: {
+  page: number;
+  totalPages: number;
+  province?: string | null;
+}) {
   if (totalPages <= 1) return null;
+
+  const href = (target: number) => jobsHref({ page: target, province });
 
   const hasPrevious = page > 1;
   const hasNext = page < totalPages;
@@ -16,24 +24,40 @@ export function Pagination({ page, totalPages }: { page: number; totalPages: num
   return (
     <nav className={styles.pagination} aria-label="Paginación">
       {hasPrevious ? (
-        <Link href={href(page - 1)} className={styles.button} aria-label="Página anterior">
-          <LeftArrowRounded currentColor="#88a097" arialabel="Icono de flecha a la izquierda" />
-        </Link>
+        <TransitionLink
+          href={href(page - 1)}
+          transitionType="nav-back"
+          className={`${styles["pagination__button"]} ${styles["pagination__button--prev"]}`}
+          aria-label="Página anterior"
+        >
+          <ChevronLeft size={20} aria-hidden />
+        </TransitionLink>
       ) : (
-        <span className={styles.button} aria-disabled="true">
-          <LeftArrowRounded currentColor="#c7c7c7" arialabel="Icono de flecha a la izquierda" />
+        <span
+          className={`${styles["pagination__button"]} ${styles["pagination__button--disabled"]}`}
+          aria-disabled="true"
+        >
+          <ChevronLeft size={20} aria-hidden />
         </span>
       )}
-      <span className={styles.status}>
-        Página {page} de {totalPages}
+      <span className={styles["pagination__status"]}>
+        Página <strong>{page}</strong> de {totalPages}
       </span>
       {hasNext ? (
-        <Link href={href(page + 1)} className={styles.button} aria-label="Página siguiente">
-          <RightArrowRounded currentColor="#88a097" arialabel="Icono de flecha a la derecha" />
-        </Link>
+        <TransitionLink
+          href={href(page + 1)}
+          transitionType="nav-forward"
+          className={`${styles["pagination__button"]} ${styles["pagination__button--next"]}`}
+          aria-label="Página siguiente"
+        >
+          <ChevronRight size={20} aria-hidden />
+        </TransitionLink>
       ) : (
-        <span className={styles.button} aria-disabled="true">
-          <RightArrowRounded currentColor="#c7c7c7" arialabel="Icono de flecha a la derecha" />
+        <span
+          className={`${styles["pagination__button"]} ${styles["pagination__button--disabled"]}`}
+          aria-disabled="true"
+        >
+          <ChevronRight size={20} aria-hidden />
         </span>
       )}
     </nav>
