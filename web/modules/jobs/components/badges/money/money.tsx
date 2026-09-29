@@ -1,20 +1,12 @@
-import { MoneyIcon } from "@/shared/components/icons/money";
+import { Wallet } from "reicon-react";
 
-import styles from "./money.module.css";
+import styles from "../badge.module.css";
 
-export default function Money({
-  color = "#c7ffc7",
-  salary,
-}: {
-  color?: string;
-  salary: string;
-}) {
+export default function Money({ salary }: { salary: string }) {
   return (
-    <div className={styles.salary}>
-      <MoneyIcon color={color} arialabel="Icono de dinero" />
-      <p style={{ color: color }} className={styles.salaryText}>
-        {salary}
-      </p>
-    </div>
+    <span className={`${styles.badge} ${styles["badge--salary"]}`}>
+      <Wallet className={styles["badge__icon"]} size={16} aria-hidden />
+      {salary}
+    </span>
   );
 }

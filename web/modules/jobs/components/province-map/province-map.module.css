@@ -1,0 +1,72 @@
+@keyframes map-in {
+  from {
+    opacity: 0;
+    scale: 0.96;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.province-map {
+  --province-map-empty: var(--neutral-100);
+  width: 100%;
+
+  /* The package sets a fixed pixel width inline; let the SVG follow ours. */
+  & :global(.map) {
+    width: 100% !important;
+    animation: map-in var(--duration-slow) var(--ease-out) both;
+  }
+
+  & svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  & path {
+    stroke-linejoin: round;
+    transition: fill var(--duration-base) var(--ease-out);
+  }
+}
+
+.province-map__placeholder {
+  aspect-ratio: 1 / 2;
+}
+
+/* Follows the pointer; the position is written to `translate` on move. */
+.province-map__tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--layer-nav);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: var(--space-4) 0 0 var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-ink-muted);
+  background-color: var(--color-paper);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lifted);
+  pointer-events: none;
+  opacity: 0;
+  scale: 0.95;
+  transform-origin: top left;
+  transition:
+    opacity var(--duration-fast) var(--ease-out),
+    scale var(--duration-fast) var(--ease-out);
+
+  & strong {
+    font-size: var(--font-size-base);
+    color: var(--color-ink);
+  }
+
+  &[data-visible="true"] {
+    opacity: 1;
+    scale: 1;
+  }
+}

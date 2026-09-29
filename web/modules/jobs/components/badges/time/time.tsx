@@ -1,18 +1,12 @@
-import { TimeIcon } from "@/shared/components/icons/time";
+import { Clock } from "reicon-react";
 
-import styles from "./time.module.css";
+import styles from "../badge.module.css";
 
-export default function Time({
-  workingDay,
-}: {
-  workingDay: string;
-}) {
+export default function Time({ workingDay }: { workingDay: string }) {
   return (
-    <div className={styles.time}>
-      <TimeIcon color="#fff" arialabel="Icono de reloj" />
-      <p className={styles.timeText}>
-        <strong>{workingDay}</strong>
-      </p>
-    </div>
+    <span className={`${styles.badge} ${styles["badge--schedule"]}`}>
+      <Clock className={styles["badge__icon"]} size={16} aria-hidden />
+      {workingDay}
+    </span>
   );
 }

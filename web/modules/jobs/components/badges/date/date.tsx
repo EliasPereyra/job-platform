@@ -1,21 +1,14 @@
-import { Calendar } from "@/shared/components/icons/calendar";
+import { Calendar } from "reicon-react";
+
 import { formatDate } from "@/shared/utils/format-date";
 
 import styles from "./date.module.css";
 
-export function Date({
-  color = "#aaa",
-  modified,
-}: {
-  color?: string;
-  modified: string;
-}) {
+export function Date({ modified }: { modified: string }) {
   return (
-    <div className={styles.dateContainer}>
-      <Calendar color={color} />
-      <small style={{ color }} className={styles.date}>
-        Publicado el {formatDate(modified || "")}
-      </small>
-    </div>
+    <span className={styles["published-date"]}>
+      <Calendar className={styles["published-date__icon"]} size={16} aria-hidden />
+      <time dateTime={modified}>Publicado el {formatDate(modified || "")}</time>
+    </span>
   );
 }

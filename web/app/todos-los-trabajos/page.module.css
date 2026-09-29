@@ -1,4 +1,5 @@
-.container {
-  background-color: #f6fffa;
-  padding: 6em;
+.jobs-page {
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+  padding: calc(var(--nav-height) + var(--space-8)) var(--gutter) var(--space-9);
 }

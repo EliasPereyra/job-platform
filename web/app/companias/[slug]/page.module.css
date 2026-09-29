@@ -1,50 +1,84 @@
-.container {
-  padding: 10em 6em;
+.company-page {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: var(--space-7);
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+  padding: calc(var(--nav-height) + var(--space-8)) var(--gutter) var(--space-9);
 }
 
-.header {
+.company-page__header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1.5rem;
+  gap: var(--space-5);
 }
 
-.logo {
-  border-radius: 50%;
+.company-page__logo {
+  width: 7rem;
+  height: 7rem;
+  border-radius: var(--radius-pill);
   object-fit: cover;
+  background-color: var(--color-paper);
+  box-shadow: var(--shadow-paper);
 }
 
-.name {
-  font-size: 2.2rem;
-  line-height: 1.2;
-}
-
-.link {
-  color: #2f7a4f;
-  text-decoration: underline;
-}
-
-.description {
-  max-width: 65ch;
+.company-page__identity {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--space-2);
 }
 
-.jobsTitle {
-  font-size: 1.5rem;
+.company-page__name {
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-black);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-display);
 }
 
-.jobs {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
-}
+.company-page__email {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: fit-content;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-action);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 
-@media (max-width: 720px) {
-  .container {
-    padding: 8em 1.5em;
+  &:hover {
+    color: var(--color-action-hover);
   }
+}
+
+.company-page__description {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: var(--measure);
+  font-size: var(--font-size-md);
+  color: var(--color-ink-muted);
+}
+
+.company-page__jobs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding-block-start: var(--space-6);
+  border-block-start: var(--perforation);
+}
+
+.company-page__jobs-title {
+  font-size: var(--font-size-xl);
+}
+
+.company-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: var(--space-6) var(--space-5);
+  list-style: none;
+}
+
+.company-page__empty {
+  color: var(--color-ink-subtle);
 }

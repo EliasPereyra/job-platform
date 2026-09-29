@@ -1,51 +1,86 @@
 .footer {
-  padding: 2em 6em;
-  background-color: #151617;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-7) var(--space-6);
+  padding: var(--space-8) var(--gutter) var(--space-6);
+  color: var(--color-ink-inverse);
+  background-color: var(--color-ink);
+
+  @media (max-width: 40rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer__brand {
   display: flex;
-  gap: 4rem;
+  flex-direction: column;
+  gap: var(--space-4);
+}
 
-  .firstCol {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.footer__description {
+  max-width: 34ch;
+  font-size: var(--font-size-sm);
+  color: var(--color-line-strong);
+}
 
-    .footerDescription {
-      font-size: 0.9rem;
-      color: #ccc;
-      width: 30ch;
-    }
+.footer__social {
+  display: flex;
+  gap: var(--space-2);
+  list-style: none;
+}
 
-    .socialMedia {
-      display: flex;
-      gap: 1rem;
-    }
+.footer__social-link {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  aspect-ratio: 1;
+  border: var(--border-width) solid var(--color-ink-muted);
+  border-radius: var(--radius-pill);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
 
-    .developedBy {
-      color: #ccc;
-      font-size: 0.7rem;
-
-      .link {
-        color: #ccc;
-        text-decoration: underline;
-      }
-    }
+  &:hover {
+    color: var(--light-purple);
+    border-color: var(--light-purple);
   }
+}
 
-  .secondCol {
-    .pages {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+.footer__pages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
 
-      .pagesTitle {
-        color: #ccc;
-        font-size: 1.3rem;
-      }
+.footer__title {
+  font-size: var(--font-size-base);
+  color: var(--color-line-strong);
+}
 
-      .socialMedia {
-        font-size: 0.9rem;
-        color: #ccc;
-      }
-    }
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.footer__link {
+  font-weight: var(--font-weight-bold);
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
+}
+
+.footer__credits {
+  grid-column: 1 / -1;
+  padding-block-start: var(--space-5);
+  border-block-start: var(--border-width) solid var(--color-ink-muted);
+  font-size: var(--font-size-xs);
+  color: var(--color-line-strong);
+}
+
+.footer__credits-link {
+  text-decoration: underline;
 }

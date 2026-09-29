@@ -8,6 +8,9 @@ import FilterJobs from "./filter-jobs";
 // The card renders images through the Sanity URL builder; the tests only care
 // about the filtering logic.
 vi.mock("@/modules/cms/cms-image", () => ({ CmsImage: () => null }));
+// Changing the province navigates through the App Router.
+const push = vi.fn();
+vi.mock("next/navigation", () => ({ useRouter: () => ({ push }) }));
 
 // Plain strings stand in for the (stega-branded) CMS strings.
 const job = (overrides: Record<string, unknown>) =>
@@ -38,7 +41,10 @@ const jobs = [
   }),
 ];
 
-afterEach(cleanup);
+afterEach(() => {
+  cleanup();
+  push.mockClear();
+});
 
 test("Tiene que mostrar todos los trabajos", () => {
   render(<FilterJobs jobs={jobs} total={jobs.length} />);
@@ -66,4 +72,28 @@ test("Filtra por provincia aunque no se escriba un puesto", async () => {
   const cards = screen.getAllByLabelText("Tarjeta de trabajo");
   expect(cards).toHaveLength(1);
   expect(within(cards[0]).getByText("Ayudante de barista")).toBeInTheDocument();
+});
+
+test("Con una provincia en la URL la muestra seleccionada", () => {
+  const cordoba = [jobs[1]];
+  render(<FilterJobs jobs={cordoba} total={cordoba.length} province="Córdoba" />);
+
+  expect(screen.getByRole("combobox", { name: "Provincia" })).toHaveValue("Córdoba");
+  expect(screen.getByText(/oferta publicada en Córdoba/)).toBeInTheDocument();
+});
+
+test("Cambiar de provincia navega a la lista filtrada por esa provincia", async () => {
+  const user = userEvent.setup();
+  render(<FilterJobs jobs={jobs} total={jobs.length} />);
+
+  await user.selectOptions(screen.getByRole("combobox", { name: "Provincia" }), "Entre Ríos");
+  await user.click(screen.getByRole("button", { name: "Buscar" }));
+
+  expect(push).toHaveBeenCalledWith("/todos-los-trabajos/?provincia=Entre+R%C3%ADos", { scroll: false });
+});
+
+test("Sin ofertas en la provincia avisa que todavía no hay publicadas", () => {
+  render(<FilterJobs jobs={[]} total={0} province="Formosa" />);
+
+  expect(screen.getByText(/Todavía no hay ofertas publicadas en Formosa/)).toBeInTheDocument();
 });

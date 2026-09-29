@@ -1,0 +1,113 @@
+.tear-off {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-paper);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  box-shadow: var(--shadow-paper);
+}
+
+.tear-off__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.tear-off__title {
+  font-size: var(--font-size-lg);
+}
+
+.tear-off__text {
+  font-size: var(--font-size-sm);
+  color: var(--color-ink-muted);
+}
+
+.tear-off__email {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 100%;
+  font-weight: var(--font-weight-heavy);
+  color: var(--color-action);
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-thickness: var(--border-width-bold);
+  text-underline-offset: 0.25em;
+
+  &:hover {
+    color: var(--color-action-hover);
+  }
+}
+
+.tear-off__copy {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+  background-color: var(--color-wall);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    border-color: var(--color-line-strong);
+  }
+}
+
+.tear-off__copy--done {
+  background-color: color-mix(in oklab, var(--color-status-open) 30%, var(--color-paper));
+  border-color: var(--color-status-open);
+}
+
+.tear-off__link {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-action);
+  text-decoration: underline;
+}
+
+.tear-off__fringe {
+  display: flex;
+  height: 3.5rem;
+  overflow: hidden;
+  border-block-start: var(--perforation);
+}
+
+.tear-off__tab {
+  flex: 1;
+  min-width: 2.25rem;
+  background-color: var(--color-paper);
+  border-inline-end: var(--border-width) solid var(--color-line);
+  transform-origin: top center;
+  transition: rotate var(--duration-base) var(--ease-out);
+
+  &:last-child {
+    border-inline-end: none;
+  }
+
+  &:hover {
+    rotate: -6deg;
+  }
+}
+
+/* Closed offers: all tabs torn off, only the stubs remain */
+.tear-off--closed {
+  .tear-off__fringe {
+    height: var(--space-3);
+  }
+
+  .tear-off__tab {
+    background-color: var(--color-wall);
+
+    &:hover {
+      rotate: none;
+    }
+  }
+}
