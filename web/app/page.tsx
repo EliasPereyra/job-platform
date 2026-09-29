@@ -1,12 +1,22 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
+import { ViewTransition } from "react";
 
-import Footer from "@/modules/layout/components/footer/footer";
-import { getCompanies } from "@/modules/cms";
+import {
+  getCompanies,
+  getJobCountsByProvince,
+  getJobsPage,
+} from "@/modules/cms";
 import { CmsImage } from "@/modules/cms/cms-image";
+import JobCard from "@/modules/jobs/components/job-card";
+import { ProvinceMap } from "@/modules/jobs/components/province-map/province-map";
+import { jobsHref } from "@/modules/jobs/jobs-href";
+import { companyLogoName } from "@/modules/jobs/transition-names";
+import { PageTransition } from "@/shared/components/page-transition/page-transition";
+import { TransitionLink } from "@/shared/components/transition-link/transition-link";
 
 import styles from "./page.module.css";
+import { BENEFITS, STEPS } from "@/shared/constants/landing-sections";
 
 export const metadata: Metadata = {
   title: "Ofertas de trabajo sin experiencia",
@@ -15,195 +25,209 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const companies = await getCompanies();
+  const [companies, { jobs: latestJobs, total }, provinceCounts] =
+    await Promise.all([
+      getCompanies(),
+      getJobsPage({ page: 1, pageSize: 2 }),
+      getJobCountsByProvince(),
+    ]);
+  const provincesWithJobs = Object.entries(provinceCounts).sort(
+    ([nameA, a], [nameB, b]) => b - a || nameA.localeCompare(nameB, "es"),
+  );
 
   return (
-    <div className={styles.home}>
+    <PageTransition>
+      <div className={styles.home}>
+        <section className={styles.hero}>
+          <div className={styles["hero__copy"]}>
+            <h1 className={styles["hero__title"]}>
+              Ofertas de trabajo sin experiencia
+            </h1>
+            <p className={styles["hero__lead"]}>
+              Encontrá tu primer empleo en Argentina y escribile directo a la
+              empresa. Sin registros, sin intermediarios.
+            </p>
+            <TransitionLink
+              className={`${styles.button} ${styles["button--primary"]}`}
+              href="/todos-los-trabajos"
+              transitionType="nav-forward"
+            >
+              Ver las {total} ofertas
+            </TransitionLink>
+            <ul className={styles["hero__stats"]} aria-label="WorkStart en números">
+              <li>
+                <strong>{total}</strong> {total === 1 ? "oferta" : "ofertas"}
+              </li>
+              <li>
+                <strong>{provincesWithJobs.length}</strong>{" "}
+                {provincesWithJobs.length === 1 ? "provincia" : "provincias"}
+              </li>
+              <li>
+                <strong>{companies.length}</strong>{" "}
+                {companies.length === 1 ? "empresa" : "empresas"}
+              </li>
+            </ul>
+          </div>
 
-      <section className={styles.container}>
-        <div className={styles.element} />
-        <h1 className={styles.title}>
-          Ofertas de trabajo{" "}
-          <span className={styles.highlight}>sin experiencia</span>
-        </h1>
-        <p className={styles.description}>
-          Explora oportunidades laborales y contacta directamente con las
-          empresas. Sin registros, sin intermediarios
-        </p>
-        <a className={styles.button} href="/todos-los-trabajos">
-          Ver Ofertas de Trabajos
-        </a>
+          {latestJobs.length > 0 && (
+            <ul
+              className={styles["hero__board"]}
+              aria-label="Últimas ofertas publicadas"
+            >
+              {latestJobs.map((job) => (
+                <JobCard key={job._id} job={job} />
+              ))}
+            </ul>
+          )}
+        </section>
 
-        <div className={styles.argentina} />
-      </section>
+        {provincesWithJobs.length > 0 && (
+          <section
+            className={`${styles.band} ${styles.provinces}`}
+            aria-labelledby="provinces-title"
+          >
+            <div className={styles["provinces__intro"]}>
+              <h2
+                id="provinces-title"
+                className={`${styles["section-title"]} ${styles["provinces__title"]}`}
+              >
+                Ofertas en todo el país
+              </h2>
+              <p className={styles["provinces__lead"]}>
+                Elegí una provincia en el mapa o en la lista para ver sus
+                ofertas.
+              </p>
+              <ul className={styles["provinces__list"]}>
+                {provincesWithJobs.map(([province, count]) => (
+                  <li key={province}>
+                    <TransitionLink
+                      className={styles["provinces__link"]}
+                      href={jobsHref({ province })}
+                      transitionType="nav-forward"
+                      aria-label={`${province}: ${count} ${count === 1 ? "oferta" : "ofertas"}`}
+                    >
+                      {province}
+                      <span className={styles["provinces__count"]}>
+                        {count}
+                      </span>
+                    </TransitionLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className={styles["provinces__map"]}>
+              <ProvinceMap counts={provinceCounts} />
+              <div className={styles["provinces__legend"]} aria-hidden>
+                <span>Menos ofertas</span>
+                <span className={styles["provinces__legend-scale"]} />
+                <span>Más ofertas</span>
+              </div>
+            </div>
+          </section>
+        )}
 
-      <section className={styles.companies}>
-        <h2 className={styles.companiesTitle}>Confían en nosotros</h2>
-        <ul className={styles.companiesContainer}>
-          {companies.map((company) => (
-            <li key={company._id} className={styles.circle}>
-              <Link href={`/companias/${company.slug}`} title={company.name}>
-                <CmsImage
-                  className={styles.logo}
-                  value={company.logo}
-                  alt={company.name}
-                  width={100}
-                  height={100}
+        {companies.length > 0 && (
+          <section
+            className={styles.companies}
+            aria-labelledby="companies-title"
+          >
+            <h2 id="companies-title" className={styles["companies__title"]}>
+              Empresas que publican en WorkStart
+            </h2>
+            <ul className={styles["companies__list"]}>
+              {companies.map((company) => (
+                <li key={company._id}>
+                  <TransitionLink
+                    className={styles["companies__link"]}
+                    href={`/companias/${company.slug}`}
+                    transitionType="nav-forward"
+                    title={company.name}
+                  >
+                    <ViewTransition
+                      name={companyLogoName(company.slug)}
+                      share="morph"
+                      default="none"
+                    >
+                      <CmsImage
+                        className={styles["companies__logo"]}
+                        value={company.logo}
+                        alt={company.name}
+                        width={72}
+                        height={72}
+                      />
+                    </ViewTransition>
+                  </TransitionLink>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <section className={styles.benefits} aria-labelledby="benefits-title">
+          <h2
+            id="benefits-title"
+            className={`${styles["section-title"]} ${styles["benefits__title"]}`}
+          >
+            Pensado para tu primer trabajo
+          </h2>
+          <ul className={styles["benefits__list"]}>
+            {BENEFITS.map(({ icon: Icon, tone, title, text }) => (
+              <li
+                key={title}
+                className={`${styles["benefits__item"]} ${styles[`benefits__item--${tone}`]}`}
+              >
+                <span className={styles["benefits__icon"]}>
+                  <Icon size={24} aria-hidden />
+                </span>
+                <h3 className={styles["benefits__item-title"]}>{title}</h3>
+                <p className={styles["benefits__text"]}>{text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className={`${styles.band} ${styles.steps}`} aria-labelledby="steps-title">
+          <h2
+            id="steps-title"
+            className={`${styles["section-title"]} ${styles["steps__title"]}`}
+          >
+            Cómo funciona
+          </h2>
+          <ol className={styles["steps__list"]}>
+            {STEPS.map((step, index) => (
+              <li key={step.title} className={styles["steps__item"]}>
+                <Image
+                  className={styles["steps__image"]}
+                  src={step.image}
+                  alt={step.alt}
+                  width={1604}
+                  height={854}
                 />
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+                <div className={styles["steps__content"]}>
+                  <span className={styles["steps__number"]} aria-hidden>
+                    {index + 1}
+                  </span>
+                  <h3 className={styles["steps__item-title"]}>{step.title}</h3>
+                  <p className={styles["steps__text"]}>{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-      <section className={styles.benefitsContainer}>
-        <h2 className={styles.benefitTitle}>¿Por qué usar esta plataforma?</h2>
-        <ul className={styles.benefitItems}>
-          <li className={styles.benefitItem}>
-            <Image
-              src="/assets/imgs/no-register.svg"
-              alt="Icono de sin registro"
-              width={45}
-              height={45}
-            />
-            <h3>Sin necesidad de registro</h3>
-            <p>
-              Olvídate de crear cuentas, recordar contraseñas o llenar
-              formularios innecesarios. En nuestra plataforma, puedes acceder a
-              todas las ofertas de empleo de manera instantánea, sin barreras ni
-              procesos complicados. Encuentra el trabajo ideal sin perder tiempo
-              en registros.
-            </p>
-          </li>
-
-          <li className={styles.benefitItem}>
-            <Image
-              src="/assets/imgs/contact.svg"
-              alt="Icono de sin registro"
-              width={45}
-              height={45}
-            />
-            <h3>Contacto directo</h3>
-            <p>
-              No hay intermediarios ni formularios de postulación dentro de la
-              plataforma. Cada oferta de empleo incluye el correo de la empresa
-              para que puedas enviar tu CV directamente, sin demoras ni filtros
-              adicionales. Esto te permite establecer comunicación inmediata con
-              los reclutadores y aumentar tus posibilidades de respuesta.
-            </p>
-          </li>
-
-          <li className={styles.benefitItem}>
-            <Image
-              src="/assets/imgs/free.svg"
-              alt="Icono de sin registro"
-              width={45}
-              height={45}
-            />
-            <h3>100% gratuito</h3>
-            <p>
-              Buscar trabajo no debería costarte nada. Nuestra plataforma es
-              completamente gratuita tanto para quienes buscan empleo como para
-              las empresas que publican sus ofertas. No hay suscripciones,
-              tarifas ocultas ni pagos por destacar tu perfil.
-            </p>
-          </li>
-
-          <li className={styles.benefitItem}>
-            <Image
-              src="/assets/imgs/info.svg"
-              alt="Icono de sin registro"
-              width={45}
-              height={45}
-            />
-            <h3>Transparencia total</h3>
-            <p>
-              Toda la información relevante sobre el empleo está disponible de
-              forma clara y detallada. Desde el salario (cuando la empresa lo
-              proporciona) hasta los requisitos y beneficios del puesto, tendrás
-              acceso a todos los detalles sin necesidad de registrarte ni
-              completar formularios.
-            </p>
-          </li>
-        </ul>
-      </section>
-
-      <section className={styles.howItWorks}>
-        <h2>Cómo Funciona</h2>
-        <div className={styles.howItWorksContainer}>
-          <div className={styles.howItWorksItemRight}>
-            <Image
-              className={styles.howItWorksImage}
-              src="/assets/imgs/jobs.jpg"
-              alt="Lista de trabajos de la plataforma"
-              width={1604}
-              height={854}
-            />
-            <div>
-              <h3 className={styles.howItWorksTitle}>
-                Explora las oportunidades laborales
-              </h3>
-              <p className={styles.howItWorksDescription}>
-                Revisa nuestra lista actualizada de ofertas de trabajo en
-                distintas industrias y categorías.
-              </p>
-            </div>
-          </div>
-
-          <div className={styles.howItWorksItemLeft}>
-            <Image
-              className={styles.howItWorksImage}
-              src="/assets/imgs/job.jpg"
-              alt="Texto que describe los detalles del puesto"
-              width={1604}
-              height={854}
-            />
-            <div>
-              <h3 className={styles.howItWorksTitle}>
-                Consulta todos los detalles del puesto
-              </h3>
-              <p className={styles.howItWorksDescription}>
-                Cada oferta incluye información clara sobre el cargo,
-                requisitos, beneficios y detalles del empleador. No necesitas
-                registrarte para ver toda la información relevante y tomar una
-                decisión informada.
-              </p>
-            </div>
-          </div>
-
-          <div className={styles.howItWorksItemRight}>
-            <Image
-              className={styles.howItWorksImage}
-              src="/assets/imgs/contact.jpg"
-              alt="Contacto directo con la empresa"
-              width={1604}
-              height={854}
-            />
-            <div>
-              <h3 className={styles.howItWorksTitle}>
-                Contacta directamente con la empresa
-              </h3>
-              <p className={styles.howItWorksDescription}>
-                Cuando encuentres un empleo que te interese, simplemente copia
-                el correo proporcionado en la oferta y envía tu postulación sin
-                intermediarios. Escribe directamente a la empresa y agiliza el
-                proceso de aplicación.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.callToAction}>
-        <h2 className={styles.callToActionTitle}>
-          Empieza a buscar tu próximo trabajo{" "}
-          <span className={styles.highlight}>hoy mismo</span>
-        </h2>
-        <a className={styles.button} href="/todos-los-trabajos">
-          Ver Ofertas de Trabajos
-        </a>
-      </section>
-      <Footer />
-    </div>
+        <section className={styles.cta}>
+          <h2 className={styles["cta__title"]}>
+            Empezá a buscar tu próximo trabajo hoy
+          </h2>
+          <TransitionLink
+            className={`${styles.button} ${styles["button--secondary"]}`}
+            href="/todos-los-trabajos"
+            transitionType="nav-forward"
+          >
+            Ver ofertas de trabajo
+          </TransitionLink>
+        </section>
+      </div>
+    </PageTransition>
   );
 }
