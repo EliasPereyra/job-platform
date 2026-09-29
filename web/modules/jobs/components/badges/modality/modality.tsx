@@ -1,25 +1,18 @@
-import { BuildingIcon } from "@/shared/components/icons/building";
-import WorldIcon from "@/shared/components/icons/world";
+import { Buildings2, HomeWifi, Laptop } from "reicon-react";
 
-import styles from "./modality.module.css";
+import { cleanCmsValue } from "@/modules/cms/clean";
+import { modalityLabel } from "../../../labels";
+import styles from "../badge.module.css";
 
-export default function Modality({
-  color = "#fefff4",
-  modality,
-}: {
-  color?: string;
-  modality: string;
-}) {
+const ICONS = { presencial: Buildings2, remoto: Laptop, hibrido: HomeWifi };
+
+export default function Modality({ modality }: { modality: string }) {
+  const Icon = ICONS[cleanCmsValue(modality) as keyof typeof ICONS] ?? Buildings2;
+
   return (
-    <div className={styles.modality}>
-      {modality?.includes("Remoto") ? (
-        <WorldIcon size={20} color={color} arialabel="Icono de mundo" />
-      ) : (
-        <BuildingIcon size={20} color={color} arialabel="Icono de edificio" />
-      )}
-      <p style={{ color: color }} className={styles.modalityText}>
-        {modality}
-      </p>
-    </div>
+    <span className={`${styles.badge} ${styles["badge--modality"]}`}>
+      <Icon className={styles["badge__icon"]} size={16} aria-hidden />
+      {modalityLabel(modality)}
+    </span>
   );
 }

@@ -1,9 +1,11 @@
-.dateContainer {
-  display: flex;
+.published-date {
+  display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  color: var(--color-ink-subtle);
+}
 
-  .date {
-    color: #999;
-  }
+.published-date__icon {
+  flex-shrink: 0;
 }
