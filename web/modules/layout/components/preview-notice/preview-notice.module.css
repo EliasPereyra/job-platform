@@ -1,22 +1,22 @@
-.preview {
+.preview-notice {
   position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  margin: 0 auto;
-  width: 280px;
-  text-align: center;
-  max-width: 100%;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  background-color: #000;
-  color: #fff;
-  padding: 5px 15px;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: var(--layer-notice);
   display: flex;
   justify-content: space-between;
+  gap: var(--space-3);
+  width: 18rem;
+  max-width: 100%;
+  margin-inline: auto;
+  padding: var(--space-1) var(--space-4);
   white-space: nowrap;
+  color: var(--color-ink-inverse);
+  background-color: var(--color-ink);
+  border-end-start-radius: var(--radius-sm);
+  border-end-end-radius: var(--radius-sm);
 }
 
-.link {
-  margin-left: 10px;
+.preview-notice__link {
+  text-decoration: underline;
 }

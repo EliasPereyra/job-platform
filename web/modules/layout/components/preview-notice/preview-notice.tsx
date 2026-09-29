@@ -6,10 +6,10 @@ export const PreviewNotice = () => {
   const pathname = usePathname();
 
   return (
-    <aside className={styles.preview}>
+    <aside className={styles["preview-notice"]}>
       Modo borrador activado
       <a
-        className={styles.link}
+        className={styles["preview-notice__link"]}
         href={`/api/draft-mode/disable?path=${encodeURIComponent(pathname)}`}
       >
         Salir

@@ -1,14 +1,14 @@
-.wordmark {
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--black);
+.site-logo {
+  font-weight: var(--font-weight-black);
+  letter-spacing: var(--letter-spacing-display);
+  color: var(--color-ink);
 }
 
-.sm {
-  font-size: 1.1rem;
+.site-logo--sm {
+  font-size: var(--font-size-md);
 }
 
-.lg {
-  font-size: 1.5rem;
-  color: #eee;
+.site-logo--lg {
+  font-size: var(--font-size-xl);
+  color: var(--color-ink-inverse);
 }

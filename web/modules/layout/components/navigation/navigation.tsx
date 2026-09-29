@@ -1,6 +1,5 @@
-import Link from "next/link";
-
 import { getSiteSettings } from "@/modules/cms";
+import { TransitionLink } from "@/shared/components/transition-link/transition-link";
 import { SiteLogo } from "../site-logo";
 import styles from "./navigation.module.css";
 
@@ -17,19 +16,23 @@ export default async function Navigation() {
   return (
     <nav
       className={styles.navigation}
-      role="navigation"
       itemScope
       itemType="http://schema.org/SiteNavigationElement"
     >
-      <Link href="/">
+      <TransitionLink className={styles["navigation__brand"]} href="/" transitionType="nav-lateral">
         <SiteLogo settings={settings} />
-      </Link>
-      <ul className={styles.menu}>
+      </TransitionLink>
+      <ul className={styles["navigation__menu"]}>
         {items.map((item) => (
           <li key={item._key}>
-            <Link className={styles.menuItem} itemProp="url" href={item.href}>
+            <TransitionLink
+              className={styles["navigation__link"]}
+              itemProp="url"
+              href={item.href}
+              transitionType="nav-lateral"
+            >
               <span itemProp="name">{item.label}</span>
-            </Link>
+            </TransitionLink>
           </li>
         ))}
       </ul>

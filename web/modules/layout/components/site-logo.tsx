@@ -16,5 +16,5 @@ export function SiteLogo({
     return <CmsImage value={settings.logo} alt={title} width={size === "lg" ? 64 : 48} height={32} />;
   }
 
-  return <span className={`${styles.wordmark} ${styles[size]}`}>{title}</span>;
+  return <span className={`${styles["site-logo"]} ${styles[`site-logo--${size}`]}`}>{title}</span>;
 }

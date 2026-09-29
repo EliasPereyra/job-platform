@@ -1,31 +1,82 @@
 .navigation {
-  --_animationStartsAfter: 50vh;
-  --_animationDistance: 120px;
-  font-size: 0.8rem;
-  padding: 1em 6em;
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: var(--layer-nav);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  background: transparent;
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  margin-inline: auto;
-  margin-block: 0rem;
-  width: 100%;
-  animation: stickyNav linear forwards;
-  background-color: #e3fcfb59;
-  border-bottom: 1px solid #d1f2ff;
-  backdrop-filter: blur(10px);
+  gap: var(--space-4);
+  min-height: var(--nav-height);
+  padding-inline: var(--gutter);
+  background-color: color-mix(in oklab, var(--color-wall) 72%, transparent);
+  border-block-end: var(--border-width) solid var(--color-line);
+  backdrop-filter: blur(var(--blur-glass));
+  view-transition-name: site-nav;
+}
 
-  .menu {
-    display: flex;
-    gap: 1rem;
-    list-style: none;
+.navigation__brand {
+  display: inline-flex;
+  align-items: center;
+}
 
-    .menuItem {
-      color: var(--black);
+.navigation__menu {
+  display: flex;
+  gap: var(--space-1);
+  list-style: none;
+}
+
+.navigation__link {
+  display: inline-block;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink-muted);
+  white-space: nowrap;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    color: var(--color-ink);
+    background-color: var(--color-paper);
+  }
+}
+
+@media (max-width: 36rem) {
+  .navigation__menu {
+    gap: 0;
+  }
+
+  .navigation__link {
+    padding-inline: var(--space-1);
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* Smallest phones: let long labels ("Sobre nosotros") break into two lines */
+@media (max-width: 24rem) {
+  .navigation {
+    gap: var(--space-2);
+  }
+
+  .navigation__brand {
+    font-size: var(--font-size-sm);
+
+    & > * {
+      font-size: inherit;
     }
+  }
+
+  .navigation__menu {
+    align-items: center;
+  }
+
+  .navigation__link {
+    padding-inline: 0.125rem;
+    line-height: var(--line-height-tight);
+    text-align: center;
+    white-space: normal;
   }
 }
