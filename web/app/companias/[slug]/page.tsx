@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ViewTransition } from "react";
+import { Envelope } from "reicon-react";
 
 import { getCompany } from "@/modules/cms";
 import { CmsImage } from "@/modules/cms/cms-image";
 import { RichText } from "@/modules/cms/rich-text";
 import JobCard from "@/modules/jobs/components/job-card";
+import { companyLogoName } from "@/modules/jobs/transition-names";
+import { PageTransition } from "@/shared/components/page-transition/page-transition";
 import { buildMetadata } from "@/shared/utils/metadata";
 
 import styles from "./page.module.css";
@@ -33,30 +37,48 @@ export default async function CompanyPage({ params }: PageProps) {
   if (!company) notFound();
 
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <CmsImage className={styles.logo} value={company.logo} alt={company.name} width={120} height={120} />
-        <div>
-          <h1 className={styles.name}>{company.name}</h1>
-          <a className={styles.link} href={`mailto:${company.contactEmail}`}>
-            {company.contactEmail}
-          </a>
-        </div>
-      </header>
-      <div className={styles.description}>
-        <RichText value={company.description} />
-      </div>
+    <PageTransition>
+      <div className={styles["company-page"]}>
+        <header className={styles["company-page__header"]}>
+          <ViewTransition name={companyLogoName(slug)} share="morph" default="none">
+            <CmsImage
+              className={styles["company-page__logo"]}
+              value={company.logo}
+              alt={company.name}
+              width={112}
+              height={112}
+            />
+          </ViewTransition>
+          <div className={styles["company-page__identity"]}>
+            <h1 className={styles["company-page__name"]}>{company.name}</h1>
+            <a className={styles["company-page__email"]} href={`mailto:${company.contactEmail}`}>
+              <Envelope size={18} aria-hidden />
+              {company.contactEmail}
+            </a>
+          </div>
+        </header>
 
-      <h2 className={styles.jobsTitle}>Ofertas publicadas</h2>
-      {company.jobs.length ? (
-        <ul className={styles.jobs}>
-          {company.jobs.map((job) => (
-            <JobCard key={job._id} job={job} />
-          ))}
-        </ul>
-      ) : (
-        <p>Esta empresa no tiene ofertas publicadas por ahora.</p>
-      )}
-    </div>
+        <div className={styles["company-page__description"]}>
+          <RichText value={company.description} />
+        </div>
+
+        <section className={styles["company-page__jobs"]} aria-labelledby="company-jobs-title">
+          <h2 id="company-jobs-title" className={styles["company-page__jobs-title"]}>
+            Ofertas publicadas
+          </h2>
+          {company.jobs.length ? (
+            <ul className={styles["company-page__grid"]}>
+              {company.jobs.map((job) => (
+                <JobCard key={job._id} job={job} />
+              ))}
+            </ul>
+          ) : (
+            <p className={styles["company-page__empty"]}>
+              {company.name} no tiene ofertas publicadas por ahora.
+            </p>
+          )}
+        </section>
+      </div>
+    </PageTransition>
   );
 }
