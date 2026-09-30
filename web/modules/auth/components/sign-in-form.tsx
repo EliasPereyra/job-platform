@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState, type FormEvent } from "react";
+import { Activity, useEffect, useState, type FormEvent } from "react";
 
+import { Loader } from "@/shared/components/loader/loader";
 import { authClient } from "../auth-client";
 import { getErrorMessage, safeRedirect } from "../utils/error-messages";
 import styles from "./auth-form.module.css";
@@ -12,7 +13,7 @@ export function SignInForm() {
   const router = useRouter();
   const next = safeRedirect(useSearchParams().get("next"));
   const [error, setError] = useState<string | null>(null);
-  const [pending, setPending] = useState(false);
+  const [pending, setPending] = useState<"passkey" | "password" | null>(null);
 
   const onSuccess = () => {
     router.push(next);
@@ -43,22 +44,22 @@ export function SignInForm() {
     const identifier = String(form.get("identifier")).trim();
     const password = String(form.get("password"));
 
-    setPending(true);
+    setPending("password");
     setError(null);
     const { error } = identifier.includes("@")
       ? await authClient.signIn.email({ email: identifier, password })
       : await authClient.signIn.username({ username: identifier, password });
-    setPending(false);
+    setPending(null);
 
     if (error) setError(getErrorMessage(error));
     else onSuccess();
   }
 
   async function handlePasskey() {
-    setPending(true);
+    setPending("passkey");
     setError(null);
     const { error } = await authClient.signIn.passkey();
-    setPending(false);
+    setPending(null);
 
     if (error) setError(getErrorMessage(error));
     else onSuccess();
@@ -77,8 +78,11 @@ export function SignInForm() {
         className={styles.button}
         type="button"
         onClick={handlePasskey}
-        disabled={pending}
+        disabled={pending !== null}
       >
+        <Activity mode={pending === "passkey" ? "visible" : "hidden"}>
+          <Loader size={20} tone="on-action" />
+        </Activity>
         Ingresar con passkey
       </button>
 
@@ -112,8 +116,11 @@ export function SignInForm() {
         <button
           className={`${styles.button} ${styles["button--ghost"]}`}
           type="submit"
-          disabled={pending}
+          disabled={pending !== null}
         >
+          <Activity mode={pending === "password" ? "visible" : "hidden"}>
+            <Loader size={20} tone="inherit" />
+          </Activity>
           Ingresar
         </button>
       </form>

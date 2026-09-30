@@ -1,35 +1,47 @@
 "use client";
 
 import Link from "next/link";
+import { Activity } from "react";
 
+import { Loader } from "@/shared/components/loader/loader";
 import { authClient } from "../auth-client";
 import { Avatar } from "./avatar";
 import { SignOutButton } from "./sign-out-button";
 import styles from "./user-menu.module.css";
 
+type User = { name: string; email: string; image?: string | null };
+
 export function UserMenu() {
   const { data: session, isPending } = authClient.useSession();
 
-  if (isPending)
-    return (
-      <span className={styles["user-menu__placeholder"]} aria-hidden="true" />
-    );
+  return (
+    <>
+      <Activity mode={isPending ? "visible" : "hidden"}>
+        <span className={styles["user-menu__placeholder"]}>
+          <Loader size={28} label="Cargando sesión" />
+        </span>
+      </Activity>
+      <Activity mode={isPending ? "hidden" : "visible"}>
+        {session ? <SignedInMenu user={session.user} /> : <SignedOutMenu />}
+      </Activity>
+    </>
+  );
+}
 
-  if (!session) {
-    return (
-      <div className={styles["user-menu"]}>
-        <Link className={styles["user-menu__sign-in"]} href="/ingresar/">
-          Ingresar
-        </Link>
-        <Link className={styles["user-menu__sign-up"]} href="/registrarse/">
-          Crear cuenta
-        </Link>
-      </div>
-    );
-  }
+function SignedOutMenu() {
+  return (
+    <div className={styles["user-menu"]}>
+      <Link className={styles["user-menu__sign-in"]} href="/ingresar/">
+        Ingresar
+      </Link>
+      <Link className={styles["user-menu__sign-up"]} href="/registrarse/">
+        Crear cuenta
+      </Link>
+    </div>
+  );
+}
 
-  const { user } = session;
-
+function SignedInMenu({ user }: { user: User }) {
   return (
     <div className={styles["user-menu"]}>
       <button

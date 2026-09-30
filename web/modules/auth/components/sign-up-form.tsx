@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useSyncExternalStore, type FormEvent } from "react";
+import { Activity, useState, useSyncExternalStore, type FormEvent } from "react";
 
+import { Loader } from "@/shared/components/loader/loader";
 import { authClient } from "../auth-client";
 import { getErrorMessage, safeRedirect } from "../utils/error-messages";
 import { serializePasskeySignUp } from "../utils/passkey-sign-up";
@@ -156,6 +157,9 @@ export function SignUpForm() {
           </p>
         )}
         <button className={styles.button} type="submit" disabled={pending}>
+          <Activity mode={pending ? "visible" : "hidden"}>
+            <Loader size={20} tone="on-action" />
+          </Activity>
           {method === "passkey" ? "Crear cuenta con passkey" : "Crear cuenta"}
         </button>
       </form>
