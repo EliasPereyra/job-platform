@@ -28,6 +28,9 @@
 }
 
 .passkey-list__delete {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
   border: none;
   font: inherit;
   font-size: var(--font-size-sm);
@@ -35,4 +38,9 @@
   color: var(--red-c-700);
   background: none;
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: progress;
+  }
 }

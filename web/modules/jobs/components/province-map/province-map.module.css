@@ -32,6 +32,8 @@
 }
 
 .province-map__placeholder {
+  display: grid;
+  place-items: center;
   aspect-ratio: 1 / 2;
 }
 

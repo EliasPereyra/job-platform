@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useSyncExternalStore, type FormEvent } from "react";
+import { Activity, useState, useSyncExternalStore, type FormEvent } from "react";
 
+import { Loader } from "@/shared/components/loader/loader";
 import { authClient } from "../auth-client";
 import { getErrorMessage, safeRedirect } from "../utils/error-messages";
 import { serializePasskeySignUp } from "../utils/passkey-sign-up";
@@ -114,41 +115,43 @@ export function SignUpForm() {
           />
         </label>
 
-        {method === "password" && (
-          <>
-            <label className={styles["auth-form__field"]}>
-              <span>
-                Usuario{" "}
-                <span className={styles["auth-form__hint"]}>(opcional)</span>
-              </span>
-              <input
-                className={styles["auth-form__input"]}
-                name="username"
-                autoComplete="username"
-                minLength={3}
-                pattern="[A-Za-z0-9_.]+"
-              />
-            </label>
-            <label className={styles["auth-form__field"]}>
-              Contraseña
-              <input
-                className={styles["auth-form__input"]}
-                name="password"
-                type="password"
-                autoComplete="new-password"
-                minLength={8}
-                required
-              />
-            </label>
-          </>
-        )}
+        {/* Kept mounted so typed values survive switching tabs; disabled inputs
+            skip validation and are left out of the form data. */}
+        <Activity mode={method === "password" ? "visible" : "hidden"}>
+          <label className={styles["auth-form__field"]}>
+            <span>
+              Usuario{" "}
+              <span className={styles["auth-form__hint"]}>(opcional)</span>
+            </span>
+            <input
+              className={styles["auth-form__input"]}
+              name="username"
+              autoComplete="username"
+              minLength={3}
+              pattern="[A-Za-z0-9_.]+"
+              disabled={method !== "password"}
+            />
+          </label>
+          <label className={styles["auth-form__field"]}>
+            Contraseña
+            <input
+              className={styles["auth-form__input"]}
+              name="password"
+              type="password"
+              autoComplete="new-password"
+              minLength={8}
+              required
+              disabled={method !== "password"}
+            />
+          </label>
+        </Activity>
 
-        {method === "passkey" && (
+        <Activity mode={method === "passkey" ? "visible" : "hidden"}>
           <p className={styles["auth-form__hint"]}>
             Vas a usar la huella, el rostro o el PIN de tu dispositivo para
             ingresar. No hace falta recordar nada.
           </p>
-        )}
+        </Activity>
 
         {error && (
           <p className={styles["auth-form__error"]} role="alert">
@@ -156,6 +159,9 @@ export function SignUpForm() {
           </p>
         )}
         <button className={styles.button} type="submit" disabled={pending}>
+          <Activity mode={pending ? "visible" : "hidden"}>
+            <Loader size={20} tone="on-action" />
+          </Activity>
           {method === "passkey" ? "Crear cuenta con passkey" : "Crear cuenta"}
         </button>
       </form>

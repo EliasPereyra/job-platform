@@ -1,22 +1,24 @@
-import type { CSSProperties } from "react";
+import { Metronome } from "ldrs/react";
+import "ldrs/react/Metronome.css";
 
-import styles from "./loader.module.css";
+// The package writes the color into an inline custom property, so tokens work.
+const TONES = {
+  accent: "var(--color-accent)",
+  "on-action": "var(--color-on-action)",
+  // Follows the text color of the parent, e.g. ghost buttons that swap on hover.
+  inherit: "currentColor",
+} as const;
 
-const DOTS = Array.from(
-  { length: 9 },
-  (_, index) => Math.floor(index / 3) + (index % 3),
-);
+type LoaderProps = {
+  size?: number;
+  tone?: keyof typeof TONES;
+  label?: string;
+};
 
-export function Loader() {
+export function Loader({ size = 40, tone = "accent", label = "Cargando" }: LoaderProps) {
   return (
-    <div className={styles.loader} role="status" aria-label="Cargando">
-      {DOTS.map((step, index) => (
-        <div
-          key={index}
-          className={styles["loader__dot"]}
-          style={{ "--loader-index": step } as CSSProperties}
-        />
-      ))}
-    </div>
+    <span role="status" aria-label={label} style={{ display: "inline-flex" }}>
+      <Metronome size={size} color={TONES[tone]} />
+    </span>
   );
 }

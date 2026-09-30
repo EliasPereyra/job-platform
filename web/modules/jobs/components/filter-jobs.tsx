@@ -1,11 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { startTransition, useReducer, useState, ViewTransition } from "react";
+import React, { Activity, useReducer, useState, useTransition, ViewTransition } from "react";
 import { Briefcase, ChevronDown, MapPoint, Search } from "reicon-react";
 
 import type { JobCardData } from "@/modules/cms";
 import { jobsHref } from "@/modules/jobs/utils/jobs-href";
+import { Loader } from "@/shared/components/loader/loader";
 import { provincias } from "@/shared/utils/provinces";
 import JobCard from "./job-card";
 
@@ -41,6 +42,7 @@ export default function FilterJobs({
   province?: string | null;
 }) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const initialForm = { ...EMPTY_FORM, location: province ?? "" };
   const [applied, setApplied] = useState<FormState>(initialForm);
   const [formData, setFormData] = useReducer(formReducer, initialForm);
@@ -118,8 +120,18 @@ export default function FilterJobs({
           </select>
           <ChevronDown className={styles["job-search__chevron"]} size={16} aria-hidden />
         </label>
-        <button type="submit" className={styles["job-search__submit"]} aria-label="Buscar">
-          <Search size={20} aria-hidden />
+        <button
+          type="submit"
+          className={styles["job-search__submit"]}
+          aria-label="Buscar"
+          disabled={isPending}
+        >
+          <Activity mode={isPending ? "visible" : "hidden"}>
+            <Loader size={20} tone="on-action" label="Buscando" />
+          </Activity>
+          <Activity mode={isPending ? "hidden" : "visible"}>
+            <Search size={20} aria-hidden />
+          </Activity>
           Buscar
         </button>
       </form>
