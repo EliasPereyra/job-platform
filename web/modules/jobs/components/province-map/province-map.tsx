@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useMemo, useRef, useState } from "react";
 
-import { jobsHref } from "@/modules/jobs/jobs-href";
+import { jobsHref } from "@/modules/jobs/utils/jobs-href";
 
 import styles from "./province-map.module.css";
 

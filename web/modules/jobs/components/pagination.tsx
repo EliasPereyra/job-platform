@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight } from "reicon-react";
 
-import { jobsHref } from "@/modules/jobs/jobs-href";
+import { jobsHref } from "@/modules/jobs/utils/jobs-href";
 import { TransitionLink } from "@/shared/components/transition-link/transition-link";
 
 import styles from "./pagination.module.css";
