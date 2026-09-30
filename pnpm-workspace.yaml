@@ -8,6 +8,10 @@ overrides:
   "@types/react-dom": 19.2.3
   react: 19.3.0
   react-dom: 19.3.0
+  # @simplewebauthn/server needs a single copy: two copies keep separate
+  # schema registries and passkey (ES256) sign-in fails with
+  # "Cannot get schema for 'ECDSASigValue' target".
+  "@peculiar/asn1-schema": ^2.10.0
 
 allowBuilds:
   esbuild: true

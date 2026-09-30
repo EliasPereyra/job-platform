@@ -8,14 +8,19 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest"
+    "test": "vitest",
+    "auth:migrate": "pnpm dlx auth@latest migrate --config modules/auth/auth.ts"
   },
+  "type": "module",
   "dependencies": {
+    "@better-auth/passkey": "^1.7.6",
     "@portabletext/react": "^8.0.1",
     "@react-map/argentina": "^1.0.9",
     "@workstart/cms-sanity": "workspace:*",
+    "better-auth": "^1.7.6",
     "next": "16.3.6",
     "next-sanity": "^13.3.4",
+    "pg": "^8.23.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "reicon-react": "^1.2.5",
@@ -27,6 +32,7 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20",
+    "@types/pg": "^8.23.1",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^4.3.4",
