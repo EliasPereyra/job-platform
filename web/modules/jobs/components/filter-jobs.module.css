@@ -138,6 +138,10 @@
   &:active {
     scale: 0.97;
   }
+
+  &:disabled {
+    cursor: progress;
+  }
 }
 
 .job-search__results-title {

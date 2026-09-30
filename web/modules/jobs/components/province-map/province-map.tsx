@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useMemo, useRef, useState } from "react";
 
 import { jobsHref } from "@/modules/jobs/utils/jobs-href";
+import { Loader } from "@/shared/components/loader/loader";
 
 import styles from "./province-map.module.css";
 
@@ -12,7 +13,11 @@ import styles from "./province-map.module.css";
 // render in the browser. The placeholder keeps the space while it loads.
 const Argentina = dynamic(() => import("@react-map/argentina"), {
   ssr: false,
-  loading: () => <div className={styles["province-map__placeholder"]} />,
+  loading: () => (
+    <div className={styles["province-map__placeholder"]}>
+      <Loader label="Cargando mapa" />
+    </div>
+  ),
 });
 
 // The map names every province like the CMS except the capital.
