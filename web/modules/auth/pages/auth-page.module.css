@@ -1,0 +1,7 @@
+/* Provisional styles until the auth screens get a proper design. */
+.auth-page {
+  display: grid;
+  place-items: start center;
+  min-height: 80dvh;
+  padding: calc(var(--nav-height) + var(--space-8)) var(--gutter) var(--space-9);
+}

@@ -17,4 +17,4 @@ export type {
   SiteSettings as SiteSettingsResult,
 } from "@workstart/cms-sanity";
 
-export { cleanCmsValue } from "./clean";
+export { cleanCmsValue } from "./utils/clean";

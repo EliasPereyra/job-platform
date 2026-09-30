@@ -10,8 +10,8 @@ import {
 import { CmsImage } from "@/modules/cms/cms-image";
 import JobCard from "@/modules/jobs/components/job-card";
 import { ProvinceMap } from "@/modules/jobs/components/province-map/province-map";
-import { jobsHref } from "@/modules/jobs/jobs-href";
-import { companyLogoName } from "@/modules/jobs/transition-names";
+import { jobsHref } from "@/modules/jobs/utils/jobs-href";
+import { companyLogoName } from "@/modules/jobs/utils/transition-names";
 import { PageTransition } from "@/shared/components/page-transition/page-transition";
 import { TransitionLink } from "@/shared/components/transition-link/transition-link";
 

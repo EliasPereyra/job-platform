@@ -1,5 +1,5 @@
 import type { JobModality, JobWorkingDay } from "@/modules/cms";
-import { cleanCmsValue } from "@/modules/cms/clean";
+import { cleanCmsValue } from "@/modules/cms/utils/clean";
 
 const MODALITY_LABELS: Record<JobModality, string> = {
   presencial: "Presencial",

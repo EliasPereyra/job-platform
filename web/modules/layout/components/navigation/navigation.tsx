@@ -1,4 +1,5 @@
 import { getSiteSettings } from "@/modules/cms";
+import { UserMenu } from "@/modules/auth/components/user-menu";
 import { TransitionLink } from "@/shared/components/transition-link/transition-link";
 import { SiteLogo } from "../site-logo";
 import styles from "./navigation.module.css";
@@ -22,20 +23,23 @@ export default async function Navigation() {
       <TransitionLink className={styles["navigation__brand"]} href="/" transitionType="nav-lateral">
         <SiteLogo settings={settings} />
       </TransitionLink>
-      <ul className={styles["navigation__menu"]}>
-        {items.map((item) => (
-          <li key={item._key}>
-            <TransitionLink
-              className={styles["navigation__link"]}
-              itemProp="url"
-              href={item.href}
-              transitionType="nav-lateral"
-            >
-              <span itemProp="name">{item.label}</span>
-            </TransitionLink>
-          </li>
-        ))}
-      </ul>
+      <div className={styles["navigation__actions"]}>
+        <ul className={styles["navigation__menu"]}>
+          {items.map((item) => (
+            <li key={item._key}>
+              <TransitionLink
+                className={styles["navigation__link"]}
+                itemProp="url"
+                href={item.href}
+                transitionType="nav-lateral"
+              >
+                <span itemProp="name">{item.label}</span>
+              </TransitionLink>
+            </li>
+          ))}
+        </ul>
+        <UserMenu />
+      </div>
     </nav>
   );
 }

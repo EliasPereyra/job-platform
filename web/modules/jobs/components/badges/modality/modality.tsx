@@ -1,7 +1,7 @@
 import { Buildings2, HomeWifi, Laptop } from "reicon-react";
 
-import { cleanCmsValue } from "@/modules/cms/clean";
-import { modalityLabel } from "../../../labels";
+import { cleanCmsValue } from "@/modules/cms/utils/clean";
+import { modalityLabel } from "../../../utils/labels";
 import styles from "../badge.module.css";
 
 const ICONS = { presencial: Buildings2, remoto: Laptop, hibrido: HomeWifi };

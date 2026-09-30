@@ -7,7 +7,7 @@ import { getCompany } from "@/modules/cms";
 import { CmsImage } from "@/modules/cms/cms-image";
 import { RichText } from "@/modules/cms/rich-text";
 import JobCard from "@/modules/jobs/components/job-card";
-import { companyLogoName } from "@/modules/jobs/transition-names";
+import { companyLogoName } from "@/modules/jobs/utils/transition-names";
 import { PageTransition } from "@/shared/components/page-transition/page-transition";
 import { buildMetadata } from "@/shared/utils/metadata";
 

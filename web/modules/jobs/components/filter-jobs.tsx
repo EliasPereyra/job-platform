@@ -5,7 +5,7 @@ import React, { startTransition, useReducer, useState, ViewTransition } from "re
 import { Briefcase, ChevronDown, MapPoint, Search } from "reicon-react";
 
 import type { JobCardData } from "@/modules/cms";
-import { jobsHref } from "@/modules/jobs/jobs-href";
+import { jobsHref } from "@/modules/jobs/utils/jobs-href";
 import { provincias } from "@/shared/utils/provinces";
 import JobCard from "./job-card";
 

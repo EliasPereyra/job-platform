@@ -1,4 +1,4 @@
-import { cleanCmsValue } from "@/modules/cms/clean";
+import { cleanCmsValue } from "@/modules/cms/utils/clean";
 
 // Shared-element names pairing the job card with the job and company pages.
 // Slugs are cleaned because draft mode adds invisible stega characters.

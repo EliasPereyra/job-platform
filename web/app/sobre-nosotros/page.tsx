@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import AboutTemplate from "@/modules/pages/about-template";
+import AboutTemplate from "@/modules/static/pages/about-template";
 
 export const metadata: Metadata = {
   title: "Sobre nosotros",
