@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import ContactTemplate from "@/modules/pages/contact-template";
+import ContactTemplate from "@/modules/static/pages/contact-template";
 
 export const metadata: Metadata = {
   title: "Contacto",

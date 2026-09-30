@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import styles from "@/modules/pages/page-template.module.css";
+import styles from "@/modules/static/pages/page-template.module.css";
 
 export default function NotFound() {
   return (
