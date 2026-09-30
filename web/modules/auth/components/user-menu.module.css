@@ -1,0 +1,105 @@
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.user-menu__placeholder {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.user-menu__sign-in,
+.user-menu__sign-up {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.user-menu__sign-in {
+  color: var(--color-ink-muted);
+
+  &:hover {
+    color: var(--color-ink);
+    background-color: var(--color-paper);
+  }
+}
+
+.user-menu__sign-up {
+  color: var(--color-on-action);
+  background-color: var(--color-action);
+
+  &:hover {
+    background-color: var(--color-action-hover);
+  }
+}
+
+.user-menu__trigger {
+  display: inline-flex;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+
+.user-menu__popover {
+  inset: auto;
+  inset-block-start: calc(var(--nav-height) + var(--space-2));
+  inset-inline-end: var(--gutter);
+  min-width: 14rem;
+  max-width: calc(100vw - 2 * var(--gutter));
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-md);
+  background-color: var(--color-paper);
+  box-shadow: var(--shadow-lifted);
+}
+
+.user-menu__name {
+  font-weight: var(--font-weight-bold);
+}
+
+.user-menu__email {
+  overflow: hidden;
+  font-size: var(--font-size-sm);
+  color: var(--color-ink-subtle);
+  text-overflow: ellipsis;
+}
+
+.user-menu__separator {
+  margin-block: var(--space-2);
+  border: none;
+  border-block-start: var(--border-width) solid var(--color-line);
+}
+
+.user-menu__item {
+  display: block;
+  width: 100%;
+  padding: var(--space-2);
+  border: none;
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  text-align: start;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-wall);
+  }
+}
+
+@media (max-width: 36rem) {
+  .user-menu__sign-up {
+    display: none;
+  }
+
+  .user-menu__sign-in {
+    padding-inline: var(--space-1);
+    font-size: var(--font-size-xs);
+  }
+}
