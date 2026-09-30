@@ -1,0 +1,53 @@
+/* Provisional styles until the profile gets a proper design. */
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: min(100%, 40rem);
+  margin-inline: auto;
+  padding: calc(var(--nav-height) + var(--space-8)) var(--gutter) var(--space-9);
+}
+
+.profile__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.profile__name {
+  font-size: var(--font-size-2xl);
+}
+
+.profile__muted {
+  color: var(--color-ink-subtle);
+}
+
+.profile__section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-paper);
+}
+
+.profile__section-title {
+  font-size: var(--font-size-lg);
+}
+
+.profile__details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-2) var(--space-5);
+
+  & dt {
+    font-weight: var(--font-weight-bold);
+  }
+
+  & dd {
+    overflow-wrap: anywhere;
+    color: var(--color-ink-muted);
+  }
+}
