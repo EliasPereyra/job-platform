@@ -1,0 +1,69 @@
+/* Companies: a tinted strip of their own between the map and the benefits */
+.companies {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  align-items: center;
+  gap: var(--space-6) var(--space-8);
+  padding: var(--space-8)
+    max(var(--gutter), (100% - var(--content-width)) / 2 + var(--gutter));
+  background:
+    radial-gradient(
+      ellipse 50% 90% at 85% 50%,
+      color-mix(in oklab, var(--light-blue) 40%, transparent),
+      transparent
+    ),
+    color-mix(in oklab, var(--light-purple) 16%, var(--color-wall));
+  border-block-end: var(--perforation);
+
+  @media (max-width: 48rem) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.companies__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.companies__title {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-tight);
+}
+
+.companies__lead {
+  color: var(--color-ink-muted);
+}
+
+.companies__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  @media (max-width: 48rem) {
+    justify-content: flex-start;
+  }
+
+  gap: var(--space-4);
+  list-style: none;
+}
+
+.companies__link {
+  display: block;
+  border-radius: var(--radius-pill);
+  transition: translate var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    translate: 0 calc(var(--nudge) * -1);
+  }
+}
+
+.companies__logo {
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: var(--radius-pill);
+  object-fit: cover;
+  border: 3px solid var(--color-paper);
+  box-shadow: var(--shadow-paper);
+}

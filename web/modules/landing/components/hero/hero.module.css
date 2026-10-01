@@ -1,0 +1,259 @@
+@keyframes pin-up {
+  from {
+    opacity: 0;
+    translate: 0 -1.5rem;
+    rotate: calc(var(--pin-rotate) - 5deg);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    rotate: var(--pin-rotate);
+  }
+}
+
+/* Hero: headline on the left, the latest offers pinned on the right */
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-8);
+  min-height: 100dvh;
+  padding: calc(var(--nav-height) + var(--space-8))
+    max(var(--gutter), (100% - var(--content-width)) / 2 + var(--gutter))
+    var(--space-8);
+  overflow-x: clip;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(
+        ellipse 45% 55% at 12% 30%,
+        color-mix(in oklab, var(--light-green-yellow) 55%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 40% 50% at 92% 85%,
+        color-mix(in oklab, var(--light-blue) 45%, transparent),
+        transparent
+      ),
+      color-mix(in oklab, var(--color-wall) 65%, transparent);
+    mask-image: radial-gradient(
+      ellipse 85% 75% at 50% 45%,
+      #000 30%,
+      transparent
+    );
+    pointer-events: none;
+  }
+
+  & > :not(.hero__illustration) {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 60rem) {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: auto;
+  }
+}
+
+.hero__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.hero__title {
+  max-width: 11ch;
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-black);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-display);
+}
+
+.hero__lead {
+  max-width: 40ch;
+  font-size: var(--font-size-md);
+  color: var(--color-ink-muted);
+}
+
+.hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 36rem) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+    align-self: stretch;
+  }
+
+  gap: var(--space-3);
+  margin-block-start: var(--space-3);
+  list-style: none;
+}
+
+.hero__stat {
+  --stat-tint: var(--light-purple);
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: var(--space-3);
+  padding: var(--space-3) var(--space-5) var(--space-3) var(--space-3);
+  background-color: var(--color-paper);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-paper);
+
+  &:nth-child(2) {
+    --stat-tint: var(--light-green);
+  }
+
+  &:nth-child(3) {
+    --stat-tint: var(--light-blue);
+  }
+
+  @media (max-width: 36rem) {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+    row-gap: var(--space-1);
+    min-width: 0;
+    padding: var(--space-3) var(--space-2) var(--space-3) var(--space-3);
+
+    .hero__stat-icon {
+      grid-row: auto;
+      width: 2.25rem;
+      margin-block-end: var(--space-1);
+    }
+
+    /* Lowercase and tight, so "provincias" fits the narrowest ticket */
+    .hero__stat-label {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+  }
+
+  @media (max-width: 24rem) {
+    padding-inline: var(--space-2);
+
+    .hero__stat-label {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+.hero__stat-icon {
+  display: grid;
+  grid-row: span 2;
+  place-items: center;
+  width: 2.5rem;
+  aspect-ratio: 1;
+  color: var(--color-ink);
+  background-color: color-mix(
+    in oklab,
+    var(--stat-tint) 70%,
+    var(--color-paper)
+  );
+  border-radius: var(--radius-sm);
+}
+
+.hero__stat-value {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+}
+
+.hero__stat-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.hero__board {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  list-style: none;
+
+  /* Soft glow behind the pinned cards */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -15% -10%;
+    z-index: -1;
+    background:
+      radial-gradient(
+        closest-side at 35% 40%,
+        color-mix(in oklab, var(--light-purple) 55%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        closest-side at 70% 65%,
+        color-mix(in oklab, var(--light-blue) 60%, transparent),
+        transparent
+      );
+    filter: blur(24px);
+    pointer-events: none;
+  }
+
+  & > * {
+    --pin-rotate: 0deg;
+    position: relative;
+    rotate: var(--pin-rotate);
+    animation: pin-up var(--duration-slow) var(--ease-out) both;
+  }
+
+  /* The pin holding each card to the board */
+  & > *::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--space-2) * -1);
+    left: 50%;
+    z-index: 1;
+    width: 0.875rem;
+    aspect-ratio: 1;
+    translate: -50% 0;
+    background: radial-gradient(
+      circle at 35% 30%,
+      var(--light-purple),
+      var(--color-accent) 60%
+    );
+    border-radius: var(--radius-pill);
+    box-shadow: 0 3px 4px -1px
+      color-mix(in oklab, var(--color-ink) 40%, transparent);
+    pointer-events: none;
+  }
+
+  & > :nth-child(1) {
+    --pin-rotate: -1.5deg;
+    animation-delay: 150ms;
+  }
+
+  & > :nth-child(2) {
+    --pin-rotate: 1deg;
+    margin-inline-start: var(--space-6);
+    animation-delay: 280ms;
+  }
+
+  @media (max-width: 60rem) {
+    & > :nth-child(2) {
+      margin-inline-start: 0;
+    }
+  }
+
+  @media (max-width: 36rem) {
+    zoom: 0.82;
+  }
+}

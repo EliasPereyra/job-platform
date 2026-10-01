@@ -1,0 +1,25 @@
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+  padding: var(--space-9) var(--gutter);
+  color: var(--color-on-accent);
+  background-color: var(--color-accent);
+
+  @media (min-width: 60rem) {
+    padding-inline: max(
+      var(--gutter),
+      (100% - var(--content-width)) / 2 + var(--gutter)
+    );
+  }
+}
+
+.cta__title {
+  max-width: 18ch;
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-black);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-display);
+  color: inherit;
+}

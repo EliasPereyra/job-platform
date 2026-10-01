@@ -1,0 +1,9 @@
+/* Full-width paper band; the content keeps the page width */
+.band {
+  padding-inline: max(
+    var(--gutter),
+    (100% - var(--content-width)) / 2 + var(--gutter)
+  );
+  background-color: var(--color-paper);
+  border-block: var(--perforation);
+}

@@ -1,0 +1,38 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: var(--space-3) var(--space-6);
+  font-weight: var(--font-weight-heavy);
+  border-radius: var(--radius-pill);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    scale var(--duration-fast) var(--ease-out);
+
+  &:active {
+    scale: 0.97;
+  }
+}
+
+.button--primary {
+  color: var(--color-on-action);
+  background-color: var(--color-action);
+
+  &:hover {
+    background-color: var(--color-action-hover);
+  }
+}
+
+.button--secondary {
+  color: var(--color-accent);
+  background-color: var(--color-paper);
+
+  &:hover {
+    background-color: color-mix(
+      in oklab,
+      var(--light-purple) 35%,
+      var(--color-paper)
+    );
+  }
+}
