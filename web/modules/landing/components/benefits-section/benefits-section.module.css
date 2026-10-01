@@ -1,0 +1,97 @@
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+  padding: var(--space-9) var(--gutter);
+}
+
+.benefits__title {
+  max-width: 16ch;
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-display);
+}
+
+.benefits__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-5);
+  list-style: none;
+}
+
+.benefits__item {
+  --icon-tint: var(--light-blue);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-5);
+  /* A wash of the card's tint that fades into the paper */
+  background: linear-gradient(
+    160deg,
+    color-mix(in oklab, var(--icon-tint) 30%, var(--color-paper)),
+    var(--color-paper) 65%
+  );
+  border: var(--border-width-bold) solid var(--color-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-paper);
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    translate var(--duration-base) var(--ease-out);
+
+  &:hover {
+    border-color: color-mix(in oklab, var(--icon-tint) 55%, var(--color-ink));
+    box-shadow: var(--shadow-lifted);
+    translate: 0 calc(var(--nudge) * -2);
+  }
+
+  &:hover .benefits__icon {
+    background-color: var(--icon-tint);
+    rotate: -8deg;
+    scale: 1.08;
+  }
+}
+
+.benefits__item--purple {
+  --icon-tint: var(--light-purple);
+}
+
+.benefits__item--blue {
+  --icon-tint: var(--light-blue);
+}
+
+.benefits__item--green {
+  --icon-tint: var(--light-green);
+}
+
+.benefits__item--yellow {
+  --icon-tint: var(--light-green-yellow);
+}
+
+.benefits__icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  aspect-ratio: 1;
+  color: var(--color-ink);
+  background-color: color-mix(
+    in oklab,
+    var(--icon-tint) 60%,
+    var(--color-paper)
+  );
+  border-radius: var(--radius-pill);
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    rotate var(--duration-base) var(--ease-out),
+    scale var(--duration-base) var(--ease-out);
+}
+
+.benefits__item-title {
+  font-size: var(--font-size-md);
+}
+
+.benefits__text {
+  color: var(--color-ink-muted);
+}
