@@ -1,0 +1,53 @@
+@keyframes draw-trail {
+  from {
+    stroke-dashoffset: 120;
+  }
+}
+
+@keyframes fly-in {
+  from {
+    opacity: 0;
+    translate: -1.5rem 1rem;
+  }
+}
+
+.hero-illustration {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-illustration__flight {
+  position: absolute;
+  inset-block-start: 56%;
+  inset-inline-start: 41%;
+  width: 15rem;
+  animation: fly-in var(--duration-slow) var(--ease-out) 400ms both;
+
+  @media (max-width: 60rem) {
+    display: none;
+  }
+}
+
+.hero-illustration__trail {
+  stroke: color-mix(in oklab, var(--color-accent) 55%, transparent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 2 9;
+  animation: draw-trail 1.6s var(--ease-out) 400ms both;
+}
+
+.hero-illustration__plane {
+  fill: var(--color-paper);
+  stroke: var(--color-ink);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.hero-illustration__fold {
+  stroke: var(--color-ink);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

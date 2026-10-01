@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { ViewTransition } from "react";
+import { Briefcase, Buildings, MapPoint } from "reicon-react";
 
 import {
   getCompanies,
@@ -12,6 +13,7 @@ import JobCard from "@/modules/jobs/components/job-card";
 import { ProvinceMap } from "@/modules/jobs/components/province-map/province-map";
 import { jobsHref } from "@/modules/jobs/utils/jobs-href";
 import { companyLogoName } from "@/modules/jobs/utils/transition-names";
+import { HeroIllustration } from "@/shared/components/illustrations/hero-illustration";
 import { PageTransition } from "@/shared/components/page-transition/page-transition";
 import { TransitionLink } from "@/shared/components/transition-link/transition-link";
 
@@ -35,10 +37,27 @@ export default async function Home() {
     ([nameA, a], [nameB, b]) => b - a || nameA.localeCompare(nameB, "es"),
   );
 
+  const STATISTICS = [
+    { icon: Briefcase, value: total, one: "oferta", many: "ofertas" },
+    {
+      icon: MapPoint,
+      value: provincesWithJobs.length,
+      one: "provincia",
+      many: "provincias",
+    },
+    {
+      icon: Buildings,
+      value: companies.length,
+      one: "empresa",
+      many: "empresas",
+    },
+  ];
+
   return (
     <PageTransition>
       <div className={styles.home}>
         <section className={styles.hero}>
+          <HeroIllustration className={styles["hero__illustration"]} />
           <div className={styles["hero__copy"]}>
             <h1 className={styles["hero__title"]}>
               Ofertas de trabajo sin experiencia
@@ -54,18 +73,23 @@ export default async function Home() {
             >
               Ver las {total} ofertas
             </TransitionLink>
-            <ul className={styles["hero__stats"]} aria-label="WorkStart en números">
-              <li>
-                <strong>{total}</strong> {total === 1 ? "oferta" : "ofertas"}
-              </li>
-              <li>
-                <strong>{provincesWithJobs.length}</strong>{" "}
-                {provincesWithJobs.length === 1 ? "provincia" : "provincias"}
-              </li>
-              <li>
-                <strong>{companies.length}</strong>{" "}
-                {companies.length === 1 ? "empresa" : "empresas"}
-              </li>
+            <ul
+              className={styles["hero__stats"]}
+              aria-label="WorkStart en números"
+            >
+              {STATISTICS.map(({ icon: Icon, value, one, many }) => (
+                <li key={many} className={styles["hero__stat"]}>
+                  <span className={styles["hero__stat-icon"]}>
+                    <Icon size={20} aria-hidden />
+                  </span>
+                  <strong className={styles["hero__stat-value"]}>
+                    {value}
+                  </strong>
+                  <span className={styles["hero__stat-label"]}>
+                    {value === 1 ? one : many}
+                  </span>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -131,9 +155,17 @@ export default async function Home() {
             className={styles.companies}
             aria-labelledby="companies-title"
           >
-            <h2 id="companies-title" className={styles["companies__title"]}>
-              Empresas que publican en WorkStart
-            </h2>
+            <div className={styles["companies__intro"]}>
+              <h2
+                id="companies-title"
+                className={`${styles["section-title"]} ${styles["companies__title"]}`}
+              >
+                Empresas que publican en WorkStart
+              </h2>
+              <p className={styles["companies__lead"]}>
+                Elegí una empresa para conocerla y ver sus ofertas.
+              </p>
+            </div>
             <ul className={styles["companies__list"]}>
               {companies.map((company) => (
                 <li key={company._id}>
@@ -186,7 +218,10 @@ export default async function Home() {
           </ul>
         </section>
 
-        <section className={`${styles.band} ${styles.steps}`} aria-labelledby="steps-title">
+        <section
+          className={`${styles.band} ${styles.steps}`}
+          aria-labelledby="steps-title"
+        >
           <h2
             id="steps-title"
             className={`${styles["section-title"]} ${styles["steps__title"]}`}
@@ -196,13 +231,15 @@ export default async function Home() {
           <ol className={styles["steps__list"]}>
             {STEPS.map((step, index) => (
               <li key={step.title} className={styles["steps__item"]}>
-                <Image
-                  className={styles["steps__image"]}
-                  src={step.image}
-                  alt={step.alt}
-                  width={1604}
-                  height={854}
-                />
+                <div className={styles["steps__frame"]}>
+                  <Image
+                    className={styles["steps__image"]}
+                    src={step.image}
+                    alt={step.alt}
+                    width={1600}
+                    height={852}
+                  />
+                </div>
                 <div className={styles["steps__content"]}>
                   <span className={styles["steps__number"]} aria-hidden>
                     {index + 1}
