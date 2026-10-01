@@ -2,6 +2,7 @@
   "name": "workstart",
   "version": "0.7.0",
   "private": true,
+  "license": "MIT",
   "author": {
     "name": "EliasPereyra",
     "url": "https://github.com/EliasPereyra"
