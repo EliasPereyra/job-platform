@@ -1,0 +1,45 @@
+/* Sonner injects its own styles at runtime with attribute selectors, so these
+   repeat attributes to win on specificity regardless of the injection order. */
+.toaster.toaster[data-sonner-toaster] {
+  --normal-bg: var(--color-paper);
+  --normal-border: var(--color-line);
+  --normal-text: var(--color-ink);
+  --border-radius: var(--radius-md);
+  font-family: var(--font-body);
+}
+
+[data-sonner-toast].toaster__toast[data-styled="true"] {
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+  box-shadow: var(--shadow-lifted);
+
+  & [data-icon] {
+    color: var(--pink-red);
+  }
+
+  & [data-title] {
+    font-weight: var(--font-weight-heavy);
+  }
+
+  &[data-type="error"] [data-icon] {
+    color: var(--red-c-700);
+  }
+}
+
+[data-sonner-toast].toaster__toast .toaster__description[data-description] {
+  color: var(--color-ink-subtle);
+}
+
+[data-sonner-toast].toaster__toast .toaster__action[data-button] {
+  height: auto;
+  padding: var(--space-1) var(--space-3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-on-action);
+  background-color: var(--color-action);
+  border-radius: var(--radius-pill);
+  transition: background-color var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    background-color: var(--color-action-hover);
+  }
+}
