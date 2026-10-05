@@ -6,6 +6,7 @@ import { ArrowLeft } from "reicon-react";
 
 import { cleanCmsValue, getJob } from "@/modules/cms";
 import { CmsImage } from "@/modules/cms/cms-image";
+import { FavoriteButton } from "@/modules/favorites/components/favorite-button";
 import { RichText } from "@/modules/cms/rich-text";
 import Location from "@/modules/jobs/components/badges/location/location";
 import Time from "@/modules/jobs/components/badges/time/time";
@@ -97,6 +98,11 @@ export default async function JobPage({ params }: PageProps) {
               {job.company.name}
             </TransitionLink>
             <JobAvailable available={job.available ?? false} />
+            <FavoriteButton
+              job={job}
+              variant="labeled"
+              className={styles["job-page__favorite"]}
+            />
           </div>
 
           <ViewTransition name={jobTitleName(slug)} share="text-morph" default="none">

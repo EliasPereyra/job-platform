@@ -33,10 +33,15 @@
 }
 
 .job-page__company {
+  align-self: stretch;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-3) var(--space-5);
+}
+
+.job-page__favorite {
+  margin-inline-start: auto;
 }
 
 .job-page__company-link {
