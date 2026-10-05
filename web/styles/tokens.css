@@ -17,17 +17,17 @@
   --light-blue: #b9d1ff;
 
   /* Red scale */
-  --red-c-50: #FFEBEE;
-  --red-c-100: #FFD7DD;
-  --red-c-200: #FEAEBC;
-  --red-c-300: #FE869A;
-  --red-c-400: #FD5D78;
-  --red-c-500: #FD3454;
-  --red-c-600: #F2022A;
-  --red-c-700: #B60220;
+  --red-c-50: #ffebee;
+  --red-c-100: #ffd7dd;
+  --red-c-200: #feaebc;
+  --red-c-300: #fe869a;
+  --red-c-400: #fd5d78;
+  --red-c-500: #fd3454;
+  --red-c-600: #f2022a;
+  --red-c-700: #b60220;
   --red-c-800: #790115;
-  --red-c-900: #3D010B;
-  --red-c-950: #1E0005;
+  --red-c-900: #3d010b;
+  --red-c-950: #1e0005;
 
   --purple-dark: #2b2091;
 
@@ -118,9 +118,11 @@
   --focus-offset: 3px;
 
   /* Elevation: tinted with the brand purple instead of flat grey */
-  --shadow-paper: 0 1px 0 var(--color-line),
+  --shadow-paper:
+    0 1px 0 var(--color-line),
     0 14px 28px -18px color-mix(in oklab, var(--purple) 45%, transparent);
-  --shadow-lifted: 0 1px 0 var(--color-line),
+  --shadow-lifted:
+    0 1px 0 var(--color-line),
     0 22px 40px -20px color-mix(in oklab, var(--purple) 55%, transparent);
 
   /* Motion */
