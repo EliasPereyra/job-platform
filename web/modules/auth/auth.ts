@@ -4,6 +4,7 @@ import { username } from "better-auth/plugins";
 import { passkey } from "@better-auth/passkey";
 import { Pool } from "pg";
 
+import { favorites } from "../favorites/favorites-plugin";
 import { parsePasskeySignUp } from "./utils/passkey-sign-up";
 
 const baseURL = process.env.BETTER_AUTH_URL ?? "http://localhost:3000";
@@ -74,6 +75,7 @@ export const auth = betterAuth({
         },
       },
     }),
+    favorites(),
   ],
 });
 
