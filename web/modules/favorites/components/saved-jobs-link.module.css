@@ -1,0 +1,26 @@
+.saved-jobs-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: fit-content;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink-muted);
+  background-color: var(--color-paper);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-pill);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+
+  & svg {
+    color: var(--pink-red);
+  }
+
+  &:hover {
+    color: var(--color-ink);
+    border-color: var(--color-line-strong);
+  }
+}
+

@@ -5,6 +5,7 @@ import React, { Activity, useReducer, useState, useTransition, ViewTransition } 
 import { Briefcase, ChevronDown, MapPoint, Search } from "reicon-react";
 
 import type { JobCardData } from "@/modules/cms";
+import { SavedJobsLink } from "@/modules/favorites/components/saved-jobs-link";
 import { jobsHref } from "@/modules/jobs/utils/jobs-href";
 import { Loader } from "@/shared/components/loader/loader";
 import { provincias } from "@/shared/utils/provinces";
@@ -85,6 +86,7 @@ export default function FilterJobs({
             : "ofertas publicadas por empresas de toda Argentina."}{" "}
           Buscá por puesto o provincia.
         </p>
+        <SavedJobsLink />
       </header>
 
       <form onSubmit={handleSubmit} className={styles["job-search__form"]} role="search">

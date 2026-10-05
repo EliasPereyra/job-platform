@@ -93,8 +93,17 @@
   background: none;
   cursor: pointer;
 
+  & svg {
+    flex-shrink: 0;
+    color: var(--color-ink-subtle);
+  }
+
   &:hover {
     background-color: var(--color-wall);
+
+    & svg {
+      color: var(--color-ink);
+    }
   }
 
   &:disabled {

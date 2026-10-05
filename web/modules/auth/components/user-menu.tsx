@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { Activity } from "react";
+import { Heart, Logout, User as UserIcon } from "reicon-react";
 
+import { SAVED_JOBS_HREF } from "@/modules/favorites/utils/routes";
 import { Loader } from "@/shared/components/loader/loader";
 import { authClient } from "../auth-client";
 import { Avatar } from "./avatar";
@@ -65,9 +67,19 @@ function SignedInMenu({ user }: { user: User }) {
           href="/perfil/"
           onClick={closeMenu}
         >
+          <UserIcon size={18} aria-hidden />
           Ver perfil
         </Link>
+        <Link
+          className={styles["user-menu__item"]}
+          href={SAVED_JOBS_HREF}
+          onClick={closeMenu}
+        >
+          <Heart size={18} aria-hidden />
+          Empleos guardados
+        </Link>
         <SignOutButton className={styles["user-menu__item"]}>
+          <Logout size={18} aria-hidden />
           Cerrar sesión
         </SignOutButton>
       </div>
