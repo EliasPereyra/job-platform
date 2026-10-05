@@ -1,11 +1,10 @@
-/* Provisional styles until the profile gets a proper design. */
+/* Provisional styles until the profile gets a proper design. The page sits
+   inside the account layout, which sets the outer spacing. */
 .profile {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
-  width: min(100%, 40rem);
-  margin-inline: auto;
-  padding: calc(var(--nav-height) + var(--space-8)) var(--gutter) var(--space-9);
+  max-width: 40rem;
 }
 
 .profile__header {

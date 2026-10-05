@@ -3,6 +3,7 @@ import { Briefcase, Buildings, MapPoint } from "reicon-react";
 import type { JobCardData } from "@/modules/cms";
 import JobCard from "@/modules/jobs/components/job-card";
 import { ButtonLink } from "@/shared/components/button-link/button-link";
+import backdrop from "@/shared/styles/backdrop.module.css";
 import { HeroIllustration } from "./hero-illustration";
 
 import styles from "./hero.module.css";
@@ -22,7 +23,7 @@ export function Hero({ latestJobs, totalJobs, provinceCount, companyCount }: Her
   ];
 
   return (
-    <section className={styles.hero}>
+    <section className={`${backdrop.backdrop} ${styles.hero}`}>
       <HeroIllustration className={styles["hero__illustration"]} />
       <div className={styles["hero__copy"]}>
         <h1 className={styles["hero__title"]}>Ofertas de trabajo sin experiencia</h1>

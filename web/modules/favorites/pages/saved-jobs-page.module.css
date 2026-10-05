@@ -1,0 +1,20 @@
+.saved-jobs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.saved-jobs__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.saved-jobs__title {
+  font-size: var(--font-size-2xl);
+}
+
+.saved-jobs__lead {
+  max-width: var(--measure);
+  color: var(--color-ink-muted);
+}

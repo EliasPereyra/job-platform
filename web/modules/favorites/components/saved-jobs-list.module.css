@@ -1,0 +1,25 @@
+.saved-jobs-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: var(--space-6) var(--space-5);
+  list-style: none;
+}
+
+.saved-jobs-list__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  max-width: 40rem;
+  padding: var(--space-6);
+  color: var(--color-ink-muted);
+  background-color: var(--color-paper);
+  border: var(--perforation);
+  border-radius: var(--radius-md);
+}
+
+.saved-jobs-list__loading {
+  display: grid;
+  place-items: center;
+  min-height: 12rem;
+}

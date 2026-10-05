@@ -3,6 +3,7 @@ export {
   getCompany,
   getJob,
   getJobCountsByProvince,
+  getJobsByIds,
   getJobsPage,
   getSiteSettings,
   getSitemapEntries,

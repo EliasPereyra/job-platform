@@ -6,6 +6,7 @@ import { ArrowLeft } from "reicon-react";
 
 import { cleanCmsValue, getJob } from "@/modules/cms";
 import { CmsImage } from "@/modules/cms/cms-image";
+import { FavoriteButton } from "@/modules/favorites/components/favorite-button";
 import { RichText } from "@/modules/cms/rich-text";
 import Location from "@/modules/jobs/components/badges/location/location";
 import Time from "@/modules/jobs/components/badges/time/time";
@@ -22,6 +23,7 @@ import { PageTransition } from "@/shared/components/page-transition/page-transit
 import { TransitionLink } from "@/shared/components/transition-link/transition-link";
 import { buildMetadata } from "@/shared/utils/metadata";
 import { siteUrl } from "@/shared/utils/site-url";
+import backdrop from "@/shared/styles/backdrop.module.css";
 
 import styles from "./page.module.css";
 
@@ -71,7 +73,7 @@ export default async function JobPage({ params }: PageProps) {
 
   return (
     <PageTransition>
-      <article className={styles["job-page"]}>
+      <article className={`${backdrop.backdrop} ${styles["job-page"]}`}>
         <TransitionLink className={styles["job-page__back"]} href="/todos-los-trabajos" transitionType="nav-back">
           <ArrowLeft size={18} aria-hidden />
           Todas las ofertas
@@ -96,6 +98,11 @@ export default async function JobPage({ params }: PageProps) {
               {job.company.name}
             </TransitionLink>
             <JobAvailable available={job.available ?? false} />
+            <FavoriteButton
+              job={job}
+              variant="labeled"
+              className={styles["job-page__favorite"]}
+            />
           </div>
 
           <ViewTransition name={jobTitleName(slug)} share="text-morph" default="none">

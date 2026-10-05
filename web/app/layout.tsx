@@ -3,9 +3,11 @@ import { draftMode } from "next/headers";
 import { Raleway } from "next/font/google";
 
 import { CmsLive } from "@/modules/cms/live";
+import { FavoritesProvider } from "@/modules/favorites/context/favorites-context";
 import { PreviewNotice } from "@/modules/layout/components/preview-notice/preview-notice";
 import Navigation from "@/modules/layout/components/navigation/navigation";
 import Footer from "@/modules/layout/components/footer/footer";
+import { Toaster } from "@/shared/components/toaster/toaster";
 import { siteUrl } from "@/shared/utils/site-url";
 
 import "@/styles/tokens.css";
@@ -33,11 +35,14 @@ export default async function RootLayout({
     <html lang="es" className={raleway.variable}>
       <body>
         {isEnabled && <PreviewNotice />}
-        <div className={styles.layout}>
-          <Navigation />
-          <main className={styles["layout__main"]}>{children}</main>
-          <Footer />
-        </div>
+        <FavoritesProvider>
+          <div className={styles.layout}>
+            <Navigation />
+            <main className={styles["layout__main"]}>{children}</main>
+            <Footer />
+          </div>
+          <Toaster />
+        </FavoritesProvider>
         <CmsLive />
       </body>
     </html>

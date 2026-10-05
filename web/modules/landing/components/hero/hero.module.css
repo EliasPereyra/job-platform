@@ -13,42 +13,15 @@
 
 /* Hero: headline on the left, the latest offers pinned on the right */
 .hero {
-  position: relative;
-  isolation: isolate;
+  --backdrop-max-block-size: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   align-items: center;
   gap: var(--space-8);
   min-height: 100dvh;
-  padding: calc(var(--nav-height) + var(--space-8))
-    max(var(--gutter), (100% - var(--content-width)) / 2 + var(--gutter))
+  padding: calc(var(--nav-height) + var(--space-8)) var(--content-inset)
     var(--space-8);
   overflow-x: clip;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background:
-      radial-gradient(
-        ellipse 45% 55% at 12% 30%,
-        color-mix(in oklab, var(--light-green-yellow) 55%, transparent),
-        transparent
-      ),
-      radial-gradient(
-        ellipse 40% 50% at 92% 85%,
-        color-mix(in oklab, var(--light-blue) 45%, transparent),
-        transparent
-      ),
-      color-mix(in oklab, var(--color-wall) 65%, transparent);
-    mask-image: radial-gradient(
-      ellipse 85% 75% at 50% 45%,
-      #000 30%,
-      transparent
-    );
-    pointer-events: none;
-  }
 
   & > :not(.hero__illustration) {
     position: relative;

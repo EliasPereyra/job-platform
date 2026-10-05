@@ -1,6 +1,7 @@
 "use client";
 
 import { Activity, useState } from "react";
+import { Trash } from "reicon-react";
 
 import { Loader } from "@/shared/components/loader/loader";
 import { authClient } from "../auth-client";
@@ -61,6 +62,9 @@ export function PasskeyList() {
                 >
                   <Activity mode={deletingId === passkey.id ? "visible" : "hidden"}>
                     <Loader size={16} tone="inherit" label="Eliminando" />
+                  </Activity>
+                  <Activity mode={deletingId === passkey.id ? "hidden" : "visible"}>
+                    <Trash size={16} aria-hidden />
                   </Activity>
                   Eliminar
                 </button>
