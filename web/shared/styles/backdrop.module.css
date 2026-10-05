@@ -1,0 +1,30 @@
+.backdrop {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: -1;
+    block-size: min(100%, var(--backdrop-max-block-size, 100dvh));
+    background:
+      radial-gradient(
+        ellipse 45% 55% at 12% 30%,
+        color-mix(in oklab, var(--light-green-yellow) 55%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 40% 50% at 92% 85%,
+        color-mix(in oklab, var(--light-blue) 45%, transparent),
+        transparent
+      ),
+      color-mix(in oklab, var(--color-wall) 65%, transparent);
+    mask-image: radial-gradient(
+      ellipse 85% 75% at 50% 45%,
+      #000 30%,
+      transparent
+    );
+    pointer-events: none;
+  }
+}

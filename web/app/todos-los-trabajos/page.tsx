@@ -4,6 +4,7 @@ import FilterJobs from "@/modules/jobs/components/filter-jobs";
 import { Pagination } from "@/modules/jobs/components/pagination";
 import { PageTransition } from "@/shared/components/page-transition/page-transition";
 import { isProvince } from "@/shared/utils/provinces";
+import backdrop from "@/shared/styles/backdrop.module.css";
 
 import styles from "./page.module.css";
 
@@ -27,7 +28,7 @@ export default async function JobsPage({
 
   return (
     <PageTransition>
-      <section className={styles["jobs-page"]}>
+      <section className={`${backdrop.backdrop} ${styles["jobs-page"]}`}>
         {/* key: reset the client-side filter when the page changes */}
         <FilterJobs key={page} jobs={jobs} total={total} page={page} province={province} />
         <Pagination page={Math.min(page, totalPages)} totalPages={totalPages} province={province} />

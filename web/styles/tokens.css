@@ -100,6 +100,10 @@
   --space-9: 7rem;
   --gutter: clamp(1rem, 4vw, 3rem);
   --content-width: 72rem;
+  --content-inset: max(
+    var(--gutter),
+    (100% - var(--content-width)) / 2 + var(--gutter)
+  );
   --nav-height: 4rem;
 
   /* Shape */

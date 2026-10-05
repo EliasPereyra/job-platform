@@ -1,7 +1,5 @@
 .job-page {
-  width: min(100%, var(--content-width));
-  margin-inline: auto;
-  padding: calc(var(--nav-height) + var(--space-6)) var(--gutter) var(--space-9);
+  padding: calc(var(--nav-height) + var(--space-6)) var(--content-inset) var(--space-9);
 }
 
 .job-page__back {

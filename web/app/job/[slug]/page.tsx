@@ -22,6 +22,7 @@ import { PageTransition } from "@/shared/components/page-transition/page-transit
 import { TransitionLink } from "@/shared/components/transition-link/transition-link";
 import { buildMetadata } from "@/shared/utils/metadata";
 import { siteUrl } from "@/shared/utils/site-url";
+import backdrop from "@/shared/styles/backdrop.module.css";
 
 import styles from "./page.module.css";
 
@@ -71,7 +72,7 @@ export default async function JobPage({ params }: PageProps) {
 
   return (
     <PageTransition>
-      <article className={styles["job-page"]}>
+      <article className={`${backdrop.backdrop} ${styles["job-page"]}`}>
         <TransitionLink className={styles["job-page__back"]} href="/todos-los-trabajos" transitionType="nav-back">
           <ArrowLeft size={18} aria-hidden />
           Todas las ofertas

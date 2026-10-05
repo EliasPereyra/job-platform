@@ -10,6 +10,7 @@ import JobCard from "@/modules/jobs/components/job-card";
 import { companyLogoName } from "@/modules/jobs/utils/transition-names";
 import { PageTransition } from "@/shared/components/page-transition/page-transition";
 import { buildMetadata } from "@/shared/utils/metadata";
+import backdrop from "@/shared/styles/backdrop.module.css";
 
 import styles from "./page.module.css";
 
@@ -38,7 +39,7 @@ export default async function CompanyPage({ params }: PageProps) {
 
   return (
     <PageTransition>
-      <div className={styles["company-page"]}>
+      <div className={`${backdrop.backdrop} ${styles["company-page"]}`}>
         <header className={styles["company-page__header"]}>
           <ViewTransition name={companyLogoName(slug)} share="morph" default="none">
             <CmsImage
