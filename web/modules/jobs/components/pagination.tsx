@@ -1,22 +1,20 @@
 import { ChevronLeft, ChevronRight } from "reicon-react";
 
-import { jobsHref } from "@/modules/jobs/utils/jobs-href";
 import { TransitionLink } from "@/shared/components/transition-link/transition-link";
 
 import styles from "./pagination.module.css";
 
+// `href` builds the URL of a page, so each list keeps its own filters.
 export function Pagination({
   page,
   totalPages,
-  province,
+  href,
 }: {
   page: number;
   totalPages: number;
-  province?: string | null;
+  href: (page: number) => string;
 }) {
   if (totalPages <= 1) return null;
-
-  const href = (target: number) => jobsHref({ page: target, province });
 
   const hasPrevious = page > 1;
   const hasNext = page < totalPages;

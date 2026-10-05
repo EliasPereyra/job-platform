@@ -1,0 +1,97 @@
+.account-sidebar {
+  position: sticky;
+  inset-block-start: calc(var(--nav-height) + var(--space-5));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-paper);
+  box-shadow: var(--shadow-paper);
+
+  @media (max-width: 52rem) {
+    position: static;
+    padding: var(--space-1);
+    border-radius: var(--radius-pill);
+  }
+}
+
+.account-sidebar__title {
+  padding-inline: var(--space-3);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  @media (max-width: 52rem) {
+    display: none;
+  }
+}
+
+.account-sidebar__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  list-style: none;
+
+  @media (max-width: 52rem) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.account-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink-muted);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+
+  & svg {
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    color: var(--color-ink);
+    background-color: var(--color-wall);
+  }
+
+  &[aria-current="page"] {
+    color: var(--color-accent);
+    background-color: color-mix(
+      in oklab,
+      var(--light-purple) 35%,
+      var(--color-paper)
+    );
+  }
+
+  @media (max-width: 52rem) {
+    justify-content: center;
+    gap: var(--space-2);
+    border-radius: var(--radius-pill);
+    font-size: var(--font-size-sm);
+  }
+
+  @media (max-width: 30rem) {
+    & svg {
+      display: none;
+    }
+  }
+}
+
+.account-sidebar__label {
+  flex: 1;
+  white-space: nowrap;
+
+  @media (max-width: 52rem) {
+    flex: none;
+  }
+}
+
