@@ -433,6 +433,62 @@ export type JOB_PROVINCES_QUERY_RESULT = Array<
 >;
 
 // Source: ../packages/cms-sanity/src/queries.ts
+// Variable: JOBS_BY_IDS_QUERY
+// Query: *[_type == "job" && _id in $ids && defined(slug.current)]{   _id,  title,  "slug": slug.current,  publishedAt,  available,  province,  city,  modality,  workingDay,  salary,  "categories": categories[]->{ _id, name },  "company": company->{ name, "slug": slug.current, logo } }
+export type JOBS_BY_IDS_QUERY_RESULT = Array<{
+  _id: string;
+  title: string;
+  slug: string;
+  publishedAt: string;
+  available: boolean | null;
+  province:
+    | "Buenos Aires"
+    | "CABA"
+    | "Catamarca"
+    | "Chaco"
+    | "Chubut"
+    | "C\xF3rdoba"
+    | "Corrientes"
+    | "Entre R\xEDos"
+    | "Formosa"
+    | "Jujuy"
+    | "La Pampa"
+    | "La Rioja"
+    | "Mendoza"
+    | "Misiones"
+    | "Neuqu\xE9n"
+    | "R\xEDo Negro"
+    | "Salta"
+    | "San Juan"
+    | "San Luis"
+    | "Santa Cruz"
+    | "Santa Fe"
+    | "Santiago del Estero"
+    | "Tierra del Fuego"
+    | "Tucum\xE1n";
+  city: string | null;
+  modality: "hibrido" | "presencial" | "remoto";
+  workingDay: "full-time" | "part-time" | "shifts" | "temporary" | "weekends";
+  salary: string | null;
+  categories: Array<{
+    _id: string;
+    name: string;
+  }> | null;
+  company: {
+    name: string;
+    slug: string;
+    logo: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt: string;
+      _type: "image";
+    } | null;
+  };
+}>;
+
+// Source: ../packages/cms-sanity/src/queries.ts
 // Variable: JOB_QUERY
 // Query: *[_type == "job" && slug.current == $slug][0]{      _id,  title,  "slug": slug.current,  publishedAt,  available,  province,  city,  modality,  workingDay,  salary,  "categories": categories[]->{ _id, name },  "company": company->{ name, "slug": slug.current, logo },    _updatedAt,    description,    tasks,    mandatoryRequirements,    optionalRequirements,    benefits,    "contactEmail": coalesce(contactEmail, company->contactEmail),    seo  }
 export type JOB_QUERY_RESULT = {
@@ -609,6 +665,7 @@ declare global {
     '\n  *[_type == "job" && defined(slug.current) && ($province == null || province == $province)]\n    | order(publishedAt desc) [$start...$end]{ \n  _id,\n  title,\n  "slug": slug.current,\n  publishedAt,\n  available,\n  province,\n  city,\n  modality,\n  workingDay,\n  salary,\n  "categories": categories[]->{ _id, name },\n  "company": company->{ name, "slug": slug.current, logo }\n }\n': JOBS_PAGE_QUERY_RESULT;
     '\n  count(*[_type == "job" && defined(slug.current) && ($province == null || province == $province)])\n': JOBS_COUNT_QUERY_RESULT;
     '\n  *[_type == "job" && defined(slug.current)].province\n': JOB_PROVINCES_QUERY_RESULT;
+    '\n  *[_type == "job" && _id in $ids && defined(slug.current)]{ \n  _id,\n  title,\n  "slug": slug.current,\n  publishedAt,\n  available,\n  province,\n  city,\n  modality,\n  workingDay,\n  salary,\n  "categories": categories[]->{ _id, name },\n  "company": company->{ name, "slug": slug.current, logo }\n }\n': JOBS_BY_IDS_QUERY_RESULT;
     '\n  *[_type == "job" && slug.current == $slug][0]{\n    \n  _id,\n  title,\n  "slug": slug.current,\n  publishedAt,\n  available,\n  province,\n  city,\n  modality,\n  workingDay,\n  salary,\n  "categories": categories[]->{ _id, name },\n  "company": company->{ name, "slug": slug.current, logo }\n,\n    _updatedAt,\n    description,\n    tasks,\n    mandatoryRequirements,\n    optionalRequirements,\n    benefits,\n    "contactEmail": coalesce(contactEmail, company->contactEmail),\n    seo\n  }\n': JOB_QUERY_RESULT;
     '\n  *[_type == "job" && defined(slug.current)]{ "slug": slug.current, _updatedAt }\n': JOB_SLUGS_QUERY_RESULT;
     '\n  *[_type == "company" && defined(slug.current)] | order(name asc){\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  }\n': COMPANIES_QUERY_RESULT;

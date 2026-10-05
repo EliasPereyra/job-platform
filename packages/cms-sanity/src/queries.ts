@@ -40,6 +40,10 @@ export const JOB_PROVINCES_QUERY = defineQuery(`
   *[_type == "job" && defined(slug.current)].province
 `);
 
+export const JOBS_BY_IDS_QUERY = defineQuery(`
+  *[_type == "job" && _id in $ids && defined(slug.current)]{ ${JOB_CARD_FIELDS} }
+`);
+
 export const JOB_QUERY = defineQuery(`
   *[_type == "job" && slug.current == $slug][0]{
     ${JOB_CARD_FIELDS},
