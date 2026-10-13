@@ -4,6 +4,9 @@
   "private": true,
   "description": "Sanity data layer for the web app: client, Live Content API, GROQ queries and TypeGen types.",
   "type": "module",
+  "scripts": {
+    "test": "vitest"
+  },
   "exports": {
     ".": "./src/index.ts",
     "./live": "./src/live.ts",
@@ -19,5 +22,9 @@
     "next": "^16.0.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "groq-js": "^2.0.0",
+    "vitest": "^3.2.7"
   }
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getJobsPage } from "@/modules/cms";
+import { getJobCategories, getJobsPage } from "@/modules/cms";
 import FilterJobs from "@/modules/jobs/components/filter-jobs";
 import { Pagination } from "@/modules/jobs/components/pagination";
 import { jobsHref } from "@/modules/jobs/utils/jobs-href";
@@ -20,22 +20,38 @@ export const metadata: Metadata = {
 export default async function JobsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; provincia?: string }>;
+  searchParams: Promise<{ page?: string; provincia?: string; categoria?: string }>;
 }) {
-  const { page: pageParam, provincia } = await searchParams;
+  const { page: pageParam, provincia, categoria } = await searchParams;
   const page = Math.max(1, Number.parseInt(pageParam ?? "1", 10) || 1);
   const province = isProvince(provincia) ? provincia : null;
-  const { jobs, total, totalPages } = await getJobsPage({ page, pageSize: PAGE_SIZE, province });
+  const categories = await getJobCategories();
+  // Unknown slugs are ignored, like unknown provinces.
+  const category = categories.find(({ slug }) => slug === categoria)?.slug ?? null;
+  const { jobs, total, totalPages } = await getJobsPage({
+    page,
+    pageSize: PAGE_SIZE,
+    province,
+    category,
+  });
 
   return (
     <PageTransition>
       <section className={`${backdrop.backdrop} ${styles["jobs-page"]}`}>
         {/* key: reset the client-side filter when the page changes */}
-        <FilterJobs key={page} jobs={jobs} total={total} page={page} province={province} />
+        <FilterJobs
+          key={page}
+          jobs={jobs}
+          total={total}
+          page={page}
+          province={province}
+          categories={categories}
+          category={category}
+        />
         <Pagination
           page={Math.min(page, totalPages)}
           totalPages={totalPages}
-          href={(target) => jobsHref({ page: target, province })}
+          href={(target) => jobsHref({ page: target, province, category })}
         />
       </section>
     </PageTransition>

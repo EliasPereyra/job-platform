@@ -1,4 +1,11 @@
-import type { getCompanies, getCompany, getJob, getJobsPage, getSiteSettings } from "./api";
+import type {
+  getCompanies,
+  getCompany,
+  getJob,
+  getJobCategories,
+  getJobsPage,
+  getSiteSettings,
+} from "./api";
 import type { JOBS_PAGE_QUERY_RESULT } from "./sanity.types";
 
 export * from "./api";
@@ -9,6 +16,7 @@ export type JobCard = Awaited<ReturnType<typeof getJobsPage>>["jobs"][number];
 export type Job = NonNullable<Awaited<ReturnType<typeof getJob>>>;
 export type Company = NonNullable<Awaited<ReturnType<typeof getCompany>>>;
 export type CompanySummary = Awaited<ReturnType<typeof getCompanies>>[number];
+export type JobCategory = Awaited<ReturnType<typeof getJobCategories>>[number];
 export type SiteSettings = Awaited<ReturnType<typeof getSiteSettings>>;
 
 export type JobModality = JOBS_PAGE_QUERY_RESULT[number]["modality"];

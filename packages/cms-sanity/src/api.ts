@@ -3,6 +3,7 @@ import {
   COMPANIES_QUERY,
   COMPANY_QUERY,
   COMPANY_SLUGS_QUERY,
+  JOB_CATEGORIES_QUERY,
   JOB_PROVINCES_QUERY,
   JOB_QUERY,
   JOB_SLUGS_QUERY,
@@ -24,18 +25,21 @@ export async function getJobsPage({
   page,
   pageSize,
   province = null,
+  category = null,
 }: {
   page: number;
   pageSize: number;
   province?: string | null;
+  // Category slug.
+  category?: string | null;
 }) {
   const start = (page - 1) * pageSize;
   const [{ data: jobs }, { data: total }] = await Promise.all([
     sanityFetch({
       query: JOBS_PAGE_QUERY,
-      params: { start, end: start + pageSize, province },
+      params: { start, end: start + pageSize, province, category },
     }),
-    sanityFetch({ query: JOBS_COUNT_QUERY, params: { province } }),
+    sanityFetch({ query: JOBS_COUNT_QUERY, params: { province, category } }),
   ]);
   return { jobs, total, totalPages: Math.max(1, Math.ceil(total / pageSize)) };
 }
@@ -52,6 +56,16 @@ export async function getJobCountsByProvince() {
     if (province) counts[province] = (counts[province] ?? 0) + 1;
   }
   return counts;
+}
+
+// Job categories sorted by name. Never stega-encoded: the slugs go in the URL
+// and the names are matched against it.
+export async function getJobCategories() {
+  const { data } = await sanityFetch({
+    query: JOB_CATEGORIES_QUERY,
+    stega: false,
+  });
+  return data;
 }
 
 export async function getJob(
