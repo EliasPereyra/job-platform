@@ -17,7 +17,7 @@
     "dev:studio": "pnpm --filter @workstart/studio dev",
     "build": "pnpm --filter @workstart/web build",
     "lint": "pnpm --filter @workstart/web lint",
-    "test": "pnpm --filter @workstart/web test",
+    "test": "pnpm --filter @workstart/web --filter @workstart/cms-sanity test",
     "typegen": "pnpm --filter @workstart/studio typegen",
     "seed": "pnpm --filter @workstart/studio seed"
   },
