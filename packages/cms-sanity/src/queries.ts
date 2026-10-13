@@ -13,7 +13,7 @@ const JOB_CARD_FIELDS = /* groq */ `
   modality,
   workingDay,
   salary,
-  "categories": categories[]->{ _id, name },
+  "categories": categories[]->{ _id, name, "slug": slug.current },
   "company": company->{ name, "slug": slug.current, logo }
 `;
 
@@ -26,14 +26,27 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
   }
 `);
 
-// $province is null for "all provinces".
+// $province is null for "all provinces" and $category (a category slug) is
+// null for "all categories".
 export const JOBS_PAGE_QUERY = defineQuery(`
-  *[_type == "job" && defined(slug.current) && ($province == null || province == $province)]
+  *[_type == "job" && defined(slug.current)
+    && ($province == null || province == $province)
+    && ($category == null || $category in categories[]->slug.current)]
     | order(publishedAt desc) [$start...$end]{ ${JOB_CARD_FIELDS} }
 `);
 
 export const JOBS_COUNT_QUERY = defineQuery(`
-  count(*[_type == "job" && defined(slug.current) && ($province == null || province == $province)])
+  count(*[_type == "job" && defined(slug.current)
+    && ($province == null || province == $province)
+    && ($category == null || $category in categories[]->slug.current)])
+`);
+
+export const JOB_CATEGORIES_QUERY = defineQuery(`
+  *[_type == "jobCategory" && defined(slug.current)] | order(name asc){
+    _id,
+    name,
+    "slug": slug.current
+  }
 `);
 
 export const JOB_PROVINCES_QUERY = defineQuery(`

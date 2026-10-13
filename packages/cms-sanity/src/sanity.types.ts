@@ -343,7 +343,7 @@ export type SITE_SETTINGS_QUERY_RESULT = {
 
 // Source: ../packages/cms-sanity/src/queries.ts
 // Variable: JOBS_PAGE_QUERY
-// Query: *[_type == "job" && defined(slug.current) && ($province == null || province == $province)]    | order(publishedAt desc) [$start...$end]{   _id,  title,  "slug": slug.current,  publishedAt,  available,  province,  city,  modality,  workingDay,  salary,  "categories": categories[]->{ _id, name },  "company": company->{ name, "slug": slug.current, logo } }
+// Query: *[_type == "job" && defined(slug.current)    && ($province == null || province == $province)    && ($category == null || $category in categories[]->slug.current)]    | order(publishedAt desc) [$start...$end]{   _id,  title,  "slug": slug.current,  publishedAt,  available,  province,  city,  modality,  workingDay,  salary,  "categories": categories[]->{ _id, name, "slug": slug.current },  "company": company->{ name, "slug": slug.current, logo } }
 export type JOBS_PAGE_QUERY_RESULT = Array<{
   _id: string;
   title: string;
@@ -382,6 +382,7 @@ export type JOBS_PAGE_QUERY_RESULT = Array<{
   categories: Array<{
     _id: string;
     name: string;
+    slug: string;
   }> | null;
   company: {
     name: string;
@@ -399,8 +400,17 @@ export type JOBS_PAGE_QUERY_RESULT = Array<{
 
 // Source: ../packages/cms-sanity/src/queries.ts
 // Variable: JOBS_COUNT_QUERY
-// Query: count(*[_type == "job" && defined(slug.current) && ($province == null || province == $province)])
+// Query: count(*[_type == "job" && defined(slug.current)    && ($province == null || province == $province)    && ($category == null || $category in categories[]->slug.current)])
 export type JOBS_COUNT_QUERY_RESULT = number;
+
+// Source: ../packages/cms-sanity/src/queries.ts
+// Variable: JOB_CATEGORIES_QUERY
+// Query: *[_type == "jobCategory" && defined(slug.current)] | order(name asc){    _id,    name,    "slug": slug.current  }
+export type JOB_CATEGORIES_QUERY_RESULT = Array<{
+  _id: string;
+  name: string;
+  slug: string;
+}>;
 
 // Source: ../packages/cms-sanity/src/queries.ts
 // Variable: JOB_PROVINCES_QUERY
@@ -434,7 +444,7 @@ export type JOB_PROVINCES_QUERY_RESULT = Array<
 
 // Source: ../packages/cms-sanity/src/queries.ts
 // Variable: JOBS_BY_IDS_QUERY
-// Query: *[_type == "job" && _id in $ids && defined(slug.current)]{   _id,  title,  "slug": slug.current,  publishedAt,  available,  province,  city,  modality,  workingDay,  salary,  "categories": categories[]->{ _id, name },  "company": company->{ name, "slug": slug.current, logo } }
+// Query: *[_type == "job" && _id in $ids && defined(slug.current)]{   _id,  title,  "slug": slug.current,  publishedAt,  available,  province,  city,  modality,  workingDay,  salary,  "categories": categories[]->{ _id, name, "slug": slug.current },  "company": company->{ name, "slug": slug.current, logo } }
 export type JOBS_BY_IDS_QUERY_RESULT = Array<{
   _id: string;
   title: string;
@@ -473,6 +483,7 @@ export type JOBS_BY_IDS_QUERY_RESULT = Array<{
   categories: Array<{
     _id: string;
     name: string;
+    slug: string;
   }> | null;
   company: {
     name: string;
@@ -490,7 +501,7 @@ export type JOBS_BY_IDS_QUERY_RESULT = Array<{
 
 // Source: ../packages/cms-sanity/src/queries.ts
 // Variable: JOB_QUERY
-// Query: *[_type == "job" && slug.current == $slug][0]{      _id,  title,  "slug": slug.current,  publishedAt,  available,  province,  city,  modality,  workingDay,  salary,  "categories": categories[]->{ _id, name },  "company": company->{ name, "slug": slug.current, logo },    _updatedAt,    description,    tasks,    mandatoryRequirements,    optionalRequirements,    benefits,    "contactEmail": coalesce(contactEmail, company->contactEmail),    seo  }
+// Query: *[_type == "job" && slug.current == $slug][0]{      _id,  title,  "slug": slug.current,  publishedAt,  available,  province,  city,  modality,  workingDay,  salary,  "categories": categories[]->{ _id, name, "slug": slug.current },  "company": company->{ name, "slug": slug.current, logo },    _updatedAt,    description,    tasks,    mandatoryRequirements,    optionalRequirements,    benefits,    "contactEmail": coalesce(contactEmail, company->contactEmail),    seo  }
 export type JOB_QUERY_RESULT = {
   _id: string;
   title: string;
@@ -529,6 +540,7 @@ export type JOB_QUERY_RESULT = {
   categories: Array<{
     _id: string;
     name: string;
+    slug: string;
   }> | null;
   company: {
     name: string;
@@ -579,7 +591,7 @@ export type COMPANIES_QUERY_RESULT = Array<{
 
 // Source: ../packages/cms-sanity/src/queries.ts
 // Variable: COMPANY_QUERY
-// Query: *[_type == "company" && slug.current == $slug][0]{    _id,    name,    "slug": slug.current,    logo,    website,    contactEmail,    description,    seo,    "jobs": *[_type == "job" && references(^._id) && defined(slug.current)]      | order(publishedAt desc){   _id,  title,  "slug": slug.current,  publishedAt,  available,  province,  city,  modality,  workingDay,  salary,  "categories": categories[]->{ _id, name },  "company": company->{ name, "slug": slug.current, logo } }  }
+// Query: *[_type == "company" && slug.current == $slug][0]{    _id,    name,    "slug": slug.current,    logo,    website,    contactEmail,    description,    seo,    "jobs": *[_type == "job" && references(^._id) && defined(slug.current)]      | order(publishedAt desc){   _id,  title,  "slug": slug.current,  publishedAt,  available,  province,  city,  modality,  workingDay,  salary,  "categories": categories[]->{ _id, name, "slug": slug.current },  "company": company->{ name, "slug": slug.current, logo } }  }
 export type COMPANY_QUERY_RESULT = {
   _id: string;
   name: string;
@@ -634,6 +646,7 @@ export type COMPANY_QUERY_RESULT = {
     categories: Array<{
       _id: string;
       name: string;
+      slug: string;
     }> | null;
     company: {
       name: string;
@@ -662,14 +675,15 @@ export type COMPANY_SLUGS_QUERY_RESULT = Array<{
 declare global {
   interface SanityQueries {
     '\n  *[_type == "siteSettings" && _id == "siteSettings"][0]{\n    title,\n    description,\n    logo,\n    navigation[]{ _key, label, href }\n  }\n': SITE_SETTINGS_QUERY_RESULT;
-    '\n  *[_type == "job" && defined(slug.current) && ($province == null || province == $province)]\n    | order(publishedAt desc) [$start...$end]{ \n  _id,\n  title,\n  "slug": slug.current,\n  publishedAt,\n  available,\n  province,\n  city,\n  modality,\n  workingDay,\n  salary,\n  "categories": categories[]->{ _id, name },\n  "company": company->{ name, "slug": slug.current, logo }\n }\n': JOBS_PAGE_QUERY_RESULT;
-    '\n  count(*[_type == "job" && defined(slug.current) && ($province == null || province == $province)])\n': JOBS_COUNT_QUERY_RESULT;
+    '\n  *[_type == "job" && defined(slug.current)\n    && ($province == null || province == $province)\n    && ($category == null || $category in categories[]->slug.current)]\n    | order(publishedAt desc) [$start...$end]{ \n  _id,\n  title,\n  "slug": slug.current,\n  publishedAt,\n  available,\n  province,\n  city,\n  modality,\n  workingDay,\n  salary,\n  "categories": categories[]->{ _id, name, "slug": slug.current },\n  "company": company->{ name, "slug": slug.current, logo }\n }\n': JOBS_PAGE_QUERY_RESULT;
+    '\n  count(*[_type == "job" && defined(slug.current)\n    && ($province == null || province == $province)\n    && ($category == null || $category in categories[]->slug.current)])\n': JOBS_COUNT_QUERY_RESULT;
+    '\n  *[_type == "jobCategory" && defined(slug.current)] | order(name asc){\n    _id,\n    name,\n    "slug": slug.current\n  }\n': JOB_CATEGORIES_QUERY_RESULT;
     '\n  *[_type == "job" && defined(slug.current)].province\n': JOB_PROVINCES_QUERY_RESULT;
-    '\n  *[_type == "job" && _id in $ids && defined(slug.current)]{ \n  _id,\n  title,\n  "slug": slug.current,\n  publishedAt,\n  available,\n  province,\n  city,\n  modality,\n  workingDay,\n  salary,\n  "categories": categories[]->{ _id, name },\n  "company": company->{ name, "slug": slug.current, logo }\n }\n': JOBS_BY_IDS_QUERY_RESULT;
-    '\n  *[_type == "job" && slug.current == $slug][0]{\n    \n  _id,\n  title,\n  "slug": slug.current,\n  publishedAt,\n  available,\n  province,\n  city,\n  modality,\n  workingDay,\n  salary,\n  "categories": categories[]->{ _id, name },\n  "company": company->{ name, "slug": slug.current, logo }\n,\n    _updatedAt,\n    description,\n    tasks,\n    mandatoryRequirements,\n    optionalRequirements,\n    benefits,\n    "contactEmail": coalesce(contactEmail, company->contactEmail),\n    seo\n  }\n': JOB_QUERY_RESULT;
+    '\n  *[_type == "job" && _id in $ids && defined(slug.current)]{ \n  _id,\n  title,\n  "slug": slug.current,\n  publishedAt,\n  available,\n  province,\n  city,\n  modality,\n  workingDay,\n  salary,\n  "categories": categories[]->{ _id, name, "slug": slug.current },\n  "company": company->{ name, "slug": slug.current, logo }\n }\n': JOBS_BY_IDS_QUERY_RESULT;
+    '\n  *[_type == "job" && slug.current == $slug][0]{\n    \n  _id,\n  title,\n  "slug": slug.current,\n  publishedAt,\n  available,\n  province,\n  city,\n  modality,\n  workingDay,\n  salary,\n  "categories": categories[]->{ _id, name, "slug": slug.current },\n  "company": company->{ name, "slug": slug.current, logo }\n,\n    _updatedAt,\n    description,\n    tasks,\n    mandatoryRequirements,\n    optionalRequirements,\n    benefits,\n    "contactEmail": coalesce(contactEmail, company->contactEmail),\n    seo\n  }\n': JOB_QUERY_RESULT;
     '\n  *[_type == "job" && defined(slug.current)]{ "slug": slug.current, _updatedAt }\n': JOB_SLUGS_QUERY_RESULT;
     '\n  *[_type == "company" && defined(slug.current)] | order(name asc){\n    _id,\n    name,\n    "slug": slug.current,\n    logo\n  }\n': COMPANIES_QUERY_RESULT;
-    '\n  *[_type == "company" && slug.current == $slug][0]{\n    _id,\n    name,\n    "slug": slug.current,\n    logo,\n    website,\n    contactEmail,\n    description,\n    seo,\n    "jobs": *[_type == "job" && references(^._id) && defined(slug.current)]\n      | order(publishedAt desc){ \n  _id,\n  title,\n  "slug": slug.current,\n  publishedAt,\n  available,\n  province,\n  city,\n  modality,\n  workingDay,\n  salary,\n  "categories": categories[]->{ _id, name },\n  "company": company->{ name, "slug": slug.current, logo }\n }\n  }\n': COMPANY_QUERY_RESULT;
+    '\n  *[_type == "company" && slug.current == $slug][0]{\n    _id,\n    name,\n    "slug": slug.current,\n    logo,\n    website,\n    contactEmail,\n    description,\n    seo,\n    "jobs": *[_type == "job" && references(^._id) && defined(slug.current)]\n      | order(publishedAt desc){ \n  _id,\n  title,\n  "slug": slug.current,\n  publishedAt,\n  available,\n  province,\n  city,\n  modality,\n  workingDay,\n  salary,\n  "categories": categories[]->{ _id, name, "slug": slug.current },\n  "company": company->{ name, "slug": slug.current, logo }\n }\n  }\n': COMPANY_QUERY_RESULT;
     '\n  *[_type == "company" && defined(slug.current)]{ "slug": slug.current, _updatedAt }\n': COMPANY_SLUGS_QUERY_RESULT;
   }
 }
