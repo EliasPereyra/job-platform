@@ -59,13 +59,13 @@ afterEach(() => {
   push.mockClear();
 });
 
-test("Tiene que mostrar todos los trabajos", () => {
+test("Shows every job", () => {
   render(<FilterJobs jobs={jobs} total={jobs.length} />);
 
   expect(screen.getAllByLabelText("Tarjeta de trabajo")).toHaveLength(2);
 });
 
-test("Cuando se busque un trabajo que no exista, debe mostrarse un mensaje diciendo que no se encontraron resultados", async () => {
+test("Shows a no-results message when searching for a job that doesn't exist", async () => {
   const user = userEvent.setup();
   render(<FilterJobs jobs={jobs} total={jobs.length} />);
 
@@ -80,7 +80,7 @@ test("Cuando se busque un trabajo que no exista, debe mostrarse un mensaje dicie
   ).toBeInTheDocument();
 });
 
-test("Filtra por provincia aunque no se escriba un puesto", async () => {
+test("Filters by province without typing a job title", async () => {
   const user = userEvent.setup();
   render(<FilterJobs jobs={jobs} total={jobs.length} />);
 
@@ -95,7 +95,7 @@ test("Filtra por provincia aunque no se escriba un puesto", async () => {
   expect(within(cards[0]).getByText("Ayudante de barista")).toBeInTheDocument();
 });
 
-test("Con una provincia en la URL la muestra seleccionada", () => {
+test("Preselects the province from the URL", () => {
   const cordoba = [jobs[1]];
   render(
     <FilterJobs jobs={cordoba} total={cordoba.length} province="Córdoba" />,
@@ -107,7 +107,7 @@ test("Con una provincia en la URL la muestra seleccionada", () => {
   expect(screen.getByText(/oferta publicada en Córdoba/)).toBeInTheDocument();
 });
 
-test("Cambiar de provincia navega a la lista filtrada por esa provincia", async () => {
+test("Changing the province navigates to the list filtered by it", async () => {
   const user = userEvent.setup();
   render(<FilterJobs jobs={jobs} total={jobs.length} />);
 
@@ -123,7 +123,7 @@ test("Cambiar de provincia navega a la lista filtrada por esa provincia", async 
   );
 });
 
-test("Sin ofertas en la provincia avisa que todavía no hay publicadas", () => {
+test("Says there are no jobs yet when the province has none", () => {
   render(<FilterJobs jobs={[]} total={0} province="Formosa" />);
 
   expect(
